@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wrap-Up and Homework: React Practice</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Exercise: React Practice</h1>
+        <p>
+            Let’s recap React’s core concepts and assign a practice exercise to
+            solidify your skills.
+        </p>
+        <h2>Key Takeaways</h2>
+        <ul>
+            <li>
+                <strong>Declarative:</strong> React simplifies UI updates with a
+                “what, not how” approach.
+            </li>
+            <li>
+                <strong>Composable:</strong> Reusable components make apps
+                modular and maintainable.
+            </li>
+            <li>
+                <strong>JSX:</strong> HTML-like syntax with <code>{}</code> for
+                dynamic content.
+            </li>
+            <li>
+                <strong>Vite:</strong> Fast setup and HMR enhance development.
+            </li>
+        </ul>
+        <h2>React Practice</h2>
+        <div class="exercise">
+            <strong>Exercise: React Practice</strong>
+            <p>
+                <strong>Objective:</strong> Create a simple React app using Vite
+                to practice setup, JSX, and styling.
+            </p>
+            <p><strong>Instructions:</strong></p>
+            <ol>
+                <li>
+                    <strong>Create a Vite App:</strong>
+                    <ul>
+                        <li>
+                            Run <code>npm create vite@latest</code>, name it
+                            <code>react-practice</code>, select
+                            <code>React</code>, <code>JavaScript</code>.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Clear Boilerplate:</strong>
+                    <ul>
+                        <li>Delete <code>src/App.css</code>.</li>
+                        <li>Empty <code>src/index.css</code>.</li>
+                        <li>
+                            Simplify <code>App.jsx</code>:
+                            <pre><code>function App() {
+  return &lt;div&gt;&lt;/div&gt;;
+}
+export default App;</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Render an <code>&lt;h1&gt;</code>:</strong>
+                    <ul>
+                        <li>
+                            Add an <code>&lt;h1&gt;</code> element in
+                            <code>App.jsx</code>.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Use Variables:</strong>
+                    <ul>
+                        <li>
+                            Create a string variable (e.g.,
+                            <code>const greeting = "Hello, V School!";</code>).
+                        </li>
+                        <li>
+                            Create a style object (e.g.,
+                            <code
+                                >const styles = { color: "#6b48ff", fontSize:
+                                "2em" };</code
+                            >).
+                        </li>
+                        <li>
+                            Render:
+                            <code
+                                >&lt;h1
+                                style={styles}&gt;{greeting}&lt;/h1&gt;</code
+                            >.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Run App:</strong>
+                    <ul>
+                        <li>
+                            Run <code>npm run dev</code>, view at
+                            <code>http://localhost:5173</code>.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <p><strong>Example:</strong></p>
+            <pre><code>function App() {
+  const greeting = "Hello, V School!";
+  const styles = {
+    color: "#6b48ff",
+    fontSize: "2em",
+    textAlign: "center",
+    margin: "20px"
+  };
+  return (
+    &lt;div&gt;
+      &lt;h1 style={styles}&gt;{greeting}&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+export default App;</code></pre>
+            <p>
+                <strong>Submission:</strong> Share a screenshot of your app in
+                the browser and your <code>App.jsx</code> code.
+            </p>
+            <p>Good luck, and have fun with your first React practice!</p>
+        </div>
+        <h2>Next Steps</h2>
+        <p>
+            Explore the <a href="https://react.dev">React documentation</a> and
+            <a href="https://vitejs.dev">Vite guide</a>. Try adding more
+            components to your app!
+        </p>
+    </body>
+</html>
