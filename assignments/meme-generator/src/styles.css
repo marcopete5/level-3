@@ -40,9 +40,8 @@ h2 {
     color: #e64a45;
 }
 .create-meme-container {
-    display: grid;
+    display: flex;
     gap: 20px;
-    grid-template-columns: 1fr 1fr;
 }
 .meme-form {
     flex: 0 0 40%;
@@ -190,13 +189,62 @@ button:hover {
 }
 @media (max-width: 844px) {
     .create-meme-container {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
-    .meme-form, .meme-preview {
+    .meme-form,
+    .meme-preview {
         flex: 1;
     }
     .meme-list {
         grid-template-columns: 1fr;
     }
     .container {
-        max-width: 600
+        max-width: 600px;
+        padding: 15px;
+    }
+}
+@media (max-width: 390px) {
+    .container {
+        margin: 10px;
+        padding: 10px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.4em;
+    }
+    input,
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .meme-item {
+        width: 350px;
+        height: 350px;
+    }
+    .meme img {
+        width: 250px;
+        height: 250px;
+    }
+    .meme-item .meme .top-text,
+    .meme-item .meme .bottom-text {
+        font-size: 14px;
+        max-width: 230px;
+    }
+    .meme-preview .meme .top-text,
+    .meme-preview .meme .bottom-text {
+        font-size: 18px;
+        max-width: 85%;
+    }
+}
+@media (min-width: 820px) and (max-height: 1180px) {
+    .container {
+        max-width: 800px;
+    }
+}
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1000px;
+    }
+}
