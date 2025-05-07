@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Header, Navbar, and Footer Components</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Header, Navbar, and Footer Components</h1>
+        <p>
+            Build header, navbar, and footer components for a website layout,
+            emphasizing separate component functions.
+        </p>
+        <h2>Learning Objectives</h2>
+        <p>
+            Students will create header, navbar, and footer components and
+            understand the need for separate functions.
+        </p>
+        <h2>Why Separate Components?</h2>
+        <ul>
+            <li>
+                <strong>Modularity:</strong> Each component handles a specific
+                UI part, enhancing reusability.
+            </li>
+            <li>
+                <strong>Collaboration:</strong> Teams can work on different
+                components simultaneously.
+            </li>
+            <li>
+                <strong>Maintenance:</strong> Update one component without
+                affecting others.
+            </li>
+        </ul>
+        <h3>Component Structure</h3>
+        <p>Organize in <code>src/components</code>:</p>
+        <pre><code>src/
+├── components/
+│   ├── Header.jsx
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+├── App.jsx
+└── main.jsx</code></pre>
+        <h3>Header Component</h3>
+        <pre><code>// src/components/Header.jsx
+function Header() {
+  return (
+    &lt;header style={{ background: "#4a6fa5", color: "#ffffff", padding: "10px", textAlign: "center" }}&gt;
+      &lt;h1&gt;My Website&lt;/h1&gt;
+    &lt;/header&gt;
+  );
+}
+export default Header;</code></pre>
+        <h3>Navbar Component</h3>
+        <pre><code>// src/components/Navbar.jsx
+function Navbar() {
+  return (
+    &lt;nav style={{ background: "#e8ecef", padding: "10px" }}&gt;
+      &lt;ul style={{ listStyle: "none", display: "flex", justifyContent: "center", gap: "20px" }}&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  );
+}
+export default Navbar;</code></pre>
+        <h3>Footer Component</h3>
+        <pre><code>// src/components/Footer.jsx
+function Footer() {
+  return (
+    &lt;footer style={{ background: "#2f2f2f", color: "#ffffff", padding: "10px", textAlign: "center" }}&gt;
+      &lt;p&gt;© 2025 My Website. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+  );
+}
+export default Footer;</code></pre>
+        <h3>Using in <code>App</code></h3>
+        <pre><code>// src/App.jsx
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
+function App() {
+  return (
+    &lt;&gt;
+      &lt;Header /&gt;
+      &lt;Navbar /&gt;
+      &lt;main&gt;
+        &lt;h2&gt;Welcome&lt;/h2&gt;
+        &lt;p&gt;This is the main content.&lt;/p&gt;
+      &lt;/main&gt;
+      &lt;Footer /&gt;
+    &lt;/&gt;
+  );
+}
+export default App;</code></pre>
+        <h3>Pitfalls</h3>
+        <ul>
+            <li>
+                <strong>File Paths:</strong> Incorrect imports (e.g.,
+                <code>./Components/Header</code>) cause errors.
+            </li>
+            <li>
+                <strong>Styling:</strong> Inline styles may conflict; consider
+                CSS files for complex designs.
+            </li>
+        </ul>
+        <div class="exercise">
+            <strong>Quick Exercise (10 min):</strong> Design a
+            <code>Sidebar</code> component with a list of links. Write its JSX
+            and describe how you’d import it into <code>App.jsx</code>. Share
+            with the class.
+        </div>
+    </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>React Fragments</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>React Fragments</h1>
+        <p>
+            Explore React fragments, a tool for grouping JSX elements without
+            adding extra DOM nodes.
+        </p>
+        <h2>Learning Objective</h2>
+        <p>Students will describe React fragments and their purpose.</p>
+        <h2>What is a React Fragment?</h2>
+        <p>
+            Fragments (<code>&lt;&gt;&lt;/&gt;</code> or
+            <code>&lt;React.Fragment&gt;&lt;/React.Fragment&gt;</code>) group
+            multiple JSX elements without adding a DOM element (e.g.,
+            <code>&lt;div&gt;</code>), keeping HTML clean.
+        </p>
+        <h3>Why Use Fragments?</h3>
+        <ul>
+            <li>
+                <strong>Cleaner DOM:</strong> Avoid unnecessary wrappers that
+                bloat HTML.
+            </li>
+            <li>
+                <strong>Better Styling:</strong> Prevent styling issues from
+                extra <code>&lt;div&gt;</code>s.
+            </li>
+            <li>
+                <strong>Semantic HTML:</strong> Maintain accessibility-friendly
+                structure.
+            </li>
+        </ul>
+        <h3>Example: Without Fragment</h3>
+        <pre><code>function App() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Why Learn React?&lt;/h1&gt;
+      &lt;ol&gt;
+        &lt;li&gt;Popular library&lt;/li&gt;
+        &lt;li&gt;Better job prospects&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+        <p>
+            This adds an extra <code>&lt;div&gt;</code>, which may affect
+            styling or semantics.
+        </p>
+        <h3>Example: With Fragment</h3>
+        <pre><code>function App() {
+  return (
+    &lt;&gt;
+      &lt;h1&gt;Why Learn React?&lt;/h1&gt;
+      &lt;ol&gt;
+        &lt;li&gt;Popular library&lt;/li&gt;
+        &lt;li&gt;Better job prospects&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/&gt;
+  );
+}</code></pre>
+        <p>The fragment groups elements without a DOM node.</p>
+        <h3>Explicit Fragment</h3>
+        <p>
+            Use <code>&lt;React.Fragment&gt;</code> for clarity or with
+            <code>key</code> attributes in lists:
+        </p>
+        <pre><code>function ItemList() {
+  const items = ["Apple", "Banana"];
+  return (
+    &lt;React.Fragment&gt;
+      {items.map(item => (
+        &lt;React.Fragment key={item}&gt;
+          &lt;li&gt;{item}&lt;/li&gt;
+        &lt;/React.Fragment&gt;
+      ))}
+    &lt;/React.Fragment&gt;
+  );
+}</code></pre>
+        <h3>Pitfalls</h3>
+        <ul>
+            <li>
+                <strong>Overuse:</strong> Use fragments only when avoiding extra
+                nodes is needed.
+            </li>
+            <li>
+                <strong>Keys:</strong> Short syntax (<code>&lt;&gt;</code>)
+                doesn’t support <code>key</code>; use
+                <code>&lt;React.Fragment&gt;</code>.
+            </li>
+        </ul>
+        <div class="exercise">
+            <strong>Quick Exercise (5 min):</strong> Rewrite this JSX to use a
+            fragment instead of a <code>&lt;div&gt;</code>:
+            <code
+                >&lt;div&gt;&lt;h2&gt;Title&lt;/h2&gt;&lt;p&gt;Text&lt;/p&gt;&lt;/div&gt;</code
+            >. Share your answer with a partner.
+        </div>
+    </body>
+</html>

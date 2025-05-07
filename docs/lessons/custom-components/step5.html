@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hands-On Practice and Wrap-Up</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Hands-On Practice and Wrap-Up</h1>
+        <p>
+            Build a React app with custom components and fragments, then recap
+            and assign homework.
+        </p>
+        <h2>Learning Objectives</h2>
+        <p>
+            Students will create a React app with layout components and submit a
+            practice exercise.
+        </p>
+        <div class="exercise">
+            <strong>Exercise: Portfolio Layout </strong>
+            <p>
+                <strong>Objective:</strong> Create a React app with header,
+                navbar, footer, and a <code>Bio</code> component using
+                fragments.
+            </p>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>
+                    <strong>Create a Vite App:</strong>
+                    <ul>
+                        <li>
+                            Run <code>npm create vite@latest</code>, name it
+                            <code>portfolio-app</code>, select
+                            <code>React</code>, <code>JavaScript</code>.
+                        </li>
+                        <li>Navigate: <code>cd portfolio-app</code>.</li>
+                        <li>Install: <code>npm install</code>.</li>
+                        <li>Start: <code>npm run dev</code>.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Clear Boilerplate:</strong>
+                    <ul>
+                        <li>Delete <code>src/App.css</code>.</li>
+                        <li>Empty <code>src/index.css</code>.</li>
+                        <li>
+                            Simplify <code>App.jsx</code>:
+                            <pre><code>function App() {
+  return &lt;div&gt;&lt;/div&gt;;
+}
+export default App;</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Create Components:</strong>
+                    <ul>
+                        <li>
+                            <code>src/components/Header.jsx</code>:
+                            <pre><code>function Header() {
+  return (
+    &lt;header style={{ background: "#4a6fa5", color: "#ffffff", padding: "10px", textAlign: "center" }}&gt;
+      &lt;h1&gt;My Portfolio&lt;/h1&gt;
+    &lt;/header&gt;
+  );
+}
+export default Header;</code></pre>
+                        </li>
+                        <li>
+                            <code>src/components/Navbar.jsx</code>:
+                            <pre><code>function Navbar() {
+  return (
+    &lt;nav style={{ background: "#e8ecef", padding: "10px" }}&gt;
+      &lt;ul style={{ listStyle: "none", display: "flex", justifyContent: "center", gap: "20px" }}&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  );
+}
+export default Navbar;</code></pre>
+                        </li>
+                        <li>
+                            <code>src/components/Footer.jsx</code>:
+                            <pre><code>function Footer() {
+  return (
+    &lt;footer style={{ background: "#2f2f2f", color: "#ffffff", padding: "10px", textAlign: "center" }}&gt;
+      &lt;p&gt;© 2025 My Portfolio&lt;/p&gt;
+    &lt;/footer&gt;
+  );
+}
+export default Footer;</code></pre>
+                        </li>
+                        <li>
+                            <code>src/components/Bio.jsx</code>:
+                            <pre><code>function Bio() {
+  const name = "Your Name";
+  return (
+    &lt;&gt;
+      &lt;h2&gt;{name}&lt;/h2&gt;
+      &lt;p&gt;Web developer learning React at V School.&lt;/p&gt;
+    &lt;/&gt;
+  );
+}
+export default Bio;</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Update <code>App.jsx</code>:</strong>
+                    <pre><code>import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Bio from './components/Bio';
+
+function App() {
+  return (
+    &lt;&gt;
+      &lt;Header /&gt;
+      &lt;Navbar /&gt;
+      &lt;main&gt;
+        &lt;Bio /&gt;
+      &lt;/main&gt;
+      &lt;Footer /&gt;
+    &lt;/&gt;
+  );
+}
+export default App;</code></pre>
+                </li>
+                <li>
+                    <strong>Test:</strong>
+                    <ul>
+                        <li>
+                            Run <code>npm run dev</code>, check
+                            <code>http://localhost:5173</code>.
+                        </li>
+                        <li>Verify all components and fragment usage.</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>
+                <strong>Tips:</strong> Debug import errors in DevTools (F12).
+                Experiment with styles (e.g., <code>fontSize: "1.5em"</code>).
+                Ensure fragments are used in <code>Bio</code>.
+            </p>
+        </div>
+        <h2>Key Takeaways</h2>
+        <ul>
+            <li>
+                <strong>Custom Components:</strong> Functions returning JSX for
+                reusable UI.
+            </li>
+            <li>
+                <strong>JSX in App:</strong> Import and render components with
+                JSX.
+            </li>
+            <li>
+                <strong>Fragments:</strong> Group elements without extra DOM
+                nodes.
+            </li>
+            <li>
+                <strong>Layout Components:</strong> Header, navbar, footer for
+                structured UIs.
+            </li>
+            <li>
+                <strong>Separate Functions:</strong> Improve modularity and
+                collaboration.
+            </li>
+        </ul>
+        <h2>Homework: Component Practice</h2>
+        <div class="exercise">
+            <strong>Homework: Component Practice</strong>
+            <p>
+                <strong>Objective:</strong> Build a React app with a custom
+                component and fragment.
+            </p>
+            <p><strong>Instructions:</strong></p>
+            <ol>
+                <li>
+                    <strong>Create a Vite App:</strong>
+                    <ul>
+                        <li>
+                            Run <code>npm create vite@latest</code>, name it
+                            <code>component-practice</code>, select
+                            <code>React</code>, <code>JavaScript</code>.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Clear Boilerplate:</strong>
+                    <ul>
+                        <li>
+                            Delete <code>src/App.css</code>, empty
+                            <code>src/index.css</code>.
+                        </li>
+                        <li>
+                            Simplify <code>App.jsx</code>:
+                            <pre><code>function App() {
+  return &lt;div&gt;&lt;/div&gt;;
+}
+export default App;</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Create a Component:</strong>
+                    <ul>
+                        <li>
+                            Create <code>src/components/Profile.jsx</code>:
+                            <pre><code>function Profile() {
+  const hobby = "Coding";
+  return (
+    &lt;&gt;
+      &lt;h2&gt;My Profile&lt;/h2&gt;
+      &lt;p&gt;Hobby: {hobby}&lt;/p&gt;
+    &lt;/&gt;
+  );
+}
+export default Profile;</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Update <code>App.jsx</code>:</strong>
+                    <pre><code>import Profile from './components/Profile';
+
+function App() {
+  return (
+    &lt;&gt;
+      &lt;h1&gt;Component Practice&lt;/h1&gt;
+      &lt;Profile /&gt;
+    &lt;/&gt;
+  );
+}
+export default App;</code></pre>
+                </li>
+                <li>
+                    <strong>Test:</strong>
+                    <ul>
+                        <li>
+                            Run <code>npm run dev</code>, view at
+                            <code>http://localhost:5173</code>.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <p>
+                <strong>Submission:</strong> Submit a screenshot of your app and
+                <code>Profile.jsx</code> code.
+            </p>
+            <p>Happy coding!</p>
+        </div>
+    </body>
+</html>

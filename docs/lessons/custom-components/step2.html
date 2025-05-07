@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Creating and Using Custom Components</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Creating and Using Custom Components</h1>
+        <p>
+            Learn how to create custom components, add JSX to <code>App</code>,
+            and organize them for reusability.
+        </p>
+        <h2>Learning Objective</h2>
+        <p>
+            Students will define and use custom components with JSX in
+            <code>App</code>.
+        </p>
+        <h2>Steps to Create a Component</h2>
+        <ol>
+            <li>
+                <strong>Create a File:</strong> In <code>src/components</code>,
+                create a file (e.g., <code>MyComponent.jsx</code>) using
+                PascalCase.
+            </li>
+            <li>
+                <strong>Define the Component:</strong> Write a function
+                returning JSX.
+            </li>
+            <li>
+                <strong>Export:</strong> Use <code>export default</code> for
+                importing elsewhere.
+            </li>
+        </ol>
+        <h3>Example: Simple Component</h3>
+        <pre><code>// src/components/MyComponent.jsx
+function MyComponent() {
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Hello, World!&lt;/h2&gt;
+    &lt;/div&gt;
+  );
+}
+export default MyComponent;</code></pre>
+        <h3>Adding JSX to <code>App</code></h3>
+        <p>
+            Import and use the component in <code>App.jsx</code>, as provided:
+        </p>
+        <pre><code>// src/App.jsx
+function App() {
+  //JS
+  return (
+    //JSX
+    &lt;&gt;
+      &lt;h1&gt;Why Learn React?&lt;/h1&gt;
+      &lt;ol&gt;
+        &lt;li&gt;Its a popular library, so I'll be in the know&lt;/li&gt;
+        &lt;li&gt;I'm more likely to get a job if I know React&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/&gt;
+  )
+}
+export default App;</code></pre>
+        <p><strong>Main File:</strong></p>
+        <pre><code>// src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;,
+);
+</code></pre>
+        <h3>Dynamic Example</h3>
+        <p>A <code>Welcome</code> component with JSX:</p>
+        <pre><code>// src/components/Welcome.jsx
+function Welcome() {
+  const message = "Learn React!";
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Welcome to Our Site!&lt;/h2&gt;
+      &lt;p&gt;{message}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+export default Welcome;
+
+// src/App.jsx
+import Welcome from './components/Welcome';
+
+function App() {
+  return (
+    &lt;&gt;
+      &lt;h1&gt;React App&lt;/h1&gt;
+      &lt;Welcome /&gt;
+    &lt;/&gt;
+  );
+}
+export default App;</code></pre>
+        <h3>Pitfalls</h3>
+        <ul>
+            <li>
+                <strong>Naming:</strong> Use PascalCase (e.g.,
+                <code>MyComponent</code>) to avoid confusion with HTML tags.
+            </li>
+            <li>
+                <strong>Exports:</strong> Missing
+                <code>export default</code> causes “Component not found” errors.
+            </li>
+            <li>
+                <strong>JSX:</strong> Ensure one parent element (use fragments
+                if needed).
+            </li>
+        </ul>
+        <div class="exercise">
+            <strong>Quick Exercise (10 min):</strong> Write a
+            <code>Bio</code> component in a notebook that returns a
+            <code>&lt;h2&gt;</code> with your name and a
+            <code>&lt;p&gt;</code> with a hobby. Sketch how you’d import it into
+            <code>App.jsx</code>.
+        </div>
+    </body>
+</html>
