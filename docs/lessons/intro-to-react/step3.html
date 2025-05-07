@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hands-On: Build a React App</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Hands-On: Build a React App</h1>
+        <p>
+            Let’s build a simple React app with a styled greeting and a reusable
+            component, applying JSX, Vite, and components.
+        </p>
+        <h2>Learning Objective</h2>
+        <p>
+            Students will build a Vite-based React app, clear boilerplate,
+            render JSX with variables, and apply inline styling.
+        </p>
+        <div class="exercise">
+            <strong>Exercise: Greeting App </strong>
+            <p>
+                <strong>Objective:</strong> Create a React app with a dynamic,
+                styled heading and a reusable component.
+            </p>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>
+                    <strong>Create a Vite App:</strong>
+                    <ul>
+                        <li>
+                            Run <code>npm create vite@latest</code>, name it
+                            <code>greeting-app</code>, select
+                            <code>React</code>, <code>JavaScript</code>.
+                        </li>
+                        <li>Navigate: <code>cd greeting-app</code>.</li>
+                        <li>Install: <code>npm install</code>.</li>
+                        <li>Start: <code>npm run dev</code>.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Clear Boilerplate:</strong>
+                    <ul>
+                        <li>Delete <code>src/App.css</code>.</li>
+                        <li>Empty <code>src/index.css</code>.</li>
+                        <li>
+                            Simplify <code>App.jsx</code>:
+                            <pre><code>function App() {
+  return &lt;div&gt;&lt;/div&gt;;
+}
+export default App;</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Update <code>App.jsx</code>:</strong>
+                    <ul>
+                        <li>
+                            Add a variable:
+                            <code>const greeting = "Welcome to V School!";</code
+                            >.
+                        </li>
+                        <li>
+                            Add styles:
+                            <code
+                                >const styles = { color: "#6b48ff", fontSize:
+                                "2em", textAlign: "center" };</code
+                            >.
+                        </li>
+                        <li>
+                            Render:
+                            <pre><code>function App() {
+  const greeting = "Welcome to V School!";
+  const styles = { color: "#6b48ff", fontSize: "2em", textAlign: "center" };
+  return (
+    &lt;div&gt;
+      &lt;h1 style={styles}&gt;{greeting}&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+export default App;</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Create a Component:</strong>
+                    <ul>
+                        <li>
+                            Create <code>src/components/Tagline.jsx</code>:
+                            <pre><code>function Tagline() {
+  return &lt;p style={{ color: "#5039cc", fontSize: "1.2em" }}&gt;Learn. Build. Code.&lt;/p&gt;;
+}
+export default Tagline;</code></pre>
+                        </li>
+                        <li>
+                            Update <code>App.jsx</code>:
+                            <pre><code>import Tagline from './components/Tagline';
+
+function App() {
+  const greeting = "Welcome to V School!";
+  const styles = { color: "#6b48ff", fontSize: "2em", textAlign: "center" };
+  return (
+    &lt;div&gt;
+      &lt;h1 style={styles}&gt;{greeting}&lt;/h1&gt;
+      &lt;Tagline /&gt;
+    &lt;/div&gt;
+  );
+}
+export default App;</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Test:</strong>
+                    <ul>
+                        <li>
+                            Save and check <code>http://localhost:5173</code>.
+                        </li>
+                        <li>
+                            Verify the greeting and tagline display with purple
+                            styling.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <p>
+                <strong>Tips:</strong> Use DevTools (F12) to debug errors.
+                Ensure import paths are correct. Experiment with styles (e.g.,
+                <code>fontSize: "3em"</code>).
+            </p>
+        </div>
+    </body>
+</html>

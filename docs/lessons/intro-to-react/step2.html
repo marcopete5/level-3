@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JSX and Vite Setup</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>JSX and Vite Setup</h1>
+        <p>
+            This section covers JSX, a syntax for writing HTML-like code in
+            JavaScript, and Vite, a fast build tool for React apps.
+        </p>
+        <h2>Learning Objectives</h2>
+        <p>
+            Students will be able to explain JSX, install a Vite-based React
+            app, clear boilerplate, and use curly braces for dynamic JSX.
+        </p>
+        <h2>What is JSX?</h2>
+        <p>
+            JSX (JavaScript XML) lets you write HTML-like code in JavaScript,
+            combining UI structure and logic for intuitive React components.
+        </p>
+        <h3>Benefits</h3>
+        <ul>
+            <li>
+                <strong>Readable:</strong> Resembles HTML, familiar to web
+                developers.
+            </li>
+            <li>
+                <strong>Dynamic:</strong> Use curly braces <code>{}</code> for
+                JavaScript expressions.
+            </li>
+            <li>
+                <strong>Efficient:</strong> No switching between HTML and JS
+                files.
+            </li>
+        </ul>
+        <h3>JSX Examples</h3>
+        <p>Basic JSX:</p>
+        <pre><code>const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;
+
+function App() {
+  return (
+    &lt;div&gt;
+      {element}
+      &lt;p&gt;This is JSX.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+        <p>Dynamic content with curly braces:</p>
+        <pre><code>function Profile() {
+  const name = "John Doe";
+  const age = 25;
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;{name}&lt;/h2&gt;
+      &lt;p&gt;Age: {age}&lt;/p&gt;
+      &lt;p&gt;Time: {new Date().toLocaleTimeString()}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+        <p><strong>Advanced Example:</strong> Rendering a list:</p>
+        <pre><code>function ItemList() {
+  const items = ["Apple", "Banana", "Orange"];
+  return (
+    &lt;ul&gt;
+      {items.map(item => &lt;li&gt;{item}&lt;/li&gt;)}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+        <h3>Common Pitfall</h3>
+        <p>
+            Curly braces accept expressions (e.g., <code>{1 + 2}</code>), not
+            statements (e.g., <code>{if (true) {}}</code>). Debug syntax errors
+            in DevTools.
+        </p>
+        <h2>Vite Setup</h2>
+        <p>
+            Vite offers fast server start and Hot Module Replacement (HMR) for
+            React development.
+        </p>
+        <h3>Steps</h3>
+        <ul>
+            <li>Run: <code>npm create vite@latest</code>.</li>
+            <li>
+                Prompts:
+                <ul>
+                    <li>Project name: e.g., <code>my-react-app</code>.</li>
+                    <li>Framework: Select <code>React</code>.</li>
+                    <li>Variant: Choose <code>JavaScript</code>.</li>
+                </ul>
+            </li>
+            <li>Navigate: <code>cd my-react-app</code>.</li>
+            <li>Install: <code>npm install</code>.</li>
+            <li>Start: <code>npm run dev</code>.</li>
+            <li>Open: <code>http://localhost:5173</code>.</li>
+        </ul>
+        <h3>Clear Boilerplate</h3>
+        <p>Simplify the Vite app:</p>
+        <ul>
+            <li>Delete <code>src/App.css</code>.</li>
+            <li>Empty <code>src/index.css</code>.</li>
+            <li>
+                Update <code>src/App.jsx</code>:
+                <pre><code>function App() {
+  return &lt;div&gt;&lt;/div&gt;;
+}
+export default App;</code></pre>
+            </li>
+        </ul>
+        <h3>Tips</h3>
+        <p>
+            Ensure Node.js v16+ (<code>node -v</code>). If port 5173 is busy,
+            try 5174. Verify the Vite logo in the browser.
+        </p>
+    </body>
+</html>
