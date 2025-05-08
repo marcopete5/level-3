@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Common className Errors and Debugging</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Common className Errors and Debugging</h1>
+        <p>
+            Identify and fix common <code>className</code> errors in JSX to
+            ensure proper styling and functionality.
+        </p>
+        <h2>Learning Objective</h2>
+        <p>
+            Students will recognize and resolve <code>className</code>-related
+            errors in JSX.
+        </p>
+        <h2>Common Errors</h2>
+        <ol>
+            <li>
+                <strong
+                    >Using <code>class</code> Instead of
+                    <code>className</code>:</strong
+                >
+                <ul>
+                    <li>
+                        <strong>Symptom:</strong> No styling, or console error
+                        (e.g., “Invalid DOM property”).
+                    </li>
+                    <li>
+                        <strong>Fix:</strong> Replace <code>class</code> with
+                        <code>className</code>.
+                    </li>
+                    <li><strong>Example (Wrong):</strong></li>
+                    <pre><code>&lt;div class=&quot;container&quot;&gt;Hello&lt;/div&gt;</code></pre>
+                    <li><strong>Example (Correct):</strong></li>
+                    <pre><code>&lt;div className=&quot;container&quot;&gt;Hello&lt;/div&gt;</code></pre>
+                </ul>
+            </li>
+            <li>
+                <strong>Incorrect Case (e.g., <code>classname</code>):</strong>
+                <ul>
+                    <li>
+                        <strong>Symptom:</strong> Styles not applied, no error.
+                    </li>
+                    <li>
+                        <strong>Fix:</strong> Use
+                        <code>className</code> (camelCase).
+                    </li>
+                    <li><strong>Example (Wrong):</strong></li>
+                    <pre><code>&lt;div classname=&quot;container&quot;&gt;Hello&lt;/div&gt;</code></pre>
+                    <li><strong>Example (Correct):</strong></li>
+                    <pre><code>&lt;div className=&quot;container&quot;&gt;Hello&lt;/div&gt;</code></pre>
+                </ul>
+            </li>
+            <li>
+                <strong>Missing or Incorrect CSS Import:</strong>
+                <ul>
+                    <li>
+                        <strong>Symptom:</strong> Styles not applied, no errors.
+                    </li>
+                    <li><strong>Fix:</strong> Verify CSS import path.</li>
+                    <li><strong>Example (Wrong):</strong></li>
+                    <pre><code>// Missing import
+function App() {
+  return &lt;div className=&quot;container&quot;&gt;Hello&lt;/div&gt;;
+}</code></pre>
+                    <li><strong>Example (Correct):</strong></li>
+                    <pre><code>import './styles.css';
+
+function App() {
+  return &lt;div className=&quot;container&quot;&gt;Hello&lt;/div&gt;;
+}</code></pre>
+                </ul>
+            </li>
+        </ol>
+        <h3>Debugging Tips</h3>
+        <ul>
+            <li>
+                <strong>DevTools:</strong> Check Elements tab for
+                <code>class</code> attributes.
+            </li>
+            <li>
+                <strong>Console:</strong> Look for syntax errors or warnings.
+            </li>
+            <li>
+                <strong>Linting:</strong> Use ESLint with React plugins to catch
+                <code>class</code>.
+            </li>
+        </ul>
+        <h3>Best Practices</h3>
+        <ul>
+            <li>Always use <code>className</code> in JSX.</li>
+            <li>
+                Organize CSS in <code>src</code> (e.g.,
+                <code>styles.css</code>).
+            </li>
+            <li>Test styles incrementally to catch issues early.</li>
+        </ul>
+        <div class="exercise">
+            <strong>Quick Exercise (5 min):</strong> Fix the error in this JSX:
+            <code
+                >&lt;div
+                class=&quot;box&quot;&gt;&lt;h2&gt;Title&lt;/h2&gt;&lt;/div&gt;</code
+            >. Write the corrected version and explain the issue to a partner.
+        </div>
+    </body>
+</html>

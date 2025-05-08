@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Applying CSS with className</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Applying CSS with className</h1>
+        <p>
+            Learn to style React components using <code>className</code> instead
+            of <code>class</code>, including advanced styling techniques.
+        </p>
+        <h2>Learning Objective</h2>
+        <p>
+            Students will correctly use <code>className</code> to apply CSS
+            styles in JSX.
+        </p>
+        <h2>Why className?</h2>
+        <p>
+            In HTML, <code>class</code> applies CSS styles. In JSX,
+            <code>className</code> is used because <code>class</code> is a
+            reserved JavaScript keyword, preventing conflicts.
+        </p>
+        <p>
+            <strong>Transpilation:</strong> Babel converts
+            <code>className</code> to <code>class</code> in the DOM.
+        </p>
+        <h3>HTML vs. JSX</h3>
+        <p><strong>HTML Example:</strong></p>
+        <pre><code>&lt;div class=&quot;container&quot;&gt;
+  &lt;h1 class=&quot;title&quot;&gt;Hello, World!&lt;/h1&gt;
+  &lt;p class=&quot;description&quot;&gt;This is an example of using class in HTML.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        <p><strong>JSX Example:</strong></p>
+        <pre><code>import React from 'react';
+import './styles.css';
+
+function App() {
+  return (
+    &lt;div className=&quot;container&quot;&gt;
+      &lt;h1 className=&quot;title&quot;&gt;Hello, World!&lt;/h1&gt;
+      &lt;p className=&quot;description&quot;&gt;This is an example of using className in JSX.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+export default App;</code></pre>
+        <h3>Applying CSS</h3>
+        <p>Create and import a CSS file:</p>
+        <pre><code>/* src/styles.css */
+.container {
+  background: #e8ecef;
+  padding: 20px;
+  border-radius: 6px;
+}
+.title {
+  color: #4a6fa5;
+  font-size: 1.8em;
+}
+.description {
+  font-style: italic;
+  color: #333333;
+}</code></pre>
+        <h3>Advanced Usage</h3>
+        <p><strong>Multiple Classes:</strong> Use template literals:</p>
+        <pre><code>function App() {
+  const isActive = true;
+  return (
+    &lt;div className={`container ${isActive ? 'active' : ''}`}&gt;
+      &lt;h1 className=&quot;title primary&quot;&gt;Welcome!&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+        <p><strong>Dynamic className:</strong> Apply classes conditionally:</p>
+        <pre><code>function Button() {
+  const isDisabled = false;
+  return (
+    &lt;button className={isDisabled ? 'btn disabled' : 'btn'}&gt;
+      Click Me
+    &lt;/button&gt;
+  );
+}</code></pre>
+        <h3>Pitfalls</h3>
+        <ul>
+            <li>
+                <strong>Using <code>class</code>:</strong> Causes syntax errors
+                or no styling.
+            </li>
+            <li>
+                <strong>Case Sensitivity:</strong> <code>className</code>, not
+                <code>classname</code>.
+            </li>
+            <li>
+                <strong>Import Errors:</strong> Wrong CSS path (e.g.,
+                <code>./Styles.css</code>).
+            </li>
+        </ul>
+        <div class="exercise">
+            <strong>Quick Exercise (10 min):</strong> Design a component with a
+            <code>&lt;div&gt;</code>, <code>&lt;h3&gt;</code>, and
+            <code>&lt;button&gt;</code>. Write JSX with
+            <code>className</code> attributes and sketch the CSS. Share with the
+            class.
+        </div>
+    </body>
+</html>

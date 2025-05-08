@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Introduction to JSX Syntax</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Introduction to JSX Syntax</h1>
+        <h2>Overview</h2>
+        <p>
+            In this section, we’ll explore styling React components with JSX and
+            CSS, focusing on using <code>className</code> instead of
+            <code>class</code>. This step introduces JSX syntax and its role in
+            React.
+        </p>
+        <h2>Learning Objective</h2>
+        <p>
+            Students will explain the purpose of JSX in React and how it enables
+            HTML-like code in JavaScript.
+        </p>
+        <h2>What is JSX?</h2>
+        <p>
+            JSX (JavaScript XML) is a syntax extension that lets you write
+            HTML-like code within JavaScript, used in React to define component
+            UI.
+        </p>
+        <p>
+            <strong>Analogy:</strong> JSX is like a recipe for your UI, mixing
+            ingredients (HTML-like tags) with directions (JavaScript) to create
+            a component.
+        </p>
+        <h3>Key Features</h3>
+        <ul>
+            <li>
+                <strong>HTML-like Syntax:</strong> Familiar and intuitive for
+                web developers.
+            </li>
+            <li>
+                <strong>JavaScript Integration:</strong> Use <code>{}</code> for
+                dynamic expressions (e.g., variables, functions).
+            </li>
+            <li>
+                <strong>Transpilation:</strong> Babel converts JSX to JavaScript
+                for browsers.
+            </li>
+        </ul>
+        <h3>Example</h3>
+        <p>A simple JSX component:</p>
+        <pre><code>function App() {
+  const message = &quot;Hello, React!&quot;;
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;{message}&lt;/h1&gt;
+      &lt;p&gt;JSX combines UI and logic.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+export default App;</code></pre>
+        <h3>Why JSX?</h3>
+        <ul>
+            <li>
+                <strong>Readability:</strong> Unifies UI structure and logic.
+            </li>
+            <li>
+                <strong>Dynamic UI:</strong> Enables real-time updates via
+                JavaScript.
+            </li>
+            <li>
+                <strong>Efficiency:</strong> Eliminates separate HTML files.
+            </li>
+        </ul>
+        <h3>Pitfall</h3>
+        <p>
+            JSX requires a single parent element (e.g.,
+            <code>&lt;div&gt;</code> or <code>&lt;&gt;&lt;/&gt;</code>).
+            Multiple top-level elements cause errors.
+        </p>
+        <div class="exercise">
+            <strong>Quick Exercise (5 min):</strong> Write a JSX snippet in your
+            notebook for a component with a <code>&lt;h2&gt;</code> and a
+            <code>&lt;p&gt;</code> using a variable (e.g., <code>title</code>).
+            Share with a partner.
+        </div>
+    </body>
+</html>
