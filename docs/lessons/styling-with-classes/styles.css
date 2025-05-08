@@ -56,6 +56,16 @@ ol {
     margin-bottom: 20px;
     font-weight: 500;
 }
+
+h2 > a {
+    color: #4a6fa5;
+    text-decoration: none;
+}
+
+h2 > a:hover {
+    text-decoration: underline;
+    color: #395580;
+}
 @media (max-width: 768px) {
     body {
         padding: 20px;
