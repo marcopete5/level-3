@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Introduction to Props</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Introduction to Props</h1>
+        <h2>Overview</h2>
+        <p>
+            In this Section, we’ll explore props and data mapping in React,
+            focusing on passing data, rendering dynamic lists with
+            <code>.map</code>, and using <code>key</code> props. This step
+            introduces props and their role in React.
+        </p>
+        <h2>Learning Objectives</h2>
+        <ul>
+            <li>Define props and explain their role in passing data.</li>
+            <li>Understand how props enhance component reusability.</li>
+        </ul>
+        <h2>What are Props?</h2>
+        <p>
+            Props (short for "properties") are a mechanism in React to pass data
+            from a parent component to a child component, making components
+            dynamic and reusable.
+        </p>
+        <p>
+            <strong>Analogy:</strong> Props are like ingredients passed to a
+            recipe (component). The same recipe can produce different dishes
+            based on the ingredients provided.
+        </p>
+        <h3>Key Features</h3>
+        <ul>
+            <li>
+                <strong>Data Passing:</strong> Props allow parent components to
+                send data (e.g., strings, arrays, objects) to children.
+            </li>
+            <li>
+                <strong>Read-Only:</strong> Props are immutable in the child
+                component, ensuring predictable data flow.
+            </li>
+            <li>
+                <strong>Flexibility:</strong> Props enable the same component to
+                render different content based on input.
+            </li>
+        </ul>
+        <h3>Why Use Props?</h3>
+        <ul>
+            <li>
+                <strong>Dynamic Rendering:</strong> Display varied content
+                without duplicating code.
+            </li>
+            <li>
+                <strong>Reusability:</strong> Reuse components across the app
+                with different data.
+            </li>
+            <li>
+                <strong>Separation of Concerns:</strong> Keep components focused
+                on UI, not data management.
+            </li>
+        </ul>
+        <h3>Example</h3>
+        <p>A simple component using props for a skateboard shop:</p>
+        <pre><code>function Navbar(props) {
+  return &lt;h1&gt;Welcome to {props.name}&lt;/h1&gt;;
+}
+
+function App() {
+  return &lt;Navbar name="SkateShop" /&gt;;
+}
+export default App;</code></pre>
+        <h3>Pitfall</h3>
+        <p>
+            Props are read-only. Attempting to modify props in a child component
+            (e.g., <code>props.name = "NewName"</code>) will cause errors.
+        </p>
+        <div class="exercise">
+            <strong>Quick Exercise (5 min):</strong> Write a JSX snippet for a
+            <code>Product</code> component that accepts a <code>name</code> prop
+            and displays it in a <code>&lt;h2&gt;</code>. Share with a partner.
+        </div>
+    </body>
+</html>

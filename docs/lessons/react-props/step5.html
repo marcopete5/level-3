@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Handling Nested Data</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Handling Nested Data</h1>
+        <p>
+            Learn to map nested data structures, such as arrays within objects,
+            and apply <code>key</code> props for efficient rendering.
+        </p>
+        <h2>Learning Objective</h2>
+        <ul>
+            <li>
+                Handle nested data with <code>.map</code> and unique
+                <code>key</code> props.
+            </li>
+        </ul>
+        <h2>Nested Data in React</h2>
+        <p>
+            Objects often contain arrays (e.g., a skateboard’s sizes). Use
+            nested <code>.map</code> calls to render these arrays, ensuring each
+            level has unique keys.
+        </p>
+        <h3>Example: Skateboard Sizes</h3>
+        <p>Render a skateboard’s sizes array:</p>
+        <pre><code>function Skateboard({ name, size, style, design, price }) {
+  const sizeElements = size.map((num, index) =&gt; (
+    &lt;p key={index}&gt;Size: {num}&lt;/p&gt;
+  ));
+  return (
+    &lt;div className="skateboard"&gt;
+      &lt;h2&gt;{name}&lt;/h2&gt;
+      {sizeElements}
+      &lt;p&gt;Style: {style}&lt;/p&gt;
+      &lt;p&gt;Design: {design}&lt;/p&gt;
+      &lt;p&gt;Price: ${price.toFixed(2)}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+        <h3>Data Structure</h3>
+        <p>Example skateboard object with nested sizes:</p>
+        <pre><code>{
+  id: 1,
+  name: "Street Cruiser",
+  size: ["8.0", "6.0"],
+  style: "Street",
+  design: "Classic Black",
+  price: 75.99
+}</code></pre>
+        <h3>Best Practices</h3>
+        <ul>
+            <li>
+                <strong>Unique Keys:</strong> Use indices for nested arrays if
+                no unique ID exists, but prefer IDs for top-level lists.
+            </li>
+            <li>
+                <strong>Clear Structure:</strong> Keep nested
+                <code>.map</code> calls readable with consistent indentation.
+            </li>
+        </ul>
+        <h3>Pitfall</h3>
+        <p>
+            Using indices as keys for dynamic lists (e.g., reorderable lists)
+            can cause rendering bugs. Always use unique IDs when available.
+        </p>
+        <div class="exercise">
+            <strong>Quick Exercise (10 min):</strong> Write a component that
+            maps a nested array (e.g., <code>sizes: ["8.0", "6.0"]</code>) to
+            <code>&lt;li&gt;</code> elements with index-based keys. Share with
+            the class.
+        </div>
+    </body>
+</html>
