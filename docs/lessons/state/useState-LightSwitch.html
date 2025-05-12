@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Practice Assignment: Light Switch in React</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+            rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    </head>
+    <body>
+        <h1>Practice Assignment: Light Switch in React</h1>
+
+        <h2>Learning Objectives</h2>
+        <ul>
+            <li>
+                Understand how to manage boolean state in a React component.
+            </li>
+            <li>
+                Learn how to use the
+                <code class="language-javascript"
+                    ><span class="token-keyword">useState</span></code
+                >
+                hook to toggle state.
+            </li>
+            <li>
+                Practice creating a function to update state based on user
+                interaction.
+            </li>
+            <li>Update the UI dynamically based on state changes.</li>
+        </ul>
+
+        <h2>Requirements</h2>
+        <ul>
+            <li>Set up a new React project using Vite.</li>
+            <li>
+                Create a
+                <code class="language-javascript">LightSwitch</code> component
+                with state management using
+                <code class="language-javascript"
+                    ><span class="token-keyword">useState</span></code
+                >.
+            </li>
+            <li>
+                Implement functionality to toggle between light and dark modes.
+            </li>
+            <li>
+                Ensure the UI reflects the current mode with appropriate
+                styling.
+            </li>
+        </ul>
+
+        <h2>Assignment Steps</h2>
+
+        <h3>Create a Basic Vite React App</h3>
+        <ol>
+            <li>Set up a new React project using Vite.</li>
+        </ol>
+
+        <h3>Create a LightSwitch Component</h3>
+        <ol>
+            <li>
+                Inside your React app, create a new component named
+                <code class="language-javascript">LightSwitch</code>.
+            </li>
+            <li>
+                Add a
+                <code class="language-javascript"
+                    ><span class="token-keyword">div</span></code
+                >
+                containing:
+                <ul>
+                    <li>
+                        An
+                        <code class="language-javascript"
+                            ><span class="token-keyword">h2</span></code
+                        >
+                        to display the current mode (e.g., “Light” or “Dark”).
+                    </li>
+                    <li>A button to toggle between light and dark modes.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>Implement State Management</h3>
+        <ol>
+            <li>
+                Use the
+                <code class="language-javascript"
+                    ><span class="token-keyword">useState</span></code
+                >
+                hook to create a state variable called
+                <code class="language-javascript">isDarkMode</code>.
+            </li>
+            <li>
+                Initialize
+                <code class="language-javascript">isDarkMode</code> to
+                <code class="language-javascript"
+                    ><span class="token-boolean">false</span></code
+                >
+                (light mode).
+            </li>
+        </ol>
+
+        <h3>Update the UI on Button Click</h3>
+        <ol>
+            <li>
+                Ensure that clicking the toggle button switches
+                <code class="language-javascript">isDarkMode</code> between
+                <code class="language-javascript"
+                    ><span class="token-boolean">true</span></code
+                >
+                and
+                <code class="language-javascript"
+                    ><span class="token-boolean">false</span></code
+                >.
+            </li>
+            <li>
+                Apply different styles (e.g., background and text colors) to the
+                <code class="language-javascript"
+                    ><span class="token-keyword">div</span></code
+                >
+                based on <code class="language-javascript">isDarkMode</code>.
+            </li>
+            <li>
+                The
+                <code class="language-javascript"
+                    ><span class="token-keyword">h2</span></code
+                >
+                should reflect the current mode, and the UI should update
+                instantly after each toggle.
+            </li>
+        </ol>
+
+        <h2>Expected Outcome</h2>
+        <ul>
+            <li>
+                A fully functional
+                <code class="language-javascript">LightSwitch</code> component
+                where the current mode is displayed in an
+                <code class="language-javascript"
+                    ><span class="token-keyword">h2</span></code
+                >.
+            </li>
+            <li>
+                Clicking the toggle button switches between light and dark
+                modes, updating the UI’s appearance.
+            </li>
+            <li>
+                State management is handled using React’s
+                <code class="language-javascript"
+                    ><span class="token-keyword">useState</span></code
+                >
+                hook, with clear and concise code.
+            </li>
+        </ul>
+
+        <h2>
+            <a
+                href="https://marcopete5.github.io/level-3/assignments/light-switch-app/"
+                target="_blank"
+                >CLICK FOR DEMO</a
+            >
+        </h2>
+
+        <h2>Tips</h2>
+        <ul>
+            <li>
+                Use a function to toggle
+                <code class="language-javascript">isDarkMode</code> that
+                correctly updates the boolean state (e.g., using the previous
+                state value).
+            </li>
+            <li>
+                Apply styles conditionally using class names (e.g.,
+                <code class="language-javascript"
+                    >className={`{isDarkMode ? 'dark' : 'light'}`}</code
+                >) or inline styles.
+            </li>
+            <li>
+                Ensure state updates are handled asynchronously by using
+                functional updates to avoid stale state issues.
+            </li>
+        </ul>
+    </body>
+</html>
