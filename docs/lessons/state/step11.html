@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 11: Summary of Topics Covered</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</head>
+<body>
+  <h1>Step 11: Summary of Topics Covered</h1>
+  
+  <h2>Overview</h2>
+  <p>This section recaps the key concepts and skills learned while building MovieBuddy, a React application that uses state and event handling to create an interactive movie selection and favorites management experience. We’ll review the core features, techniques, and best practices, preparing you to apply these skills to other projects.</p>
+  
+  <h2>Key Concepts Covered</h2>
+  <ul>
+    <li><strong>State Management</strong>: Used <code class="language-javascript"><span class="token-keyword">useState</span></code> to manage dynamic data like the current movie and favorites list.</li>
+    <li><strong>Event Handling</strong>: Implemented <code class="language-javascript"><span class="token-keyword">onClick</span></code> and other handlers to respond to user actions.</li>
+    <li><strong>Movie Dataset</strong>: Leveraged <code class="language-javascript">movies.js</code> for random selection and favorites.</li>
+    <li><strong>Immutability</strong>: Updated state immutably to ensure reliable re-renders.</li>
+    <li><strong>Component Architecture</strong>: Built reusable components with state and props.</li>
+    <li><strong>Navigation</strong>: Created the <code class="language-javascript">nextMovie</code> function for sequential and random navigation.</li>
+  </ul>
+  
+  <h2>MovieBuddy Features</h2>
+  <p>MovieBuddy includes:</p>
+  <ul>
+    <li><strong>Random Movie Selection</strong>: Displays a random movie from a dataset of 52 films.</li>
+    <li><strong>Favorites List</strong>: Allows users to add/remove movies to a personalized list.</li>
+    <li><strong>Navigation</strong>: Supports next, previous, and random movie selection.</li>
+  </ul>
+  <pre><code class="language-javascript">import { useState } from 'react';
+import movies from './movies';
+
+function MovieBuddy() {
+  const [movieIndex, setMovieIndex] = useState(0);
+  const [favorites, setFavorites] = useState([]);
+
+  const nextMovie = (currentIndex, direction, arrayLength) => {
+    if (arrayLength === 0) return 0;
+    if (direction === 'random') return Math.floor(Math.random() * arrayLength);
+    if (direction === 'next') return (currentIndex + 1) % arrayLength;
+    if (direction === 'previous') return (currentIndex - 1 + arrayLength) % arrayLength;
+    return currentIndex;
+  };
+
+  const handleNavigation = (direction) => {
+    setMovieIndex(prev => nextMovie(prev, direction, movies.length));
+  };
+
+  const handleAddFavorite = () => {
+    const movie = movies[movieIndex];
+    if (!favorites.some(fav => fav.title === movie.title)) {
+      setFavorites(prev => [...prev, movie]);
+    }
+  };
+
+  const handleRemoveFavorite = (index) => {
+    setFavorites(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const movie = movies[movieIndex];
+
+  return (
+    <div>
+      <button onClick={() => handleNavigation('random')}>Random Movie</button>
+      <button onClick={() => handleNavigation('previous')}>Previous</button>
+      <button onClick={() => handleNavigation('next')}>Next</button>
+      <button onClick={handleAddFavorite}>Add to Favorites</button>
+      <img src={movie.imageUrl} alt={movie.title} style={{ maxWidth: '200px' }} />
+      <h2>{movie.title}</h2>
+      <p>Rating: {movie.rating.toFixed(1)}</p>
+      <p>{movie.description}</p>
+      <h3>Favorites:</h3>
+      <ul>
+        {favorites.map((fav, i) => (
+          <li key={i}>
+            {fav.title}
+            <button onClick={() => handleRemoveFavorite(i)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+</code></pre>
+  
+  <h2>Key Takeaways</h2>
+  <ul>
+    <li><strong>State with useState</strong>: <code class="language-javascript"><span class="token-keyword">useState</span></code> enables dynamic, reactive UIs.</li>
+    <li><strong>Event Handling</strong>: <code class="language-javascript"><span class="token-keyword">onClick</span></code> and other events drive interactivity.</li>
+    <li><strong>Immutability</strong>: Always create new arrays/objects for state updates.</li>
+    <li><strong>Functional Updates</strong>: Use <code class="language-javascript">prevState => ...</code> for reliable updates.</li>
+    <li><strong>Component Design</strong>: Structure components to manage their own state or receive props.</li>
+  </ul>
+  
+  <h2>Analogy</h2>
+  <p>Building MovieBuddy is like running a movie theater. The projectionist (React) uses a schedule (state) to display films (UI). Customers (users) request changes via buttons (events), and the projectionist updates the schedule immutably (state updates), ensuring the screen (UI) always shows the right movie without errors.</p>
+  
+  <h2>Pitfalls Recap</h2>
+  <ul>
+    <li>Mutating state directly: Use <code class="language-javascript">setState</code> with new copies.</li>
+    <li>Inline handlers: Define handlers outside JSX for performance.</li>
+    <li>Stale state: Use functional updates for multiple state changes.</li>
+    <li>Invalid indices: Validate array access with modulo or checks.</li>
+  </ul>
+  
+  <div class="exercise">
+    <strong>Final Exercise (20 min):</strong> Reflect on MovieBuddy’s development. Discuss with a partner: What was the most challenging concept? How would you extend MovieBuddy (e.g., search, ratings)? Write a JSX snippet for one new feature.
+    <p><strong>Possible answers:</strong></p>
+    <ul>
+      <li>Search feature:
+        <pre><code class="language-javascript">const [searchQuery, setSearchQuery] = useState('');
+const filteredMovies = movies.filter(movie =>
+  movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+);
+return (
+  <input
+    type="text"
+    value={searchQuery}
+    onChange={e => setSearchQuery(e.target.value)}
+    placeholder="Search movies..."
+  />
+);
+</code></pre>
+      </li>
+      <li>Add user ratings to favorites.</li>
+    </ul>
+  </div>
+  
+  <h2>Conclusion</h2>
+  <p>You’ve built MovieBuddy, mastering state, events, and component design in React. Apply these skills to new projects, experimenting with hooks, state management, and interactive UIs.</p>
+</body>
+</html>

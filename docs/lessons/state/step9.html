@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 9: State in MovieBuddy: Favorites List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</head>
+<body>
+  <h1>Step 9: State in MovieBuddy: Favorites List</h1>
+  
+  <h2>Overview</h2>
+  <p>The favorites list is a core feature of MovieBuddy, allowing users to save and manage their preferred movies. This section implements the favorites list using <code class="language-javascript"><span class="token-keyword">useState</span></code> to store an array of movies, with buttons to add and remove items, demonstrating advanced state management and UI integration.</p>
+  
+  <h2>Learning Objectives</h2>
+  <ul>
+    <li><strong>Implement Favorites List</strong>: Use <code class="language-javascript"><span class="token-keyword">useState</span></code> to manage an array of favorite movies.</li>
+    <li><strong>Handle Add/Remove Actions</strong>: Create event handlers to update the favorites array immutably.</li>
+    <li><strong>Render Dynamic Lists</strong>: Display the favorites list with JSX, including movie details.</li>
+    <li><strong>Ensure Unique Entries</strong>: Prevent duplicate movies in the favorites list.</li>
+    <li><strong>Integrate with MovieBuddy</strong>: Combine the favorites list with random movie selection for a cohesive UI.</li>
+  </ul>
+  
+  <h2>Favorites List Requirements</h2>
+  <p>The favorites list needs:</p>
+  <ul>
+    <li>A state array to store movie objects.</li>
+    <li>A button to add the current movie to favorites.</li>
+    <li>Buttons to remove movies from the list.</li>
+    <li>A UI to display all favorite movies with details (title, rating, etc.).</li>
+  </ul>
+  
+  <h2>Implementing the Favorites List</h2>
+  <p>Here’s a complete implementation:</p>
+  <pre><code class="language-javascript">import { useState } from 'react';
+import movies from './movies';
+
+function MovieBuddy() {
+  const [movieIndex, setMovieIndex] = useState(0);
+  const [favorites, setFavorites] = useState([]);
+
+  const handleRandomClick = () => {
+    setMovieIndex(Math.floor(Math.random() * movies.length));
+  };
+
+  const handleAddFavorite = () => {
+    const currentMovie = movies[movieIndex];
+    if (!favorites.some(fav => fav.title === currentMovie.title)) {
+      setFavorites(prevFavorites => [...prevFavorites, currentMovie]);
+    }
+  };
+
+  const handleRemoveFavorite = (index) => {
+    setFavorites(prevFavorites => prevFavorites.filter((_, i) => i !== index));
+  };
+
+  const movie = movies[movieIndex];
+
+  return (
+    <div>
+      <button onClick={handleRandomClick}>Get Random Movie</button>
+      <button onClick={handleAddFavorite}>Add to Favorites</button>
+      <img src={movie.imageUrl} alt={movie.title} style={{ maxWidth: '200px' }} />
+      <h2>{movie.title}</h2>
+      <p>Rating: {movie.rating.toFixed(1)}</p>
+      <p>{movie.description}</p>
+      <h3>Favorites:</h3>
+      <ul>
+        {favorites.map((fav, i) => (
+          <li key={i}>
+            {fav.title} ({fav.rating.toFixed(1)})
+            <button onClick={() => handleRemoveFavorite(i)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+</code></pre>
+  <p>This component manages both random selection and favorites, preventing duplicates by checking titles.</p>
+  
+  <h2>Rendering Lists</h2>
+  <p>Use <code class="language-javascript">map</code> to render the favorites list, with a unique <code class="language-javascript">key</code> for each item:</p>
+  <pre><code class="language-javascript">{favorites.map((movie, i) => (
+  <li key={i}>{movie.title}</li>
+))}
+</code></pre>
+  <p>Ideally, use a unique movie ID if available instead of the index.</p>
+  
+  <h2>Analogy</h2>
+  <p>The favorites list is like a movie watchlist on a streaming service. Users add movies (state updates) to their list (state array), and the service displays the list (UI) with options to remove items (event handlers). The list persists across sessions (state persistence), and duplicates are avoided to keep it clean.</p>
+  
+  <h2>Pitfall</h2>
+  <p>Using array indices as keys can cause issues if the list order changes:</p>
+  <pre><code class="language-javascript">// Problematic
+{favorites.map((movie, i) => (
+  <li key={i}>{movie.title}</li> // Index-based key
+))}
+
+// Better
+{favorites.map((movie) => (
+  <li key={movie.title}>{movie.title}</li> // Unique key
+))}
+</code></pre>
+  <p>Use unique identifiers (e.g., movie title or ID) for stable rendering.</p>
+  
+  <div class="exercise">
+    <strong>Quick Exercise (15 min):</strong> Enhance the favorites list to show movie images and descriptions. Share your JSX snippet with a partner.
+    <p><strong>Possible answers:</strong></p>
+    <ul>
+      <li>Enhanced list:
+        <pre><code class="language-javascript">{favorites.map((movie, i) => (
+  <li key={i}>
+    <img src={movie.imageUrl} alt={movie.title} style={{ width: '100px' }} />
+    <div>
+      <strong>{movie.title}</strong> ({movie.rating.toFixed(1)})
+      <p>{movie.description.slice(0, 50)}...</p>
+      <button onClick={() => handleRemoveFavorite(i)}>Remove</button>
+    </div>
+  </li>
+))}
+</code></pre>
+      </li>
+    </ul>
+  </div>
+  
+  <h2>Next Steps</h2>
+  <p>Next, we’ll break down the <code class="language-javascript">nextMovie</code> function, which enhances MovieBuddy’s navigation and state management.</p>
+</body>
+</html>

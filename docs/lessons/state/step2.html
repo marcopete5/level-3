@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Step 2: Event Handling: Basics</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+            rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    </head>
+    <body>
+        <h1>Step 2: Event Handling: Basics</h1>
+
+        <h2>Overview</h2>
+        <p>
+            Event handling in React is essential for creating interactive
+            applications like MovieBuddy, enabling components to respond to user
+            actions such as clicks, input changes, or key presses. This section
+            introduces the fundamentals of event handling, focusing on how
+            React's declarative approach simplifies user interaction management
+            compared to traditional JavaScript.
+        </p>
+
+        <h2>Learning Objectives</h2>
+        <ul>
+            <li>
+                <strong
+                    >Understand Event Handling in React vs. Plain
+                    JavaScript</strong
+                >: Recognize how React's synthetic events and declarative syntax
+                streamline event management.
+            </li>
+            <li>
+                <strong>Implement Event Handlers in JSX</strong>: Learn to
+                attach handlers to JSX elements using camelCase naming
+                conventions.
+            </li>
+            <li>
+                <strong>Identify Common React Events</strong>: Explore events
+                like
+                <code class="language-javascript"
+                    ><span class="token-keyword">onClick</span></code
+                >,
+                <code class="language-javascript"
+                    ><span class="token-keyword">onChange</span></code
+                >, and
+                <code class="language-javascript"
+                    ><span class="token-keyword">onSubmit</span></code
+                >
+                and their use cases in MovieBuddy.
+            </li>
+            <li>
+                <strong>Write Clean, Maintainable Event Handlers</strong>:
+                Develop concise handler functions, organized outside JSX for
+                better code readability and performance.
+            </li>
+            <li>
+                <strong>Understand Synthetic Events</strong>: Learn how React
+                wraps native browser events to ensure cross-browser
+                compatibility and consistent behavior.
+            </li>
+        </ul>
+
+        <h2>Understanding Event Handling in React</h2>
+        <p>
+            In traditional JavaScript, you might attach event listeners using
+            <code class="language-javascript">addEventListener</code>, which can
+            become cumbersome for complex UIs. React simplifies this with a
+            declarative approach, where event handlers are defined directly in
+            JSX using attributes like
+            <code class="language-javascript"
+                ><span class="token-keyword">onClick</span></code
+            >. When an event occurs:
+        </p>
+        <ol>
+            <li>React captures the event using its synthetic event system.</li>
+            <li>
+                The specified handler function is called with a synthetic event
+                object.
+            </li>
+            <li>
+                The UI updates if the handler modifies state or triggers other
+                changes.
+            </li>
+        </ol>
+        <p>
+            This approach makes MovieBuddy’s interactivity (e.g., clicking “Get
+            Random Movie”) intuitive to implement and maintain.
+        </p>
+
+        <h2>Event Handling in MovieBuddy</h2>
+        <p>MovieBuddy relies on events to drive its core features:</p>
+        <ul>
+            <li>
+                <strong>Random Movie Selection</strong>: A button click triggers
+                a handler to update the displayed movie.
+            </li>
+            <li>
+                <strong>Favorites List</strong>: Clicking “Add to Favorites” or
+                “Remove” updates the favorites array.
+            </li>
+            <li>
+                <strong>User Input</strong>: Potential future features, like
+                searching movies, would use
+                <code class="language-javascript"
+                    ><span class="token-keyword">onChange</span></code
+                >
+                for input fields.
+            </li>
+        </ul>
+
+        <h2>React vs. JavaScript Event Handling</h2>
+        <p>Here’s how React differs from plain JavaScript:</p>
+        <pre><code class="language-javascript">// Plain JavaScript
+const button = document.querySelector('button');
+button.addEventListener('click', () => {
+  console.log('Button clicked!');
+});
+
+// React
+function App() {
+  const handleClick = () => {
+    console.log('Button clicked!');
+  };
+  return &lt;button onClick={handleClick}&gt;Click Me&lt;/button&gt;;
+}
+</code></pre>
+        <p>
+            React’s approach is more declarative, embedding the handler in JSX,
+            reducing manual DOM manipulation, and improving code clarity.
+        </p>
+
+        <h2>Analogy</h2>
+        <p>
+            Event handling in React is like a movie theater ticket system. When
+            a customer (user) requests a ticket (event), the system (React)
+            processes the request through a ticket agent (synthetic event) and
+            updates the seating chart (UI). The theater doesn’t need to manually
+            check every seat (DOM manipulation); the system handles it
+            declaratively based on the request.
+        </p>
+
+        <h2>Pitfall</h2>
+        <p>Avoid inline event handlers for performance and readability:</p>
+        <pre><code class="language-javascript">// Incorrect
+&lt;button onClick={() => console.log('Clicked!')}&gt;Click Me&lt;/button&gt;
+
+// Correct
+function App() {
+  const handleClick = () => {
+    console.log('Clicked!');
+  };
+  return &lt;button onClick={handleClick}&gt;Click Me&lt;/button&gt;;
+}
+</code></pre>
+        <p>
+            Inline handlers create new functions on every render, which can slow
+            down the app, especially in loops or large components.
+        </p>
+
+        <h2>Getting Started with Event Handlers</h2>
+        <p>Here’s a simple MovieBuddy button to log a message:</p>
+        <pre><code class="language-javascript">function RandomMovie() {
+  const handleRandomClick = () => {
+    console.log('Selecting random movie...');
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;button onClick={handleRandomClick}&gt;Get Random Movie&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+        <p>
+            This sets the stage for connecting events to state updates in later
+            steps.
+        </p>
+
+        <div class="exercise">
+            <strong>Quick Exercise (10 min):</strong> Discuss with a partner:
+            How could
+            <code class="language-javascript"
+                ><span class="token-keyword">onClick</span></code
+            >
+            be used in MovieBuddy? Share one idea and sketch a code snippet.
+            <p><strong>Possible answers:</strong></p>
+            <ul>
+                <li>
+                    Use
+                    <code class="language-javascript"
+                        ><span class="token-keyword">onClick</span></code
+                    >
+                    to trigger a random movie selection:
+                    <code class="language-javascript"
+                        >&lt;button onClick={handleRandom}&gt;Random
+                        Movie&lt;/button&gt;</code
+                    >
+                </li>
+                <li>
+                    Add a movie to favorites:
+                    <code class="language-javascript"
+                        >&lt;button onClick={addToFavorites}&gt;Add to
+                        Favorites&lt;/button&gt;</code
+                    >
+                </li>
+                <li>
+                    Navigate to the next movie:
+                    <code class="language-javascript"
+                        >&lt;button onClick={() =>
+                        nextMovie(1)}&gt;Next&lt;/button&gt;</code
+                    >
+                </li>
+                <li>
+                    Clear the favorites list:
+                    <code class="language-javascript"
+                        >&lt;button onClick={clearFavorites}&gt;Clear
+                        Favorites&lt;/button&gt;</code
+                    >
+                </li>
+            </ul>
+        </div>
+
+        <h2>Next Steps</h2>
+        <p>
+            In the next section, we’ll dive deeper into event handling syntax,
+            explore common event types, and build MovieBuddy-specific handlers
+            to bring our app to life.
+        </p>
+    </body>
+</html>

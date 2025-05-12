@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 8: Updating State</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</head>
+<body>
+  <h1>Step 8: Updating State</h1>
+  
+  <h2>Overview</h2>
+  <p>Updating state correctly is critical for building reliable React applications like MovieBuddy. This section dives into advanced state update techniques, focusing on immutability, functional updates, and handling complex data types like arrays and objects, which are essential for managing MovieBuddy’s favorites list and movie selection.</p>
+  
+  <h2>Learning Objectives</h2>
+  <ul>
+    <li><strong>Understand Immutability</strong>: Learn why state must be treated as immutable and how to update it safely.</li>
+    <li><strong>Use Functional Updates</strong>: Apply functional updates to ensure accurate state changes, especially for multiple updates.</li>
+    <li><strong>Handle Complex State</strong>: Manage arrays and objects in state (e.g., favorites list) without mutating them directly.</li>
+    <li><strong>Apply to MovieBuddy</strong>: Update the favorites list and movie index using best practices.</li>
+    <li><strong>Avoid Common Mistakes</strong>: Recognize and prevent state update pitfalls.</li>
+  </ul>
+  
+  <h2>Immutability in State Updates</h2>
+  <p>React state should be treated as immutable. Directly modifying state (e.g., <code class="language-javascript">array.push()</code>) doesn’t trigger re-renders and can cause bugs. Always create a new copy:</p>
+  <pre><code class="language-javascript">// Incorrect
+const [favorites, setFavorites] = useState([]);
+favorites.push(movie); // Mutates state
+
+// Correct
+setFavorites([...favorites, movie]); // New array
+</code></pre>
+  
+  <h2>Functional Updates</h2>
+  <p>When state updates depend on the previous state, use a function in the updater to ensure accuracy:</p>
+  <pre><code class="language-javascript">const [count, setCount] = useState(0);
+
+// Basic update
+setCount(count + 1); // Works for single updates
+
+// Functional update
+setCount(prevCount => prevCount + 1); // Safer for multiple updates
+</code></pre>
+  <p>Functional updates are crucial for batch updates or async operations.</p>
+  
+  <h2>Updating Arrays</h2>
+  <p>For MovieBuddy’s favorites list, update arrays immutably:</p>
+  <pre><code class="language-javascript">const [favorites, setFavorites] = useState([]);
+
+// Add movie
+const addFavorite = (movie) => {
+  setFavorites(prevFavorites => [...prevFavorites, movie]);
+};
+
+// Remove movie by index
+const removeFavorite = (index) => {
+  setFavorites(prevFavorites => prevFavorites.filter((_, i) => i !== index));
+};
+</code></pre>
+  <p>Use <code class="language-javascript">spread</code>, <code class="language-javascript">map</code>, or <code class="language-javascript">filter</code> to create new arrays.</p>
+  
+  <h2>Updating Objects</h2>
+  <p>For complex state objects, spread the existing state and update specific fields:</p>
+  <pre><code class="language-javascript">const [movieState, setMovieState] = useState({ index: 0, isLoading: false });
+
+// Update one field
+setMovieState(prevState => ({ ...prevState, index: prevState.index + 1 }));
+</code></pre>
+  
+  <h2>MovieBuddy Example</h2>
+  <p>Update the favorites list when a user clicks “Add to Favorites”:</p>
+  <pre><code class="language-javascript">import { useState } from 'react';
+import movies from './movies';
+
+function MovieBuddy() {
+  const [movieIndex, setMovieIndex] = useState(0);
+  const [favorites, setFavorites] = useState([]);
+
+  const handleAddFavorite = () => {
+    const currentMovie = movies[movieIndex];
+    if (!favorites.includes(currentMovie)) {
+      setFavorites(prevFavorites => [...prevFavorites, currentMovie]);
+    }
+  };
+
+  return (
+    <div>
+      <h2>{movies[movieIndex].title}</h2>
+      <button onClick={handleAddFavorite}>Add to Favorites</button>
+      <h3>Favorites:</h3>
+      <ul>
+        {favorites.map((movie, i) => (
+          <li key={i}>{movie.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+</code></pre>
+  <p>This prevents duplicate favorites and updates the list immutably.</p>
+  
+  <h2>Analogy</h2>
+  <p>Updating state is like editing a movie playlist. Instead of scribbling on the original list (mutating state), you create a new list with the changes (immutable update) and hand it to the theater manager (React), who updates the display board (UI) to reflect the new playlist.</p>
+  
+  <h2>Pitfall</h2>
+  <p>Mutating nested objects or arrays directly:</p>
+  <pre><code class="language-javascript">// Incorrect
+const [state, setState] = useState({ movies: [] });
+state.movies.push(movie); // Mutates nested array
+
+// Correct
+setState(prevState => ({
+  ...prevState,
+  movies: [...prevState.movies, movie]
+}));
+</code></pre>
+  <p>Always spread nested structures to maintain immutability.</p>
+  
+  <div class="exercise">
+    <strong>Quick Exercise (15 min):</strong> Create a JSX snippet to remove a movie from the favorites list using a “Remove” button. Share with a partner.
+    <p><strong>Possible answers:</strong></p>
+    <ul>
+      <li>Remove favorite:
+        <pre><code class="language-javascript">{favorites.map((movie, i) => (
+  <li key={i}>
+    {movie.title}
+    <button onClick={() => setFavorites(favorites.filter((_, index) => index !== i))}>
+      Remove
+    </button>
+  </li>
+))}
+</code></pre>
+      </li>
+    </ul>
+  </div>
+  
+  <h2>Next Steps</h2>
+  <p>Next, we’ll implement MovieBuddy’s favorites list feature, combining state updates with event handling to build a fully interactive UI.</p>
+</body>
+</html>

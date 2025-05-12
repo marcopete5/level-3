@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 5: Introduction to State in React</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</head>
+<body>
+  <h1>Step 5: Introduction to State in React</h1>
+  
+  <h2>Overview</h2>
+  <p>State is the heart of React’s interactivity, enabling components to manage dynamic data and respond to user actions. In MovieBuddy, state will store the current movie, favorites list, and UI conditions, making the app responsive and engaging. This section introduces state’s core concepts, its differences from props, and its role in building dynamic applications.</p>
+  
+  <h2>Learning Objectives</h2>
+  <ul>
+    <li><strong>Understand State’s Role</strong>: Explain state’s mutability, locality, and re-rendering behavior, and how it differs from props.</li>
+    <li><strong>Prepare for useState</strong>: Set the stage for using the <code class="language-javascript"><span class="token-keyword">useState</span></code> hook to manage state in functional components.</li>
+    <li><strong>Integrate State in MovieBuddy</strong>: Identify state needs for random movie selection and favorites management.</li>
+    <li><strong>Recognize State Benefits</strong>: Articulate how state enables encapsulated, reactive, and declarative UIs.</li>
+    <li><strong>Compare State and Props</strong>: Understand when to use state vs. props in component design.</li>
+  </ul>
+  
+  <h2>What is State in React?</h2>
+  <p>State is a mutable object that stores component data, such as user inputs, UI conditions, or app data like MovieBuddy’s current movie. When state changes, React automatically re-renders the component to reflect the new data. State is:</p>
+  <ul>
+    <li><strong>Mutable</strong>: Can be updated, unlike props which are read-only.</li>
+    <li><strong>Local</strong>: Scoped to the component, inaccessible to others unless passed explicitly.</li>
+    <li><strong>Reactive</strong>: Triggers re-renders to keep the UI in sync with data.</li>
+  </ul>
+  
+  <h2>State vs. Props</h2>
+  <p>State and props both hold data, but serve different purposes:</p>
+  <ul>
+    <li><strong>State</strong>: Internal, mutable, managed by the component (e.g., current movie index).</li>
+    <li><strong>Props</strong>: External, immutable, passed from parent components (e.g., movie data passed to a display component).</li>
+  </ul>
+  <pre><code class="language-javascript">function MovieDisplay({ movie }) { // Props
+  const [isFavorite, setIsFavorite] = useState(false); // State
+
+  return (
+    <div>
+      <h2>{movie.title}</h2>
+      <button onClick={() => setIsFavorite(!isFavorite)}>
+        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+      </button>
+    </div>
+  );
+}
+</code></pre>
+  <p>Props provide static data; state handles dynamic changes within the component.</p>
+  
+  <h2>State in MovieBuddy</h2>
+  <p>MovieBuddy requires state for:</p>
+  <ul>
+    <li><strong>Current Movie</strong>: Store the index or object of the displayed movie.</li>
+    <li><strong>Favorites List</strong>: Maintain an array of favorite movies.</li>
+    <li><strong>UI States</strong>: Track conditions like “is loading” or “error” for future enhancements.</li>
+  </ul>
+  
+  <h2>Benefits of State</h2>
+  <ul>
+    <li><strong>Encapsulated</strong>: Keeps data management within the component, reducing complexity.</li>
+    <li><strong>Reactive UI</strong>: Automatically updates the UI when state changes.</li>
+    <li><strong>Declarative</strong>: Simplifies reasoning about UI changes, as state updates directly drive rendering.</li>
+  </ul>
+  
+  <h2>Analogy</h2>
+  <p>State is like a movie theater’s digital marquee. The marquee (component) displays the current movie (state). When the theater manager updates the movie (state change), the marquee automatically refreshes (re-render) to show the new title. The marquee doesn’t rely on external instructions (props) to change; it manages its own display internally.</p>
+  
+  <h2>Pitfall</h2>
+  <p>Directly modifying state prevents re-renders and causes bugs:</p>
+  <pre><code class="language-javascript">// Incorrect
+const [movies, setMovies] = useState([]);
+movies.push(newMovie); // No re-render
+
+// Correct
+setMovies([...movies, newMovie]); // Triggers re-render
+</code></pre>
+  <p>Always use the state updater function to ensure React detects changes and updates the UI.</p>
+  
+  <h2>Getting Started with State</h2>
+  <p>Here’s a simple state example for MovieBuddy’s favorite toggle:</p>
+  <pre><code class="language-javascript">import { useState } from 'react';
+
+function MovieCard() {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  return (
+    <div>
+      <h2>Sample Movie</h2>
+      <button onClick={() => setIsFavorite(!isFavorite)}>
+        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+      </button>
+    </div>
+  );
+}
+</code></pre>
+  <p>This demonstrates state’s role in tracking user preferences, which we’ll expand in later steps.</p>
+  
+  <div class="exercise">
+    <strong>Quick Exercise (10 min):</strong> Discuss with a partner: How could state track a movie’s favorite status in MovieBuddy? Write a JSX snippet to toggle a favorite button. Share your idea.
+    <p><strong>Possible answers:</strong></p>
+    <ul>
+      <li>Track favorite status:
+        <pre><code class="language-javascript">const [isFavorite, setIsFavorite] = useState(false);
+<button onClick={() => setIsFavorite(!isFavorite)}>
+  {isFavorite ? 'Unfavorite' : 'Favorite'}
+</button>
+</code></pre>
+      </li>
+      <li>Use state to add a movie to a favorites array.</li>
+      <li>Display a star icon that changes color when favorited.</li>
+    </ul>
+  </div>
+  
+  <h2>Next Steps</h2>
+  <p>Next, we’ll introduce the <code class="language-javascript"><span class="token-keyword">useState</span></code> hook, learning how to declare and update state to make MovieBuddy’s features dynamic.</p>
+</body>
+</html>
