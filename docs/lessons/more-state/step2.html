@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complex Data Types with State in React: Conditional Rendering</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</head>
+<body>
+  <h1>Complex Data Types with State in React: Conditional Rendering</h1>
+  
+  <h2>Overview</h2>
+  <p>This slide focuses on conditional rendering and flipping state in the MovieBuddy app. You’ll implement a toggle to show/hide movie details using <code class="language-javascript"><span class="token-operator">&&</span></code> and a ternary operator.</p>
+  
+  <h2>Learning Objectives</h2>
+  <ul>
+    <li>Conditionally render elements with <code class="language-javascript"><span class="token-operator">&&</span></code>.</li>
+    <li>Flip boolean state for toggling.</li>
+    <li>Use ternary operators for dynamic button text.</li>
+  </ul>
+  
+  <h2>Key Concepts</h2>
+  <ul>
+    <li><strong>Conditional Rendering:</strong> Show elements when a condition is <code class="language-javascript"><span class="token-boolean">true</span></code>.</li>
+    <li><strong>Flipping State:</strong> Toggle a boolean with <code class="language-javascript"><span class="token-operator">!</span>prevState</code>.</li>
+    <li><strong>Ternary Operator:</strong> Inline conditionals with <code class="language-javascript">condition <span class="token-operator">?</span> trueValue <span class="token-punctuation">:</span> falseValue</code>.</li>
+  </ul>
+  
+  <h2>Starter Code</h2>
+  <h3>src/components/RandomMovie.jsx</h3>
+  <pre><code class="language-javascript">import <span class="token-punctuation">{</span> <span class="token-keyword">useState</span> <span class="token-punctuation">}</span> from <span class="token-string">'react_systematically generated
+System: Here's the continuation of the response with the remaining slides, completing the 2-hour lesson section on **Complex Data Types with State in React** for the MovieBuddy app. I'll ensure all slides follow the specified structure, use the MovieBuddy app as the example project, and adhere to the styling and formatting requirements.
+
+### Artifacts (Continued)
+
+#### Slide 2: Conditional Rendering and Flipping State (Continued)
+<xaiArtifact artifact_id="9c77f8fd-ee26-41d8-b8da-262377c27649" artifact_version_id="8a107b03-8fc7-41d8-bce2-ebc57282d1a1" title="complex-state-slide-2.html" contentType="text/html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complex Data Types with State in React: Conditional Rendering</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</head>
+<body>
+  <h1>Complex Data Types with State in React: Conditional Rendering</h1>
+  
+  <h2>Overview</h2>
+  <p>This slide focuses on conditional rendering and flipping state in the MovieBuddy app. You’ll implement a toggle to show/hide movie details using <code class="language-javascript"><span class="token-operator">&&</span></code> and a ternary operator.</p>
+  
+  <h2>Learning Objectives</h2>
+  <ul>
+    <li>Conditionally render elements with <code class="language-javascript"><span class="token-operator">&&</span></code>.</li>
+    <li>Flip boolean state for toggling.</li>
+    <li>Use ternary operators for dynamic button text.</li>
+  </ul>
+  
+  <h2>Key Concepts</h2>
+  <ul>
+    <li><strong>Conditional Rendering:</strong> Show elements when a condition is <code class="language-javascript"><span class="token-boolean">true</span></code>.</li>
+    <li><strong>Flipping State:</strong> Toggle a boolean with <code class="language-javascript"><span class="token-operator">!</span>prevState</code>.</li>
+    <li><strong>Ternary Operator:</strong> Inline conditionals with <code class="language-javascript">condition <span class="token-operator">?</span> trueValue <span class="token-punctuation">:</span> falseValue</code>.</li>
+  </ul>
+  
+  <h2>Starter Code</h2>
+  <h3>src/components/RandomMovie.jsx</h3>
+  <pre><code class="language-javascript">import <span class="token-punctuation">{</span> <span class="token-keyword">useState</span> <span class="token-punctuation">}</span> from <span class="token-string">'react'</span><span class="token-punctuation">;</span>
+import movies from <span class="token-string">'../movies'</span><span class="token-punctuation">;</span>
+
+export <span class="token-keyword">default</span> <span class="token-keyword">function</span> <span class="token-function">RandomMovie</span><span class="token-punctuation">(</span>props<span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">const</span> <span class="token-punctuation">[</span>movieIndex<span class="token-punctuation">,</span> setMovieIndex<span class="token-punctuation">]</span> = <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-number">0</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+    <span class="token-keyword">const</span> <span class="token-punctuation">[</span>showDetails<span class="token-punctuation">,</span> setShowDetails<span class="token-punctuation">]</span> = <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-boolean">false</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+
+    <span class="token-comment">// Your code here: Add toggleDetails function</span>
+
+    <span class="token-keyword">return</span> <span class="token-punctuation">(</span>
+        <span class="token-operator"><</span>div<span class="token-operator">></span>
+            <span class="token-operator"><</span>h1<span class="token-operator">></span><span class="token-punctuation">{</span>movies<span class="token-punctuation">[</span>movieIndex<span class="token-punctuation">]</span><span class="token-punctuation">.</span>title<span class="token-punctuation">}</span><span class="token-operator"><</span><span class="token-operator">/</span>h1<span class="token-operator">></span>
+            <span class="token-comment">{/* Conditionally render description and rating */}</span>
+            <span class="token-operator"><</span>button onClick<span class="token-operator">=</span><span class="token-comment"> {/* Add toggleDetails handler */}</span><span class="token-operator">></span>
+                <span class="token-punctuation">{</span>showDetails <span class="token-operator">?</span> <span class="token-string">"Hide Details"</span> <span class="token-punctuation">:</span> <span class="token-string">"Show Details"</span><span class="token-punctuation">}</span>
+            <span class="token-operator"><</span><span class="token-operator">/</span>button<span class="token-operator">></span>
+        <span class="token-operator"><</span><span class="token-operator">/</span>div<span class="token-operator">></span>
+    <span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+</code></pre>
+  
+  <h2>Edge Cases</h2>
+  <ul>
+    <li>Rapid toggling: Ensure state updates handle quick clicks smoothly.</li>
+    <li>No movies in array: Display a fallback message.</li>
+  </ul>
+  
+  <h2>Analogy</h2>
+  <p>Conditional rendering is like a movie theater curtain: when the state is <code class="language-javascript"><span class="token-boolean">true</span></code>, the curtain opens to reveal details; when <code class="language-javascript"><span class="token-boolean">false</span></code>, it hides them.</p>
+  
+  <h2>Pitfalls</h2>
+  <ul>
+    <li>Directly setting state (e.g., <code class="language-javascript">setShowDetails(true)</code>) breaks toggle logic.</li>
+    <li>Not using fragments (<code class="language-javascript"><span class="token-operator"><</span><span class="token-operator">></span><span class="token-operator">></span></code>) for multiple elements.</li>
+  </ul>
+  
+  <h2>Tips</h2>
+  <ul>
+    <li>Use functional updates (<code class="language-javascript">prev <span class="token-operator">=></span> <span class="token-operator">!</span>prev</code>) for reliability.</li>
+    <li>Test both states to verify UI updates.</li>
+    <li>Add CSS to distinguish visible details.</li>
+  </ul>
+  
+  <div class="exercise">
+    <strong>Exercise (15 min):</strong>
+    <p>Implement the details toggle in <code class="language-javascript">RandomMovie.jsx</code>. Test it and discuss with a partner how <code class="language-javascript"><span class="token-operator">&&</span></code> differs from a ternary operator.</p>
+  </div>
+</body>
+</html>

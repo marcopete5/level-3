@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Complex Data Types with State in React: Final Integration</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+            rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    </head>
+    <body>
+        <h1>Complex Data Types with State in React: Final Integration</h1>
+
+        <h2>Overview</h2>
+        <p>
+            This slide integrates all MovieBuddy app features, adding theme
+            toggling and styling. You’ll complete the app and review key
+            concepts.
+        </p>
+
+        <h2>Learning Objectives</h2>
+        <ul>
+            <li>Integrate components with lifted state and props.</li>
+            <li>Apply conditional styling for themes.</li>
+            <li>Review complex state management.</li>
+        </ul>
+
+        <h2>Key Concepts</h2>
+        <ul>
+            <li>
+                <strong>Theme Toggling:</strong> Use ternary operator to switch
+                <code class="language-javascript">theme</code>.
+            </li>
+            <li>
+                <strong>Conditional Styling:</strong> Apply
+                <code class="language-javascript">light</code>/<code
+                    class="language-javascript"
+                    >dark</code
+                >
+                classes.
+            </li>
+            <li>
+                <strong>Interactive Components:</strong> Combine state, props,
+                and events.
+            </li>
+        </ul>
+
+        <h2>Starter Code</h2>
+        <h3>src/App.jsx</h3>
+        <pre><code class="language-javascript">import <span class="token-punctuation">{</span> <span class="token-keyword">useState</span> <span class="token-punctuation">}</span> from <span class="token-string">'react'</span><span class="token-punctuation">;</span>
+import Navbar from <span class="token-string">'./components/Navbar'</span><span class="token-punctuation">;</span>
+import RandomMovie from <span class="token-string">'./components/RandomMovie'</span><span class="token-punctuation">;</span>
+import FavoriteMovie from <span class="token-string">'./components/FavoriteMovie'</span><span class="token-punctuation">;</span>
+import <span class="token-string">'./styles.css'</span><span class="token-punctuation">;</span>
+
+<span class="token-keyword">function</span> <span class="token-function">App</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">const</span> <span class="token-punctuation">[</span>theme<span class="token-punctuation">,</span> setTheme<span class="token-punctuation">]</span> = <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-string">'light'</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+    <span class="token-keyword">const</span> <span class="token-punctuation">[</span>favMovies<span class="token-punctuation">,</span> setFavMovies<span class="token-punctuation">]</span> = <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-punctuation">[</span><span class="token-punctuation">]</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+
+    <span class="token-comment">// Your code here: Add toggleTheme and addMovie functions</span>
+
+    <span class="token-keyword">return</span> <span class="token-punctuation">(</span>
+        <span class="token-operator"><</span>div className<span class="token-operator">=</span><span class="token-punctuation">{</span><span class="token-template-string"><span class="token-template-punctuation string">`</span><span class="token-string">${theme} main</span><span class="token-template-punctuation string">`</span></span><span class="token-punctuation">}</span><span class="token-operator">></span>
+            <span class="token-operator"><</span>Navbar <span class="token-comment">/* Pass toggleTheme */</span> <span class="token-operator">/</span><span class="token-operator">></span>
+            <span class="token-operator"><</span>RandomMovie <span class="token-comment">/* Pass addMovie */</span> <span class="token-operator">/</span><span class="token-operator">></span>
+            <span class="token-operator"><</span>FavoriteMovie <span class="token-comment">/* Pass favMovies */</span> <span class="token-operator">/</span><span class="token-operator">></span>
+        <span class="token-operator"><</span><span class="token-operator">/</span>div<span class="token-operator">></span>
+    <span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+
+export <span class="token-keyword">default</span> App<span class="token-punctuation">;</span>
+</code></pre>
+
+        <h3>src/components/Navbar.jsx</h3>
+        <pre><code class="language-javascript">export <span class="token-keyword">default</span> <span class="token-keyword">function</span> <span class="token-function">Navbar</span><span class="token-punctuation">(</span>props<span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-comment">// Your code here: Destructure toggleTheme</span>
+
+    <span class="token-keyword">return</span> <span class="token-punctuation">(</span>
+        <span class="token-operator"><</span>nav className<span class="token-operator">=</span><span class="token-string">"nav"</span><span class="token-operator">></span>
+            <span class="token-operator"><</span>h1<span class="token-operator">></span>MovieBuddy<span class="token-operator"><</span><span class="token-operator">/</span>h1<span class="token-operator">></span>
+            <span class="token-operator"><</span>button onClick<span class="token-operator">=</span><span class="token-comment"> {/* Add toggleTheme handler */}</span><span class="token-operator">></span>Toggle Theme<span class="token-operator"><</span><span class="token-operator">/</span>button<span class="token-operator">></span>
+        <span class="token-operator"><</span><span class="token-operator">/</span>nav<span class="token-operator">></span>
+    <span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+</code></pre>
+
+        <h2>Edge Cases</h2>
+        <ul>
+            <li>Theme switching glitches: Ensure smooth transitions.</li>
+            <li>Inconsistent styling: Verify CSS classes apply correctly.</li>
+        </ul>
+
+        <h2>Analogy</h2>
+        <p>
+            Theme toggling is like switching a movie theater’s lighting: one
+            state (light) enhances visibility, another (dark) sets the mood.
+        </p>
+
+        <h2>Pitfalls</h2>
+        <ul>
+            <li>Hardcoding theme classes misses state updates.</li>
+            <li>Not passing all required props breaks functionality.</li>
+        </ul>
+
+        <h2>Tips</h2>
+        <ul>
+            <li>Use CSS variables for theme consistency.</li>
+            <li>Test all features together to catch issues.</li>
+            <li>
+                Keep prop names clear (e.g.,
+                <code class="language-javascript">toggleTheme</code>).
+            </li>
+        </ul>
+
+        <div class="exercise">
+            <h3>
+                <a
+                    href="https://marcopete5.github.io/level-3/assignments/moviebuddy-advanced/"
+                    target="_blank"
+                    >DEMO OF MOVIEBUDDY ADVANCED APP</a
+                >
+            </h3>
+        </div>
+    </body>
+</html>
