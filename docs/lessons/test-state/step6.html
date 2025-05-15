@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 3 - Complex Data Types with State in React - Complex Data
+            Types with State (Part 1)
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Level 3 - Complex Data Types with State in React</h1>
+            <h2>Complex Data Types with State (Part 1)</h2>
+        </header>
+        <section
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-content">
+            <h3>Learning Objectives</h3>
+            <p>By the end of this lesson, students will be able to:</p>
+            <ul>
+                <li>
+                    <strong>Manage Complex Data Types with State</strong>:
+                    Demonstrate how to manage and update complex data types,
+                    such as arrays and objects, using the
+                    <code>useState</code> hook in React.
+                </li>
+                <li>
+                    <strong>Lift State to Parent Components</strong>: Explain
+                    the concept of lifting state to a parent component and
+                    illustrate how to pass state and functions as props to child
+                    components for efficient state management and
+                    inter-component communication.
+                </li>
+                <li>
+                    <strong>Handle State Updates without Mutation</strong>:
+                    Apply best practices for updating state without mutating the
+                    original state. Use techniques such as spreading syntax to
+                    create new arrays or objects when updating state.
+                </li>
+                <li>
+                    <strong>Pass Functions as Props</strong>: Show how to define
+                    functions in a parent component and pass them as props to
+                    child components. Use these functions to manage state
+                    updates and trigger actions based on user interactions.
+                </li>
+                <li>
+                    <strong>Render Dynamic Content</strong>: Use the
+                    <code>map</code> method to dynamically render a list of
+                    elements based on an array of data stored in state. Ensure
+                    that the UI updates in response to changes in state.
+                </li>
+                <li>
+                    <strong>Dynamically Change Styles</strong>: Manage and
+                    update styles dynamically using state. Implement
+                    functionality to change component styles in response to user
+                    interactions or state changes.
+                </li>
+                <li>
+                    <strong>Create Interactive and Responsive Components</strong
+                    >: Develop components that leverage state and props to build
+                    interactive and responsive user interfaces, ensuring that
+                    the application remains dynamic and user-friendly.
+                </li>
+            </ul>
+            <h3>Complex Data Types with State in React</h3>
+            <p>
+                In this video lesson, we delve into managing complex data types
+                with state in React by setting up the
+                <code>favMovie</code> functionality and
+                <code>movieStyle</code> functionality. Understanding how to
+                handle state at the parent level and effectively pass data and
+                functions to child components is crucial for building dynamic
+                and responsive React applications.
+            </p>
+            <p>
+                Direct state mutation is a common pitfall, causing React to miss
+                updates:
+            </p>
+            <pre><code class="language-jsx">
+/* Incorrect */
+function addMovie(newMovie) {
+    favMovies.push(newMovie); // Mutates state
+    setFavMovies(favMovies);
+}
+        </code></pre>
+            <p>
+                Use the spread operator:
+                <code>[...prevFavMovies, newMovie]</code>. Another pitfall is
+                neglecting unique <code>key</code> props in lists, leading to
+                rendering issues:
+            </p>
+            <pre><code class="language-jsx">
+/* Incorrect */
+favMovies.map(movie => &lt;div&gt;{movie.title}&lt;/div&gt;);
+        </code></pre>
+            <h3>Managing State in the Parent Component</h3>
+            <p>
+                Managing state in the parent component is essential for handling
+                complex data types. Lifting state ensures data and functionality
+                are accessible to child components when needed.
+            </p>
+            <p>
+                In our example, the <code>App</code> component manages theme and
+                favorite movies state:
+            </p>
+            <pre><code class="language-jsx">
+function App() {
+  const [theme, setTheme] = useState('light');
+  const [favMovies, setFavMovies] = useState([]);
+
+  function toggleTheme() {
+    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+  }
+
+  function addMovie(newMovie) {
+    setFavMovies(prevFavMovies => [...prevFavMovies, newMovie]);
+  }
+
+  return (
+    &lt;div className={`${theme} main`}&gt;
+      &lt;Navbar toggleTheme={toggleTheme} /&gt;
+      &lt;RandomMovie addMovie={addMovie} /&gt;
+      &lt;FavoriteMovie favMovies={favMovies} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+        </code></pre>
+            <p>A todo list component shows lifted state:</p>
+            <pre><code class="language-jsx">
+import { useState } from &quot;react&quot;;
+
+function TodoApp() {
+    const [todos, setTodos] = useState([]);
+
+    const addTodo = (text) => {
+        setTodos(prev => [...prev, { id: prev.length + 1, text }]);
+    };
+
+    return (
+        &lt;div&gt;
+            &lt;TodoForm addTodo={addTodo} /&gt;
+            &lt;TodoList todos={todos} /&gt;
+        &lt;/div&gt;
+    );
+}
+        </code></pre>
+            <p>
+                This manages todos in the parent, passing functions and state to
+                children, ideal for task apps.
+            </p>
+        </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </body>
+</html>

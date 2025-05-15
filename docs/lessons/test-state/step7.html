@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 3 - Complex Data Types with State in React - Complex Data
+            Types with State (Part 2)
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Level 3 - Complex Data Types with State in React</h1>
+            <h2>Complex Data Types with State (Part 2)</h2>
+        </header>
+        <section
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-content">
+            <h3>Handling Complex Data Types with State</h3>
+            <p>
+                React's <code>useState</code> hook allows managing complex data
+                types like arrays and objects. Creating copies during updates
+                prevents mutating the original state.
+            </p>
+            <h4>Managing Arrays with State</h4>
+            <p>
+                In the <code>App</code> component, the
+                <code>favMovies</code> state is an array of movie objects. We
+                add movies by creating a new array:
+            </p>
+            <pre><code class="language-jsx">
+function addMovie(newMovie) {
+  setFavMovies(prevFavMovies => [...prevFavMovies, newMovie]);
+}
+        </code></pre>
+            <h4>Managing Objects with State</h4>
+            <p>
+                In the <code>FavoriteMovie</code> component,
+                <code>movieStyles</code> state is an object for styles, updated
+                with a copy:
+            </p>
+            <pre><code class="language-jsx">
+const [movieStyles, setMovieStyles] = useState({
+  backgroundColor: 'red',
+  color: 'white',
+  border: 'solid black 1px'
+});
+
+function changeTheme() {
+  setMovieStyles(prevMovieStyles => ({
+    ...prevMovieStyles,
+    backgroundColor: 'lightBlue',
+    color: 'black'
+  }));
+}
+        </code></pre>
+            <p>Mutating arrays or objects directly is a common error:</p>
+            <pre><code class="language-jsx">
+/* Incorrect */
+function updateStyles() {
+    movieStyles.backgroundColor = 'blue'; // Mutates state
+    setMovieStyles(movieStyles);
+}
+        </code></pre>
+            <p>
+                Use spread operators for immutability. Another pitfall is
+                shallow copying nested objects, losing deep updates:
+            </p>
+            <pre><code class="language-jsx">
+/* Incorrect */
+setStyles(prev => ({ ...prev, nested: { value: 1 } })); // Overwrites nested object
+        </code></pre>
+            <h3>Passing State and Functions as Props</h3>
+            <p>
+                The <code>App</code> component passes state and functions to
+                children:
+            </p>
+            <pre><code class="language-jsx">
+&lt;Navbar toggleTheme={toggleTheme} /&gt;
+&lt;RandomMovie addMovie={addMovie} /&gt;
+        </code></pre>
+            <p>A settings panel shows prop passing:<</p>
+            <pre><code class="language-jsx">
+import { useState } from &quot;react&quot;;
+
+function Settings() {
+    const [settings, setSettings] = useState({ fontSize: 16 });
+
+    const updateSetting = (key, value) => {
+        setSettings(prev => ({ ...prev, [key]: value }));
+    };
+
+    return (
+        &lt;div&gt;
+            &lt;SettingControl updateSetting={updateSetting} /&gt;
+        &lt;/div&gt;
+    );
+}
+        </code></pre>
+            <p>
+                This passes <code>updateSetting</code> to a child, enabling
+                dynamic configuration, useful for forms.
+            </p>
+        </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </body>
+</html>

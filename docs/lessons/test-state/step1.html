@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 3 - React State Continued - Updating State with Ternary
+            Operator (Part 1)
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Level 3 - React State Continued</h1>
+            <h2>Updating State with Ternary Operator (Part 1)</h2>
+        </header>
+        <section
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-content">
+            <h3>Learning Objectives</h3>
+            <p>By the end of this lesson, students will be able to:</p>
+            <ul>
+                <li>
+                    <strong>Initialize and Manage State</strong>: Demonstrate
+                    how to initialize state using the <code>useState</code> hook
+                    and manage its updates in a React component.
+                </li>
+                <li>
+                    <strong>Use the Ternary Operator for State Updates</strong>:
+                    Apply the ternary operator within a state updater function
+                    to toggle between two states based on the current state
+                    value.
+                </li>
+                <li>
+                    <strong>Pass Functions as Props</strong>: Illustrate how to
+                    pass state update functions as props to child components and
+                    use them to handle user interactions.
+                </li>
+                <li>
+                    <strong>Handle User Interactions</strong>: Create event
+                    handlers that use state update functions to respond to user
+                    interactions, such as button clicks, to update the
+                    component’s state.
+                </li>
+                <li>
+                    <strong>Apply Conditional Styling</strong>: Use dynamic
+                    class names based on the current state value to
+                    conditionally apply styles and create interactive UI
+                    elements.
+                </li>
+                <li>
+                    <strong>Create Interactive Components</strong>: Develop
+                    components that leverage state and props to create dynamic
+                    and responsive user interfaces, such as a theme toggle
+                    feature.
+                </li>
+            </ul>
+            <h3>Updating State in React: Ternary Operator</h3>
+            <p>
+                In this lesson, we explore how to manage and update state in
+                React using the <code>useState</code> hook. We use a ternary
+                operator to toggle between two states. Let’s break down how this
+                works with the provided example code.
+            </p>
+            <p>
+                The <code>useState</code> hook is essential for state management
+                in functional components. The ternary operator enables concise
+                state toggling, but improper use can cause issues. A common
+                pitfall is neglecting the functional update form, risking stale
+                state:
+            </p>
+            <pre><code class="language-jsx">
+/* Incorrect */
+function toggleTheme() {
+    setTheme(theme === 'light' ? 'dark' : 'light'); // Risks stale state
+}
+        </code></pre>
+            <p>
+                Using <code>prevTheme =></code> ensures the latest state,
+                especially during rapid updates. Another pitfall is overusing
+                ternaries for complex logic, which can obscure code. For
+                multi-state scenarios, consider a state machine or object
+                mapping.
+            </p>
+            <h4><code>App</code> Component</h4>
+            <p>
+                Here's the <code>App</code> component where we implemented the
+                state toggle functionality:
+            </p>
+            <pre><code class="language-jsx">
+import { useState } from &quot;react&quot;;
+import RandomMovie from &quot;./components/RandomMovie&quot;;
+import Navbar from &quot;./components/Navbar&quot;;
+
+function App() {
+    const [theme, setTheme] = useState('light');
+
+    function toggleTheme() {
+        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+    }
+
+    return (
+        &lt;div className={`${theme} main`}&gt;
+            &lt;Navbar toggleTheme={toggleTheme} /&gt;
+            &lt;RandomMovie /&gt;
+        &lt;/div&gt;
+    );
+}
+
+export default App;
+        </code></pre>
+            <p>
+                A practical example is a notification toggle, illustrating state
+                and props:
+            </p>
+            <pre><code class="language-jsx">
+import { useState } from &quot;react&quot;;
+
+function Notification() {
+    const [isEnabled, setIsEnabled] = useState(true);
+
+    const toggleNotification = () => {
+        setIsEnabled(prev => !prev);
+    };
+
+    return (
+        &lt;div className={isEnabled ? 'enabled' : 'disabled'}&gt;
+            &lt;button onClick={toggleNotification}&gt;
+                {isEnabled ? 'Disable' : 'Enable'} Notifications
+            &lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+        </code></pre>
+            <p>
+                This component toggles notification visibility, similar to the
+                theme toggle, and is reusable in settings panels, demonstrating
+                state-driven UI updates.
+            </p>
+        </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 3 - MovieBuddy App - Conditionally Rendering and Flipping
+            State (Part 1)
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Level 3 - MovieBuddy App</h1>
+            <h2>Conditionally Rendering and Flipping State (Part 1)</h2>
+        </header>
+        <section
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-content">
+            <h3>Learning Objectives</h3>
+            <p>By the end of this lesson, students will be able to:</p>
+            <ul>
+                <li>
+                    Conditionally render the description and rating paragraph
+                    elements by toggling state.
+                </li>
+                <li>
+                    Conditionally render the details button by toggling state.
+                </li>
+            </ul>
+            <h3>Introduction</h3>
+            <p>
+                In this lesson, we'll extend our MovieBuddy app to demonstrate
+                the concepts of conditionally rendering state and flipping state
+                in React. These techniques are essential for creating dynamic
+                and interactive user interfaces.
+            </p>
+            <p>
+                Conditional rendering and state flipping enable responsive UIs.
+                Misuse of operators like <code>&&</code> can lead to errors,
+                such as rendering <code>undefined</code>:
+            </p>
+            <pre><code class="language-jsx">
+/* Incorrect */
+{showDetails && movies[movieIndex].description} // Crashes if undefined
+        </code></pre>
+            <p>
+                Use optional chaining
+                (<code>movies[movieIndex]?.description</code>) or checks.
+                Overusing conditionals can also clutter JSX; extract logic to
+                functions for clarity.
+            </p>
+            <h3>Key Concepts</h3>
+            <ol>
+                <li>
+                    <strong>Conditional Rendering:</strong> Displaying different
+                    content based on the state.
+                </li>
+                <li>
+                    <strong>Flipping State:</strong> Toggling a boolean state
+                    between <code>true</code> and <code>false</code>.
+                </li>
+            </ol>
+            <p>A simple toggle button illustrates these concepts:</p>
+            <pre><code class="language-jsx">
+import { useState } from &quot;react&quot;;
+
+function ToggleButton() {
+    const [isActive, setIsActive] = useState(false);
+
+    return (
+        &lt;button onClick={() => setIsActive(prev => !prev)}&gt;
+            {isActive ? 'Deactivate' : 'Activate'}
+        &lt;/button&gt;
+    );
+}
+        </code></pre>
+            <p>
+                This button toggles state and text, useful for
+                enabling/disabling features, showing conditional rendering
+                basics.
+            </p>
+        </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </body>
+</html>

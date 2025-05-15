@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 3 - MovieBuddy App - Conditionally Rendering and Flipping
+            State (Part 2)
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Level 3 - MovieBuddy App</h1>
+            <h2>Conditionally Rendering and Flipping State (Part 2)</h2>
+        </header>
+        <section
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-content">
+            <h3>Practice Exercise: Conditionally Render Movie Details</h3>
+            <p>
+                We'll conditionally render the movie's description and rating
+                only when a "Show Details" button is clicked. Additionally,
+                we'll toggle the button text between "Show Details" and "Hide
+                Details."
+            </p>
+            <h4>Steps</h4>
+            <ol>
+                <li>
+                    <strong>Add a <code>showDetails</code> state:</strong>
+                    <pre><code class="language-jsx">
+const [showDetails, setShowDetails] = useState(false);
+                </code></pre>
+                </li>
+                <li>
+                    <strong
+                        >Create a function to toggle
+                        <code>showDetails</code>:</strong
+                    >
+                    <pre><code class="language-jsx">
+function toggleDetails() {
+    setShowDetails(prevShowDetails => !prevShowDetails);
+}
+                </code></pre>
+                </li>
+                <li>
+                    <strong
+                        >Conditionally render the description and rating, and
+                        toggle the button text:</strong
+                    >
+                    <pre><code class="language-jsx">
+return (
+    &lt;div&gt;
+        &lt;h1&gt;{movies[movieIndex].title}&lt;/h1&gt;
+        {showDetails && (
+            &lt;&gt;
+                &lt;p&gt;Description: {movies[movieIndex].description}&lt;/p&gt;
+                &lt;p&gt;Rating: {movies[movieIndex].rating}&lt;/p&gt;
+            &lt;/&gt;
+        )}
+        &lt;button onClick={() => nextMovie(-1)}&gt;Prev Movie&lt;/button&gt;
+        &lt;button onClick={() => nextMovie(1)}&gt;Next Movie&lt;/button&gt;
+        &lt;button onClick={getRandomMovie}&gt;Random Movie&lt;/button&gt;
+        &lt;button onClick={toggleDetails}&gt;
+            {showDetails ? "Hide Details" : "Show Details"}
+        &lt;/button&gt;
+    &lt;/div&gt;
+);
+                </code></pre>
+                </li>
+            </ol>
+            <p>
+                A common pitfall is omitting fragment tags
+                (<code>&lt;&gt;&lt;/&gt;</code>) when rendering multiple
+                elements conditionally, causing syntax errors:
+            </p>
+            <pre><code class="language-jsx">
+/* Incorrect */
+{showDetails && (
+    &lt;p&gt;Description&lt;/p&gt;
+    &lt;p&gt;Rating&lt;/p&gt;
+)} // Syntax error
+        </code></pre>
+            <p>
+                Use fragments or a <code>div</code>. Another pitfall is not
+                using the functional update form, risking stale state in rapid
+                clicks.
+            </p>
+            <h3>&& Operation</h3>
+            <p><strong>Syntax:</strong></p>
+            <pre><code class="language-jsx">
+{condition && &lt;JSXElement /&gt;}
+        </code></pre>
+            <p><strong>Functionality:</strong></p>
+            <ul>
+                <li>
+                    The <code>&&</code> operator conditionally renders elements
+                    in React.
+                </li>
+                <li>
+                    If the condition is <code>true</code>, the element is
+                    rendered; if <code>false</code>, nothing is rendered.
+                </li>
+                <li>
+                    Useful for boolean-based rendering without if statements.
+                </li>
+            </ul>
+            <p><strong>Example:</strong></p>
+            <pre><code class="language-jsx">
+{showDetails && (
+    &lt;&gt;
+        &lt;p&gt;Description: {movies[movieIndex].description}&lt;/p&gt;
+        &lt;p&gt;Rating: {movies[movieIndex].rating}&lt;/p&gt;
+    &lt;/&gt;
+)}
+        </code></pre>
+            <p>A collapse component shows <code>&&</code> in action:</p>
+            <pre><code class="language-jsx">
+import { useState } from &quot;react&quot;;
+
+function Collapse() {
+    const [isCollapsed, setIsCollapsed] = useState(true);
+
+    return (
+        &lt;div&gt;
+            &lt;button onClick={() => setIsCollapsed(prev => !prev)}&gt;
+                {isCollapsed ? 'Show' : 'Hide'} Content
+            &lt;/button&gt;
+            {!isCollapsed && &lt;p&gt;This is collapsible content.&lt;/p&gt;}
+        &lt;/div&gt;
+    );
+}
+        </code></pre>
+            <p>
+                This is useful for FAQs or expandable sections, leveraging
+                <code>&&</code> for rendering.
+            </p>
+        </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </body>
+</html>
