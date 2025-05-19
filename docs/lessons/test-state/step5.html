@@ -3,105 +3,132 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Level 3 - MovieBuddy App - Conditionally Rendering and Flipping
-            State (Part 3)
-        </title>
+        <title>Complex Data Types with State in React: Dynamic Styling</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
         <link rel="stylesheet" href="styles.css" />
         <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+            rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
     </head>
     <body>
-        <header>
-            <h1>Level 3 - MovieBuddy App</h1>
-            <h2>Conditionally Rendering and Flipping State (Part 3)</h2>
-        </header>
-        <section
-            class="slide-container"
-            role="region"
-            aria-labelledby="lesson-content">
-            <h3>Ternary Operator</h3>
-            <p><strong>Syntax:</strong></p>
-            <pre><code class="language-jsx">
-condition ? &lt;TrueJSXElement /&gt; : &lt;FalseJSXElement /&gt;
-        </code></pre>
-            <p><strong>Functionality:</strong></p>
-            <ul>
-                <li>
-                    The ternary operator (<code>? :</code>) is used for inline
-                    conditional rendering.
-                </li>
-                <li>
-                    If the condition is <code>true</code>, the element before
-                    <code>:</code> is rendered; if <code>false</code>, the
-                    element after <code>:</code> is rendered.
-                </li>
-                <li>Useful for toggling between two elements.</li>
-            </ul>
-            <p><strong>Example:</strong></p>
-            <pre><code class="language-jsx">
-&lt;button onClick={toggleDetails}&gt;
-    {showDetails ? "Hide Details" : "Show Details"}
-&lt;/button&gt;
-        </code></pre>
-            <p>
-                Ternaries are concise but can become unreadable if nested. A
-                common pitfall is using ternaries for complex logic:
-            </p>
-            <pre><code class="language-jsx">
-/* Incorrect */
-{state ? value1 ? 'Option1' : 'Option2' : value2 ? 'Option3' : 'Option4'} // Hard to read
-        </code></pre>
-            <p>
-                Use functions or components for complex conditions. Another
-                pitfall is neglecting parentheses, causing precedence issues:
-            </p>
-            <pre><code class="language-jsx">
-/* Incorrect */
-{showDetails ? "Hide" : "Show" + " Details"} // Concatenates incorrectly
-        </code></pre>
-            <p>An accordion component shows ternary usage:</p>
-            <pre><code class="language-jsx">
-import { useState } from &quot;react&quot;;
+        <h1>Complex Data Types with State in React: Dynamic Styling</h1>
 
-function Accordion() {
-    const [isOpen, setIsOpen] = useState(false);
+        <h2>Overview</h2>
+        <p>
+            This slide covers managing object state and dynamic styling in the
+            MovieBuddy app. You’ll update
+            <code class="language-javascript">movieStyles</code> to change movie
+            card appearances.
+        </p>
 
-    return (
-        &lt;div className="accordion"&gt;
-            &lt;button onClick={() => setIsOpen(prev => !prev)}&gt;
-                {isOpen ? 'Collapse' : 'Expand'}
-            &lt;/button&gt;
-            {isOpen && (
-                &lt;div className="content"&gt;
-                    &lt;p&gt;This is the accordion content.&lt;/p&gt;
-                &lt;/div&gt;
-            )}
-        &lt;/div&gt;
-    );
-}
-        </code></pre>
+        <h2>Learning Objectives</h2>
+        <ul>
+            <li>Manage object state immutably.</li>
+            <li>
+                Apply dynamic styles with
+                <code class="language-javascript">style</code> attributes.
+            </li>
+            <li>Toggle styles via user interactions.</li>
+        </ul>
+
+        <h2>Key Concepts</h2>
+        <ul>
+            <li>
+                <strong>Object State:</strong> Update objects with
+                <code class="language-javascript"
+                    ><span class="token-punctuation">{</span>
+                    <span class="token-operator">...</span>prev<span
+                        class="token-punctuation"
+                        >,</span
+                    >
+                    newProp<span class="token-punctuation">}</span></code
+                >.
+            </li>
+            <li>
+                <strong>Dynamic Styling:</strong> Use
+                <code class="language-javascript"
+                    >style<span class="token-operator">=</span
+                    ><span class="token-punctuation">{</span>state<span
+                        class="token-punctuation"
+                        >}</span
+                    ></code
+                >
+                for real-time changes.
+            </li>
+        </ul>
+
+        <h2>Starter Code</h2>
+        <h3>src/components/FavoriteMovie.jsx</h3>
+        <pre><code class="language-javascript">import <span class="token-punctuation">{</span> <span class="token-keyword">useState</span> <span class="token-punctuation">}</span> from <span class="token-string">'react'</span><span class="token-punctuation">;</span>
+
+export <span class="token-keyword">default</span> <span class="token-keyword">function</span> <span class="token-function">FavoriteMovie</span><span class="token-punctuation">(</span>props<span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">const</span> <span class="token-punctuation">[</span>movieStyles<span class="token-punctuation">,</span> setMovieStyles<span class="token-punctuation">]</span> = <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-punctuation">{</span>
+        backgroundColor<span class="token-punctuation">:</span> <span class="token-string">'red'</span><span class="token-punctuation">,</span>
+        color<span class="token-punctuation">:</span> <span class="token-string">'white'</span><span class="token-punctuation">,</span>
+        border<span class="token-punctuation">:</span> <span class="token-string">'solid black 1px'</span>
+    <span class="token-punctuation">}</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+
+    <span class="token-comment">// Your code here: Add changeTheme function</span>
+    <span class="token-comment">// Your code here: Destructure favMovies</span>
+
+    <span class="token-keyword">return</span> <span class="token-punctuation">(</span>
+        <span class="token-operator"><</span>div<span class="token-operator">></span>
+            <span class="token-operator"><</span>h2<span class="token-operator">></span>Favorite Movies<span class="token-operator"><</span><span class="token-operator">/</span>h2<span class="token-operator">></span>
+            <span class="token-comment">{/* Map favMovies with style={movieStyles} */}</span>
+        <span class="token-operator"><</span><span class="token-operator">/</span>div<span class="token-operator">></span>
+    <span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+</code></pre>
+
+        <h2>Edge Cases</h2>
+        <ul>
+            <li>Invalid style values: Ensure CSS properties are valid.</li>
+            <li>Rapid style changes: Handle smooth transitions.</li>
+        </ul>
+
+        <h2>Analogy</h2>
+        <p>
+            Managing object state is like designing a movie poster: you tweak
+            colors and layout (<code class="language-javascript"
+                >movieStyles</code
+            >) without starting from scratch.
+        </p>
+
+        <h2>Pitfalls</h2>
+        <ul>
+            <li>
+                Overwriting styles (e.g.,
+                <code class="language-javascript"
+                    >setMovieStyles({ color: 'black' })</code
+                >) loses properties.
+            </li>
+            <li>
+                Using CSS syntax (e.g.,
+                <code class="language-javascript">background-color</code>)
+                instead of camelCase.
+            </li>
+        </ul>
+
+        <h2>Tips</h2>
+        <ul>
+            <li>Use camelCase for style properties.</li>
+            <li>Add CSS transitions for smooth changes.</li>
+            <li>Test multiple style toggles for consistency.</li>
+        </ul>
+
+        <div class="exercise">
+            <strong>Exercise (15 min):</strong>
             <p>
-                This accordion toggles content visibility, ideal for FAQs or
-                menus, using both ternary and <code>&&</code> operators.
+                Implement
+                <code class="language-javascript">changeTheme</code> in
+                <code class="language-javascript">FavoriteMovie</code> to toggle
+                styles. Test it and discuss with a partner how object state
+                enhances UI flexibility.
             </p>
-            <h3>Summary</h3>
-            <p>In this lesson, we covered:</p>
-            <ul>
-                <li>
-                    Conditionally rendering elements using <code>&&</code> and
-                    ternary operators.
-                </li>
-                <li>Flipping boolean state to toggle UI elements.</li>
-                <li>
-                    Implementing a practical exercise to show/hide movie
-                    details.
-                </li>
-            </ul>
-        </section>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+        </div>
     </body>
 </html>

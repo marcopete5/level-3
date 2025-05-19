@@ -1,214 +1,133 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&family=Fira+Code:wght@400&display=swap');
+
 body {
-    font-family: 'Lora', serif;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 30px;
-    line-height: 1.6;
-    background-color: #f5f5f5;
-    color: #333333;
-}
-h1,
-h2,
-h3 {
-    color: #4a6fa5;
-}
-h1 {
-    font-size: 2.2em;
-    margin-bottom: 20px;
-}
-h2 {
-    font-size: 1.8em;
-    margin-top: 40px;
-    border-bottom: 2px solid #4a6fa5;
-    padding-bottom: 8px;
-}
-h3 {
-    font-size: 1.4em;
-    margin-top: 25px;
-}
-pre {
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 6px;
-    overflow-x: auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-code {
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    font-size: 15px;
-    color: #d4d4d4;
-    background-color: #1e1e1e;
-    padding: 2px 4px;
-    border-radius: 4px;
-    line-height: 1.5;
-}
-pre > code {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
     padding: 0;
-    background-color: transparent;
+    background: #ffffff;
+    color: #1a2a44;
 }
-pre > code.language-javascript .token-comment,
-pre > code.language-javascript .token-prolog,
-pre > code.language-javascript .token-doctype,
-pre > code.language-javascript .token-cdata {
-    color: #6a9955;
+
+.slide-container {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(26, 42, 68, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+header {
+    background: #1a2a44;
+    padding: 24px;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.25rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    color: #00aeef;
+    margin: 8px 0 0;
+}
+
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.75rem;
+    color: #1a2a44;
+    margin-top: 24px;
+}
+
+p,
+li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #1a2a44;
+}
+
+ul {
+    padding-left: 24px;
+    margin: 16px 0;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+pre {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid #e5e7eb;
+}
+
+code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+}
+
+/* Inline code styling */
+code:not(.language-jsx) {
+    background: #e5e7eb;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #1a2a44;
+}
+
+span.Grok {
     font-style: italic;
+    font-weight: bold;
+    font-size: 40px;
+    color: #f97316;
+    margin-left: 8px;
+    vertical-align: middle;
 }
-pre > code.language-javascript .token-punctuation {
-    color: #d4d4d4;
+
+.btn-primary {
+    background: #00aeef;
+    color: #ffffff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
 }
-pre > code.language-javascript .token-property,
-pre > code.language-javascript .token-tag,
-pre > code.language-javascript .token-constant,
-pre > code.language-javascript .token-symbol,
-pre > code.language-javascript .token-deleted {
-    color: #9cdcfe;
+
+.btn-primary:hover {
+    background: #f97316;
 }
-pre > code.language-javascript .token-boolean,
-pre > code.language-javascript .token-number {
-    color: #b5cea8;
+
+footer {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+    color: #1a2a44;
+    font-size: 0.95rem;
 }
-pre > code.language-javascript .token-selector,
-pre > code.language-javascript .token-attr-name,
-pre > code.language-javascript .token-string,
-pre > code.language-javascript .token-char,
-pre > code.language-javascript .token-builtin,
-pre > code.language-javascript .token-inserted {
-    color: #ce9178;
+
+.grok {
+    font-size: 40px;
 }
-pre > code.language-javascript .token-operator,
-pre > code.language-javascript .token-entity,
-pre > code.language-javascript .token-url {
-    color: #d4d4d4;
-}
-pre > code.language-javascript .token-atrule,
-pre > code.language-javascript .token-keyword {
-    color: #c586c0;
-}
-pre > code.language-javascript .token-function,
-pre > code.language-javascript .token-class-name {
-    color: #dcdcaa;
-}
-pre > code.language-javascript .token-regex,
-pre > code.language-javascript .token-important,
-pre > code.language-javascript .token-variable {
-    color: #d16969;
-}
-code.language-javascript .token-comment,
-code.language-javascript .token-prolog,
-code.language-javascript .token-doctype,
-code.language-javascript .token-cdata {
-    color: #6a9955;
-    font-style: italic;
-}
-code.language-javascript .token-punctuation {
-    color: #d4d4d4;
-}
-code.language-javascript .token-property,
-code.language-javascript .token-tag,
-code.language-javascript .token-constant,
-code.language-javascript .token-symbol,
-code.language-javascript .token-deleted {
-    color: #9cdcfe;
-}
-code.language-javascript .token-boolean,
-code.language-javascript .token-number {
-    color: #b5cea8;
-}
-code.language-javascript .token-selector,
-code.language-javascript .token-attr-name,
-code.language-javascript .token-string,
-code.language-javascript .token-char,
-code.language-javascript .token-builtin,
-code.language-javascript .token-inserted {
-    color: #ce9178;
-}
-code.language-javascript .token-operator,
-code.language-javascript .token-entity,
-code.language-javascript .token-url {
-    color: #d4d4d4;
-}
-code.language-javascript .token-atrule,
-code.language-javascript .token-keyword {
-    color: #c586c0;
-}
-code.language-javascript .token-function,
-code.language-javascript .token-class-name {
-    color: #dcdcaa;
-}
-code.language-javascript .token-regex,
-code.language-javascript .token-important,
-code.language-javascript .token-variable {
-    color: #d16969;
-}
-p {
-    margin-bottom: 20px;
-}
-a {
-    color: #4a6fa5;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-ul,
-ol {
-    margin-bottom: 20px;
-    padding-left: 25px;
-}
-.exercise {
-    background-color: #e8ecef;
-    padding: 15px;
-    border-left: 5px solid #4a6fa5;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-h2 > a {
+
+h3 > a {
     color: #4a6fa5;
     text-decoration: none;
 }
 
-h2 > a:hover {
+h3 > a:hover {
     text-decoration: underline;
     color: #395580;
-}
-@media (max-width: 768px) {
-    body {
-        padding: 20px;
-    }
-    h1 {
-        font-size: 1.8em;
-    }
-    h2 {
-        font-size: 1.5em;
-    }
-    h3 {
-        font-size: 1.2em;
-    }
-    pre {
-        font-size: 13px;
-    }
-    code {
-        font-size: 13px;
-    }
-}
-@media (max-width: 390px) {
-    body {
-        padding: 15px;
-    }
-    h1 {
-        font-size: 1.5em;
-    }
-    h2 {
-        font-size: 1.3em;
-    }
-    h3 {
-        font-size: 1.1em;
-    }
-    pre {
-        font-size: 12px;
-    }
-    code {
-        font-size: 12px;
-    }
 }

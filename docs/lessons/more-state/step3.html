@@ -1,99 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complex Data Types with State in React: Managing Arrays</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
-</head>
-<body>
-  <h1>Complex Data Types with State in React: Managing Arrays</h1>
-  
-  <h2>Overview</h2>
-  <p>This slide covers managing array state in the MovieBuddy app. You’ll add movies to the <code class="language-javascript">favMovies</code> array and pass the <code class="language-javascript">addMovie</code> function as a prop.</p>
-  
-  <h2>Learning Objectives</h2>
-  <ul>
-    <li>Manage arrays immutably with <code class="language-javascript">useState</code>.</li>
-    <li>Pass functions as props to update parent state.</li>
-    <li>Handle user interactions to modify arrays.</li>
-  </ul>
-  
-  <h2>Key Concepts</h2>
-  <ul>
-    <li><strong>Array State:</strong> Update arrays with <code class="language-javascript"><span class="token-punctuation">[</span><span class="token-operator">...</span>prev<span class="token-punctuation">,</span> newItem<span class="token-punctuation">]</span></code>.</li>
-    <li><strong>Props Functions:</strong> Enable children to update parent state.</li>
-    <li><strong>User Interactions:</strong> Trigger array updates via clicks.</li>
-  </ul>
-  
-  <h2>Starter Code</h2>
-  <h3>src/App.jsx</h3>
-  <pre><code class="language-javascript">import <span class="token-punctuation">{</span> <span class="token-keyword">useState</span> <span class="token-punctuation">}</span> from <span class="token-string">'react'</span><span class="token-punctuation">;</span>
-import RandomMovie from <span class="token-string">'./components/RandomMovie'</span><span class="token-punctuation">;</span>
-import <span class="token-string">'./styles.css'</span><span class="token-punctuation">;</span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 3 - MovieBuddy App - Conditionally Rendering and Flipping
+            State (Part 1)
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Level 3 - MovieBuddy App</h1>
+            <h2>Conditionally Rendering and Flipping State (Part 1)</h2>
+        </header>
+        <section
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-content">
+            <h3>Learning Objectives</h3>
+            <p>By the end of this lesson, students will be able to:</p>
+            <ul>
+                <li>
+                    Conditionally render the description and rating paragraph
+                    elements by toggling state.
+                </li>
+                <li>
+                    Conditionally render the details button by toggling state.
+                </li>
+            </ul>
+            <h3>Introduction</h3>
+            <p>
+                In this lesson, we'll extend our MovieBuddy app to demonstrate
+                the concepts of conditionally rendering state and flipping state
+                in React. These techniques are essential for creating dynamic
+                and interactive user interfaces.
+            </p>
+            <p>
+                Conditional rendering and state flipping enable responsive UIs.
+                Misuse of operators like <code>&&</code> can lead to errors,
+                such as rendering <code>undefined</code>:
+            </p>
+            <pre><code class="language-jsx">
+/* Incorrect */
+{showDetails && movies[movieIndex].description} // Crashes if undefined
+        </code></pre>
+            <p>
+                Use optional chaining
+                (<code>movies[movieIndex]?.description</code>) or checks.
+                Overusing conditionals can also clutter JSX; extract logic to
+                functions for clarity.
+            </p>
+            <h3>Key Concepts</h3>
+            <ol>
+                <li>
+                    <strong>Conditional Rendering:</strong> Displaying different
+                    content based on the state.
+                </li>
+                <li>
+                    <strong>Flipping State:</strong> Toggling a boolean state
+                    between <code>true</code> and <code>false</code>.
+                </li>
+            </ol>
+            <p>A simple toggle button illustrates these concepts:</p>
+            <pre><code class="language-jsx">
+import { useState } from &quot;react&quot;;
 
-<span class="token-keyword">function</span> <span class="token-function">App</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
-    <span class="token-keyword">const</span> <span class="token-punctuation">[</span>favMovies<span class="token-punctuation">,</span> setFavMovies<span class="token-punctuation">]</span> = <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-punctuation">[</span><span class="token-punctuation">]</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+function ToggleButton() {
+    const [isActive, setIsActive] = useState(false);
 
-    <span class="token-comment">// Your code here: Add addMovie function</span>
+    return (
+        &lt;button onClick={() => setIsActive(prev => !prev)}&gt;
+            {isActive ? 'Deactivate' : 'Activate'}
+        &lt;/button&gt;
+    );
+}
+        </code></pre>
+            <p>
+                This button toggles state and text, useful for
+                enabling/disabling features, showing conditional rendering
+                basics.
+            </p>
+        </section>
 
-    <span class="token-keyword">return</span> <span class="token-punctuation">(</span>
-        <span class="token-operator"><</span>div className<span class="token-operator">=</span><span class="token-string">"main"</span><span class="token-operator">></span>
-            <span class="token-operator"><</span>RandomMovie <span class="token-comment">/* Pass addMovie */</span> <span class="token-operator">/</span><span class="token-operator">></span>
-        <span class="token-operator"><</span><span class="token-operator">/</span>div<span class="token-operator">></span>
-    <span class="token-punctuation">)</span><span class="token-punctuation">;</span>
-<span class="token-punctuation">}</span>
-
-export <span class="token-keyword">default</span> App<span class="token-punctuation">;</span>
-</code></pre>
-  
-  <h3>src/components/RandomMovie.jsx</h3>
-  <pre><code class="language-javascript">import <span class="token-punctuation">{</span> <span class="token-keyword">useState</span> <span class="token-punctuation">}</span> from <span class="token-string">'react'</span><span class="token-punctuation">;</span>
-import movies from <span class="token-string">'../movies'</span><span class="token-punctuation">;</span>
-
-export <span class="token-keyword">default</span> <span class="token-keyword">function</span> <span class="token-function">RandomMovie</span><span class="token-punctuation">(</span>props<span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
-    <span class="token-keyword">const</span> <span class="token-punctuation">[</span>movieIndex<span class="token-punctuation">,</span> setMovieIndex<span class="token-punctuation">]</span> = <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-number">0</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
-
-    <span class="token-comment">// Your code here: Destructure addMovie</span>
-
-    <span class="token-keyword">return</span> <span class="language-javascript"><span class="token-punctuation">(</span>
-        <span class="token-operator"><</span>div<span class="token-operator">></span>
-            <span class="token-operator"><</span>h1<span class="token-operator">></span><span class="token-punctuation">{</span>movies<span class="token-punctuation">[</span>movieIndex<span class="token-punctuation">]</span><span class="token-punctuation">.</span>title<span class="token-punctuation">}</span><span class="token-operator"><</span><span class="token-operator">/</span>h1<span class="token-operator">></span>
-            <span class="token-operator"><</span>button onClick<span class="token-operator">=</span><span class="token-comment"> {/* Add addMovie handler */}</span><span class="token-operator">></span>Add to Favorites<span class="token-operator"><</span><span class="token-operator">/</span>button<span class="token-operator">></span>
-        <span class="token-operator"><</span><span class="token-operator">/</span>div<span class="token-operator">></span>
-    <span class="token-punctuation">)</span><span class="token-punctuation">;</span>
-<span class="token-punctuation">}</span>
-</code></pre>
-  
-  <h2>Edge Cases</h2>
-  <ul>
-    <li>Duplicate movies: Prevent adding the same movie twice.</li>
-    <li>Empty <code class="language-javascript">favMovies</code>: Show a placeholder.</li>
-  </ul>
-  
-  <h2>Analogy</h2>
-  <p>Managing an array is like curating a movie watchlist: you add new films without erasing the existing ones, keeping the list intact.</p>
-  
-  <h2>Pitfalls</h2>
-  <ul>
-    <li>Mutating arrays (e.g., <code class="language-javascript">favMovies.push()</code>) breaks React’s state management.</li>
-    <li>Not passing <code class="language-javascript">addMovie</code> as a prop limits functionality.</li>
-  </ul>
-  
-  <h2>Tips</h2>
-  <ul>
-    <li>Use <code class="language-javascript">console.log(favMovies)</code> to debug.</li>
-    <li>Consider adding a unique ID to movies for checks.</li>
-    <li>Test adding multiple movies to verify updates.</li>
-  </ul>
-  
-  <div class="exercise">
-    <strong>Exercise (15 min):</strong>
-    <p>Implement <code class="language-javascript">addMovie</code> in <code class="language-javascript">App</code> and <code class="language-javascript">RandomMovie</code>. Test it and discuss with a partner why immutability is crucial.</p>
-  </div>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </body>
 </html>

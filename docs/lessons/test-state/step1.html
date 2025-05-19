@@ -3,147 +3,160 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Level 3 - React State Continued - Updating State with Ternary
-            Operator (Part 1)
-        </title>
+        <title>Complex Data Types with State in React: Introduction</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
         <link rel="stylesheet" href="styles.css" />
         <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+            rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
     </head>
     <body>
-        <header>
-            <h1>Level 3 - React State Continued</h1>
-            <h2>Updating State with Ternary Operator (Part 1)</h2>
-        </header>
-        <section
-            class="slide-container"
-            role="region"
-            aria-labelledby="lesson-content">
-            <h3>Learning Objectives</h3>
-            <p>By the end of this lesson, students will be able to:</p>
-            <ul>
-                <li>
-                    <strong>Initialize and Manage State</strong>: Demonstrate
-                    how to initialize state using the <code>useState</code> hook
-                    and manage its updates in a React component.
-                </li>
-                <li>
-                    <strong>Use the Ternary Operator for State Updates</strong>:
-                    Apply the ternary operator within a state updater function
-                    to toggle between two states based on the current state
-                    value.
-                </li>
-                <li>
-                    <strong>Pass Functions as Props</strong>: Illustrate how to
-                    pass state update functions as props to child components and
-                    use them to handle user interactions.
-                </li>
-                <li>
-                    <strong>Handle User Interactions</strong>: Create event
-                    handlers that use state update functions to respond to user
-                    interactions, such as button clicks, to update the
-                    component’s state.
-                </li>
-                <li>
-                    <strong>Apply Conditional Styling</strong>: Use dynamic
-                    class names based on the current state value to
-                    conditionally apply styles and create interactive UI
-                    elements.
-                </li>
-                <li>
-                    <strong>Create Interactive Components</strong>: Develop
-                    components that leverage state and props to create dynamic
-                    and responsive user interfaces, such as a theme toggle
-                    feature.
-                </li>
-            </ul>
-            <h3>Updating State in React: Ternary Operator</h3>
+        <h1>Complex Data Types with State in React: Introduction</h1>
+
+        <h2>Overview</h2>
+        <p>
+            Welcome to this section on managing complex data types with state in
+            React! We’ll enhance the <strong>MovieBuddy app</strong>, a movie
+            browsing tool, to manage arrays and objects, lift state, render
+            lists dynamically, and apply styles. This slide sets up the project
+            and introduces lifting state.
+        </p>
+
+        <h2>Learning Objectives</h2>
+        <ul>
+            <li>
+                Initialize and manage state with
+                <code class="language-javascript"
+                    ><span class="token-keyword">useState</span></code
+                >.
+            </li>
+            <li>Lift state to the parent component for shared access.</li>
+            <li>Set up the MovieBuddy app in a Vite React project.</li>
+        </ul>
+
+        <h2>Key Concepts</h2>
+        <ul>
+            <li>
+                <strong>MovieBuddy App:</strong> A React app to browse movies,
+                toggle themes, manage favorites, and style movie cards.
+            </li>
+            <li>
+                <strong>Lifting State:</strong> Store state (e.g.,
+                <code class="language-javascript">favMovies</code>) in
+                <code class="language-javascript">App</code> and pass to
+                children.
+            </li>
+            <li>
+                <strong>Complex State:</strong> Manage arrays/objects for
+                dynamic data.
+            </li>
+        </ul>
+
+        <h2>Starter Code</h2>
+        <h3>src/App.jsx</h3>
+        <pre><code class="language-javascript">import <span class="token-punctuation">{</span> <span class="token-keyword">useState</span> <span class="token-punctuation">}</span> from <span class="token-string">'react'</span><span class="token-punctuation">;</span>
+import Navbar from <span class="token-string">'./components/Navbar'</span><span class="token-punctuation">;</span>
+import RandomMovie from <span class="token-string">'./components/RandomMovie'</span><span class="token-punctuation">;</span>
+import FavoriteMovie from <span class="token-string">'./components/FavoriteMovie'</span><span class="token-punctuation">;</span>
+import <span class="token-string">'./styles.css'</span><span class="token-punctuation">;</span>
+
+<span class="token-keyword">function</span> <span class="token-function">App</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">const</span> <span class="token-punctuation">[</span>favMovies<span class="token-punctuation">,</span> setFavMovies<span class="token-punctuation">]</span> = <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-punctuation">[</span><span class="token-punctuation">]</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+
+    <span class="token-comment">// Your code here: Add addMovie function</span>
+
+    <span class="token-keyword">return</span> <span class="token-punctuation">(</span>
+        <span class="token-operator"><</span>div className<span class="token-operator">=</span><span class="token-string">"main"</span><span class="token-operator">></span>
+            <span class="token-operator"><</span>Navbar <span class="token-comment">/* Pass props later */</span> <span class="token-operator">/</span><span class="token-operator">></span>
+            <span class="token-operator"><</span>RandomMovie <span class="token-comment">/* Pass addMovie */</span> <span class="token-operator">/</span><span class="token-operator">></span>
+            <span class="token-operator"><</span>FavoriteMovie <span class="token-comment">/* Pass favMovies */</span> <span class="token-operator">/</span><span class="token-operator">></span>
+        <span class="token-operator"><</span><span class="token-operator">/</span>div<span class="token-operator">></span>
+    <span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+
+export <span class="token-keyword">default</span> App<span class="token-punctuation">;</span>
+</code></pre>
+
+        <h3>src/components/Navbar.jsx</h3>
+        <pre><code class="language-javascript">export <span class="token-keyword">default</span> <span class="token-keyword">function</span> <span class="token-function">Navbar</span><span class="token-punctuation">(</span>props<span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">return</span> <span class="token-punctuation">(</span>
+        <span class="token-operator"><</span>nav className<span class="token-operator">=</span><span class="token-string">"nav"</span><span class="token-operator">></span>
+            <span class="token-operator"><</span>h1<span class="token-operator">></span>MovieBuddy<span class="token-operator"><</span><span class="token-operator">/</span>h1<span class="token-operator">></span>
+        <span class="token-operator"><</span><span class="token-operator">/</span>nav<span class="token-operator">></span>
+    <span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+</code></pre>
+
+        <h3>src/movies.js</h3>
+        <pre><code class="language-javascript"><span class="token-keyword">const</span> movies <span class="token-operator">=</span> <span class="token-punctuation">[</span>
+    <span class="token-punctuation">{</span> title<span class="token-punctuation">:</span> <span class="token-string">"The Shawshank Redemption"</span><span class="token-punctuation">,</span> description<span class="token-punctuation">:</span> <span class="token-string">"Two imprisoned men bond..."</span><span class="token-punctuation">,</span> rating<span class="token-punctuation">:</span> <span class="token-string">"9.3/10"</span> <span class="token-punctuation">}</span><span class="token-punctuation">,</span>
+    <span class="token-punctuation">{</span> title<span class="token-punctuation">:</span> <span class="token-string">"The Godfather"</span><span class="token-punctuation">,</span> description<span class="token-punctuation">:</span> <span class="token-string">"The aging patriarch..."</span><span class="token-punctuation">,</span> rating<span class="token-punctuation">:</span> <span class="token-string">"9.2/10"</span> <span class="token-punctuation">}</span><span class="token-punctuation">,</span>
+    <span class="token-punctuation">{</span> title<span class="token-punctuation">:</span> <span class="token-string">"The Dark Knight"</span><span class="token-punctuation">,</span> description<span class="token-punctuation">:</span> <span class="token-string">"When the menace..."</span><span class="token-punctuation">,</span> rating<span class="token-punctuation">:</span> <span class="token-string">"9.0/10"</span> <span class="token-punctuation">}</span>
+<span class="token-punctuation">]</span><span class="token-punctuation">;</span>
+
+export <span class="token-keyword">default</span> movies<span class="token-punctuation">;</span>
+</code></pre>
+
+        <h2>Edge Cases</h2>
+        <ul>
+            <li>
+                Empty <code class="language-javascript">favMovies</code>: Handle
+                gracefully in UI.
+            </li>
+            <li>Duplicate movies: Decide on uniqueness logic.</li>
+        </ul>
+
+        <h2>Analogy</h2>
+        <p>
+            Lifting state is like a movie theater manager coordinating showtimes
+            (state) across ticket booths (child components) to ensure everyone
+            has the latest schedule.
+        </p>
+
+        <h2>Pitfalls</h2>
+        <ul>
+            <li>
+                Mutating state (e.g.,
+                <code class="language-javascript">favMovies.push()</code>)
+                causes bugs.
+            </li>
+            <li>
+                Overloading <code class="language-javascript">App</code> with
+                unrelated state.
+            </li>
+        </ul>
+
+        <h2>Tips</h2>
+        <ul>
+            <li>
+                Use
+                <code class="language-javascript">console.log(favMovies)</code>
+                to debug.
+            </li>
+            <li>
+                Keep state minimal in
+                <code class="language-javascript">App</code>.
+            </li>
+            <li>
+                Create
+                <code class="language-javascript">src/components</code> for
+                organization.
+            </li>
+        </ul>
+
+        <div class="exercise">
+            <strong>Exercise (15 min):</strong>
             <p>
-                In this lesson, we explore how to manage and update state in
-                React using the <code>useState</code> hook. We use a ternary
-                operator to toggle between two states. Let’s break down how this
-                works with the provided example code.
+                Create a Vite project (<code class="language-bash"
+                    >npm create vite@latest moviebuddy -- --template react</code
+                >), add the starter code, and discuss with a partner why lifting
+                state to <code class="language-javascript">App</code> simplifies
+                data sharing.
             </p>
-            <p>
-                The <code>useState</code> hook is essential for state management
-                in functional components. The ternary operator enables concise
-                state toggling, but improper use can cause issues. A common
-                pitfall is neglecting the functional update form, risking stale
-                state:
-            </p>
-            <pre><code class="language-jsx">
-/* Incorrect */
-function toggleTheme() {
-    setTheme(theme === 'light' ? 'dark' : 'light'); // Risks stale state
-}
-        </code></pre>
-            <p>
-                Using <code>prevTheme =></code> ensures the latest state,
-                especially during rapid updates. Another pitfall is overusing
-                ternaries for complex logic, which can obscure code. For
-                multi-state scenarios, consider a state machine or object
-                mapping.
-            </p>
-            <h4><code>App</code> Component</h4>
-            <p>
-                Here's the <code>App</code> component where we implemented the
-                state toggle functionality:
-            </p>
-            <pre><code class="language-jsx">
-import { useState } from &quot;react&quot;;
-import RandomMovie from &quot;./components/RandomMovie&quot;;
-import Navbar from &quot;./components/Navbar&quot;;
-
-function App() {
-    const [theme, setTheme] = useState('light');
-
-    function toggleTheme() {
-        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-    }
-
-    return (
-        &lt;div className={`${theme} main`}&gt;
-            &lt;Navbar toggleTheme={toggleTheme} /&gt;
-            &lt;RandomMovie /&gt;
-        &lt;/div&gt;
-    );
-}
-
-export default App;
-        </code></pre>
-            <p>
-                A practical example is a notification toggle, illustrating state
-                and props:
-            </p>
-            <pre><code class="language-jsx">
-import { useState } from &quot;react&quot;;
-
-function Notification() {
-    const [isEnabled, setIsEnabled] = useState(true);
-
-    const toggleNotification = () => {
-        setIsEnabled(prev => !prev);
-    };
-
-    return (
-        &lt;div className={isEnabled ? 'enabled' : 'disabled'}&gt;
-            &lt;button onClick={toggleNotification}&gt;
-                {isEnabled ? 'Disable' : 'Enable'} Notifications
-            &lt;/button&gt;
-        &lt;/div&gt;
-    );
-}
-        </code></pre>
-            <p>
-                This component toggles notification visibility, similar to the
-                theme toggle, and is reusable in settings panels, demonstrating
-                state-driven UI updates.
-            </p>
-        </section>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+        </div>
     </body>
 </html>

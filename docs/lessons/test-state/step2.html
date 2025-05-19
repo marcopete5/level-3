@@ -4,172 +4,151 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
-            Level 3 - React State Continued - Updating State with Ternary
-            Operator (Part 2)
+            Complex Data Types with State in React: Conditional Rendering
         </title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+            rel="stylesheet" />
         <link rel="stylesheet" href="styles.css" />
         <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+            rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
     </head>
     <body>
-        <header>
-            <h1>Level 3 - React State Continued</h1>
-            <h2>Updating State with Ternary Operator (Part 2)</h2>
-        </header>
-        <section
-            class="slide-container"
-            role="region"
-            aria-labelledby="lesson-content">
-            <h4><code>Navbar</code> Component</h4>
-            <p>
-                Here's the <code>Navbar</code> component that uses the
-                <code>toggleTheme</code> function passed as a prop:
-            </p>
-            <pre><code class="language-jsx">
-export default function Navbar(props) {
-    const { toggleTheme } = props;
+        <h1>Complex Data Types with State in React: Conditional Rendering</h1>
 
-    return (
-        &lt;nav className="nav"&gt;
-            &lt;h1&gt;MovieBuddy&lt;/h1&gt;
-            &lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;
-        &lt;/nav&gt;
-    );
-}
-        </code></pre>
-            <p>
-                Passing <code>toggleTheme</code> as a prop exemplifies React’s
-                unidirectional data flow, keeping <code>Navbar</code> stateless
-                and reusable. A common pitfall is invoking the function
-                immediately in the event handler:
-            </p>
-            <pre><code class="language-jsx">
-/* Incorrect */
-&lt;button onClick={toggleTheme()}&gt;Toggle Theme&lt;/button&gt; // Runs on render
-        </code></pre>
-            <p>Use <code>onClick={toggleTheme}</code> to pass the reference.</p>
-            <h4>Detailed Explanation</h4>
-            <ol>
-                <li>
-                    <strong>Initializing State:</strong>
-                    <pre><code class="language-jsx">
-const [theme, setTheme] = useState('light');
-                </code></pre>
-                    <p>
-                        We initialize the <code>theme</code> state with an
-                        initial value of <code>'light'</code>.
-                        <code>setTheme</code> is the function used to update the
-                        state.
-                    </p>
-                </li>
-                <li>
-                    <strong>Toggling State with a Ternary Operator:</strong>
-                    <pre><code class="language-jsx">
-function toggleTheme() {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-}
-                </code></pre>
-                    <p>
-                        The <code>toggleTheme</code> function updates the
-                        <code>theme</code> state using a ternary operator to
-                        switch between <code>'light'</code> and
-                        <code>'dark'</code>.
-                    </p>
-                </li>
-                <li>
-                    <strong>Passing the Function as a Prop:</strong>
-                    <pre><code class="language-jsx">
-&lt;Navbar toggleTheme={toggleTheme} /&gt;
-                </code></pre>
-                    <p>
-                        We pass the <code>toggleTheme</code> function to the
-                        <code>Navbar</code> component as a prop.
-                    </p>
-                </li>
-                <li>
-                    <strong
-                        >Using the Function in the
-                        <code>Navbar</code> Component:</strong
-                    >
-                    <pre><code class="language-jsx">
-&lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;
-                </code></pre>
-                    <p>
-                        The <code>toggleTheme</code> function is used as an
-                        <code>onClick</code> handler in <code>Navbar</code>,
-                        toggling the theme on click.
-                    </p>
-                </li>
-                <li>
-                    <strong>Applying the Theme:</strong>
-                    <pre><code class="language-jsx">
-&lt;div className={`${theme} main`}&gt;
-                </code></pre>
-                    <p>
-                        The theme class (<code>light</code> or
-                        <code>dark</code>) is dynamically applied to the main
-                        <code>div</code>.
-                    </p>
-                </li>
-            </ol>
-            <p>
-                The ternary operator’s conciseness is powerful but can lead to
-                nested complexity if overused. A practical example is a modal
-                toggle:
-            </p>
-            <pre><code class="language-jsx">
-import { useState } from &quot;react&quot;;
+        <h2>Overview</h2>
+        <p>
+            This slide focuses on conditional rendering and flipping state in
+            the MovieBuddy app. You’ll implement a toggle to show/hide movie
+            details using
+            <code class="language-javascript"
+                ><span class="token-operator">&&</span></code
+            >
+            and a ternary operator.
+        </p>
 
-function Modal() {
-    const [isOpen, setIsOpen] = useState(false);
+        <h2>Learning Objectives</h2>
+        <ul>
+            <li>
+                Conditionally render elements with
+                <code class="language-javascript"
+                    ><span class="token-operator">&&</span></code
+                >.
+            </li>
+            <li>Flip boolean state for toggling.</li>
+            <li>Use ternary operators for dynamic button text.</li>
+        </ul>
 
-    const toggleModal = () => {
-        setIsOpen(prev => !prev);
-    };
+        <h2>Key Concepts</h2>
+        <ul>
+            <li>
+                <strong>Conditional Rendering:</strong> Show elements when a
+                condition is
+                <code class="language-javascript"
+                    ><span class="token-boolean">true</span></code
+                >.
+            </li>
+            <li>
+                <strong>Flipping State:</strong> Toggle a boolean with
+                <code class="language-javascript"
+                    ><span class="token-operator">!</span>prevState</code
+                >.
+            </li>
+            <li>
+                <strong>Ternary Operator:</strong> Inline conditionals with
+                <code class="language-javascript"
+                    >condition <span class="token-operator">?</span> trueValue
+                    <span class="token-punctuation">:</span> falseValue</code
+                >.
+            </li>
+        </ul>
 
-    return (
-        &lt;div&gt;
-            &lt;button onClick={toggleModal}&gt;
-                {isOpen ? 'Close Modal' : 'Open Modal'}
-            &lt;/button&gt;
-            {isOpen && (
-                &lt;div className="modal"&gt;
-                    &lt;h2&gt;Modal Content&lt;/h2&gt;
-                    &lt;p&gt;This is a simple modal.&lt;/p&gt;
-                &lt;/div&gt;
-            )}
-        &lt;/div&gt;
-    );
-}
-        </code></pre>
+        <h2>Starter Code</h2>
+        <h3>src/components/RandomMovie.jsx</h3>
+        <pre><code class="language-javascript">import <span class="token-punctuation">{</span> <span class="token-keyword">useState</span> <span class="token-punctuation">}</span> from <span class="token-string">'react'</span><span class="token-punctuation">;</span>
+import movies from <span class="token-string">'../movies'</span><span class="token-punctuation">;</span>
+
+export <span class="token-keyword">default</span> <span class="token-keyword">function</span> <span class="token-function">RandomMovie</span><span class="token-punctuation">(</span>props<span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">const</span> <span class="token-punctuation">[</span>movieIndex<span class="token-punctuation">,</span> setMovieIndex<span class="token-punctuation">]</span> = <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-number">0</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+    <span class="token-keyword">const</span> <span class="token-punctuation">[</span>showDetails<span class="token-punctuation">,</span> setShowDetails<span class="token-punctuation">]</span> = <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-boolean">false</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+
+    <span class="token-comment">// Your code here: Add toggleDetails function</span>
+
+    <span class="token-keyword">return</span> <span class="token-punctuation">(</span>
+        <span class="token-operator"><</span>div<span class="token-operator">></span>
+            <span class="token-operator"><</span>h1<span class="token-operator">></span><span class="token-punctuation">{</span>movies<span class="token-punctuation">[</span>movieIndex<span class="token-punctuation">]</span><span class="token-punctuation">.</span>title<span class="token-punctuation">}</span><span class="token-operator"><</span><span class="token-operator">/</span>h1<span class="token-operator">></span>
+            <span class="token-comment">{/* Conditionally render description and rating */}</span>
+            <span class="token-operator"><</span>button onClick<span class="token-operator">=</span><span class="token-comment"> {/* Add toggleDetails handler */}</span><span class="token-operator">></span>
+                <span class="token-punctuation">{</span>showDetails <span class="token-operator">?</span> <span class="token-string">"Hide Details"</span> <span class="token-punctuation">:</span> <span class="token-string">"Show Details"</span><span class="token-punctuation">}</span>
+            <span class="token-operator"><</span><span class="token-operator">/</span>button<span class="token-operator">></span>
+        <span class="token-operator"><</span><span class="token-operator">/</span>div<span class="token-operator">></span>
+    <span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+</code></pre>
+
+        <h2>Edge Cases</h2>
+        <ul>
+            <li>
+                Rapid toggling: Ensure state updates handle quick clicks
+                smoothly.
+            </li>
+            <li>No movies in array: Display a fallback message.</li>
+        </ul>
+
+        <h2>Analogy</h2>
+        <p>
+            Conditional rendering is like a movie theater curtain: when the
+            state is
+            <code class="language-javascript"
+                ><span class="token-boolean">true</span></code
+            >, the curtain opens to reveal details; when
+            <code class="language-javascript"
+                ><span class="token-boolean">false</span></code
+            >, it hides them.
+        </p>
+
+        <h2>Pitfalls</h2>
+        <ul>
+            <li>
+                Directly setting state (e.g.,
+                <code class="language-javascript">setShowDetails(true)</code>)
+                breaks toggle logic.
+            </li>
+            <li>
+                Not using fragments (<code class="language-javascript"
+                    ><span class="token-operator"><</span
+                    ><span class="token-operator">></span
+                    ><span class="token-operator">></span></code
+                >) for multiple elements.
+            </li>
+        </ul>
+
+        <h2>Tips</h2>
+        <ul>
+            <li>
+                Use functional updates (<code class="language-javascript"
+                    >prev <span class="token-operator">=></span>
+                    <span class="token-operator">!</span>prev</code
+                >) for reliability.
+            </li>
+            <li>Test both states to verify UI updates.</li>
+            <li>Add CSS to distinguish visible details.</li>
+        </ul>
+
+        <div class="exercise">
+            <strong>Exercise (15 min):</strong>
             <p>
-                This modal uses a ternary for button text and
-                <code>&&</code> for rendering, ideal for forms or alerts,
-                showing practical state management.
+                Implement the details toggle in
+                <code class="language-javascript">RandomMovie.jsx</code>. Test
+                it and discuss with a partner how
+                <code class="language-javascript"
+                    ><span class="token-operator">&&</span></code
+                >
+                differs from a ternary operator.
             </p>
-            <h4>Summary</h4>
-            <p>
-                In this lesson, we demonstrated how to use a ternary operator to
-                toggle state in a React component. The key points include:
-            </p>
-            <ul>
-                <li>Initializing state with <code>useState</code>.</li>
-                <li>
-                    Using a ternary operator in the state updater function to
-                    toggle between two states.
-                </li>
-                <li>
-                    Passing the updater function as a prop to child components.
-                </li>
-                <li>
-                    Using the function to update the state based on user
-                    interactions.
-                </li>
-            </ul>
-        </section>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+        </div>
     </body>
 </html>
