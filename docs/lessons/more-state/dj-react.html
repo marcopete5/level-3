@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DJ React Assignment</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <header>
+            <h1>DJ React Assignment</h1>
+        </header>
+        <section
+            class="slide-container"
+            role="region"
+            aria-labelledby="assignment-content">
+            <h3>Objective</h3>
+            <p>
+                Create a DJ Color Board application where you can control the
+                colors of a 2x2 grid of squares using buttons. This exercise
+                will help you practice managing state, handling events, and
+                using CSS Grids in React.
+            </p>
+
+            <h3>Requirements</h3>
+            <ol>
+                <li>
+                    <strong>Grid Setup:</strong>
+                    <ul>
+                        <li>
+                            Create a parent component that contains a 2x2 grid
+                            of squares.
+                        </li>
+                        <li>
+                            The state of this component will maintain an array
+                            of colors:
+                        </li>
+                    </ul>
+                    <pre><code class="language-jsx">
+["white", "white", "white", "white"];
+                </code></pre>
+                    <ul>
+                        <li>
+                            Render the squares dynamically by mapping over this
+                            <code>colors</code> array and passing the
+                            appropriate color to each
+                            <code><Square /></code> component.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Levels of Advancement</h3>
+            <h4>Small Time DJ</h4>
+            <ul>
+                <li>Add a button to change the color of all four squares.</li>
+                <li>
+                    Change all squares to <strong>black</strong> if the first
+                    square is <strong>white</strong>.
+                </li>
+                <li>
+                    Change all squares to <strong>white</strong> if the first
+                    square is <strong>black</strong>.
+                </li>
+            </ul>
+
+            <h4>Party DJ</h4>
+            <ul>
+                <li>
+                    Add a second button to change the top half of the grid (the
+                    two squares on the top) to <strong>purple</strong>.
+                </li>
+            </ul>
+
+            <h4>Professional DJ</h4>
+            <ul>
+                <li>Add two more buttons, bringing the total to four.</li>
+                <li>
+                    One button should change the color of the bottom left square
+                    to <strong>blue</strong>.
+                </li>
+                <li>
+                    The other button should change the color of the bottom right
+                    square to <strong>blue</strong>.
+                </li>
+            </ul>
+
+            <h4>Big Time DJ</h4>
+            <ul>
+                <li>
+                    Add four additional buttons, making a total of eight
+                    buttons.
+                </li>
+                <li>
+                    Each button should control one of the squares individually.
+                </li>
+                <li>
+                    You can decide on the effects each button has on its
+                    corresponding square.
+                </li>
+            </ul>
+
+            <h3>Design and Styling</h3>
+            <ul>
+                <li>Use CSS Grid to layout the 2x2 grid of squares.</li>
+                <li>
+                    Style the squares and buttons to be visually appealing and
+                    functional.
+                </li>
+            </ul>
+
+            <h3>Passing Criteria</h3>
+            <ul>
+                <li>
+                    The grid should update correctly based on button
+                    interactions.
+                </li>
+                <li>
+                    Each level of advancement should build upon the previous
+                    requirements.
+                </li>
+                <li>
+                    The final implementation should include functional buttons,
+                    responsive color changes.
+                </li>
+            </ul>
+
+            <p>
+                By completing this assignment, you will practice state
+                management, event handling, and dynamic rendering in React,
+                along with CSS Grid layout techniques.
+            </p>
+
+            <h3>
+                <a
+                    href="https://marcopete5.github.io/level-3/assignments/dj-react/"
+                    target="_blank"
+                    >DEMO OF DJ REACT</a
+                >
+            </h3>
+        </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,98 @@
+/* Import fonts from Google Fonts, as used in curriculum slides */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&family=Fira+Code:wght@400&display=swap');
+
+/* Global styles */
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #1a2a44;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* App container */
+.app-container {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(26, 42, 68, 0.1);
+    border: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+/* Title */
+.app-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.25rem;
+    color: #1a2a44;
+    margin-bottom: 24px;
+}
+
+/* 2x2 Grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 100px);
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+/* Square */
+.square {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+}
+
+/* Button container */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Button styles */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-blue {
+    background: #00aeef;
+}
+
+.btn-blue:hover {
+    background: #f97316;
+}
+
+.btn-purple {
+    background: #800080;
+}
+
+.btn-purple:hover {
+    background: #f97316;
+}
+
+.btn-gray {
+    background: #6b7280;
+}
+
+.btn-gray:hover {
+    background: #f97316;
+}
