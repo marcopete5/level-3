@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 4 - React Forms - Introduction to React Forms (Part 2)
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <header class="slide-header">
+            <h1>Level 4 - React Forms</h1>
+            <h2>Introduction to React Forms (Part 2)</h2>
+        </header>
+        <section
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-content">
+            <div class="section">
+                <h3>Learning Objective</h3>
+                <p>
+                    Students will be able to create a state to hold the value of
+                    an input.
+                </p>
+                <p>
+                    Students will be able to create a function that logs the
+                    <code>e.target</code> and sets the state.
+                </p>
+            </div>
+            <hr class="section-divider" />
+            <div class="section">
+                <h3>Handling Input Changes in React Forms</h3>
+                <p>
+                    When working with forms in React, one of the most common
+                    tasks is handling changes to input fields. This process
+                    ensures that the form data is kept in sync with the
+                    component's state. In the provided code, the
+                    <code>handleChange</code> function plays a crucial role in
+                    managing these updates efficiently.
+                </p>
+            </div>
+            <hr class="section-divider" />
+            <div class="section">
+                <h3>Understanding <code>handleChange</code></h3>
+                <p>
+                    The <code>handleChange</code> function is an event handler
+                    designed to update the state whenever an input field's value
+                    changes. Here’s a breakdown of how it works:
+                </p>
+                <ul class="custom-list">
+                    <li>
+                        <strong>Event Handling</strong>: The function receives
+                        an event object <code>e</code> as its parameter. This
+                        object contains information about the event that
+                        triggered the handler, including the target element (the
+                        input field).
+                    </li>
+                    <li>
+                        <strong>Destructuring</strong>: Inside the function, the
+                        <code>name</code> and <code>value</code> properties are
+                        extracted from the event target (<code>e.target</code>).
+                        <ul class="custom-list">
+                            <li>
+                                <code>name</code>: Refers to the
+                                <code>name</code> attribute of the input field,
+                                which corresponds to a key in the
+                                <code>formData</code> state.
+                            </li>
+                            <li>
+                                <code>value</code>: Represents the current value
+                                of the input field.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>State Update</strong>: The
+                        <code>setFormData</code> function updates the
+                        <code>formData</code> state. It uses the previous state
+                        (<code>prevFormData</code>) to ensure that only the
+                        relevant field is updated while preserving the other
+                        fields' values. The spread operator
+                        (<code>...prevFormData</code>) is used to copy the
+                        existing state, and the dynamic key
+                        <code>[name]</code> sets the new value for the
+                        corresponding input field.
+                    </li>
+                </ul>
+            </div>
+            <hr class="section-divider" />
+            <div class="section">
+                <h3>Key Concepts in Handling Input Changes</h3>
+                <ul class="custom-list">
+                    <li>
+                        <strong>Controlled Components</strong>: Each input field
+                        is a controlled component, meaning its value is derived
+                        from the component's state (<code>formData</code>). The
+                        <code>value</code> attribute of each input is set to the
+                        corresponding state property (e.g.,
+                        <code>formData.title</code>).
+                    </li>
+                    <li>
+                        <strong>Single Source of Truth</strong>: The component's
+                        state acts as the single source of truth for the form
+                        data. By updating the state on each change, the input
+                        fields' values are always in sync with the state,
+                        ensuring consistency and reliability.
+                    </li>
+                    <li>
+                        <strong>Dynamic Keys</strong>: Using dynamic keys (<code
+                            >[name]: value</code
+                        >) in the state update allows for a scalable and
+                        flexible way to handle multiple input fields without
+                        needing a separate handler for each one.
+                    </li>
+                </ul>
+            </div>
+            <hr class="section-divider" />
+            <div class="section">
+                <h3>Practical Example</h3>
+                <p>
+                    In the provided code, the form contains three input fields
+                    for <code>title</code>, <code>description</code>, and
+                    <code>rating</code>. Each input field has an
+                    <code>onChange</code> attribute set to the
+                    <code>handleChange</code> function. Whenever a user types
+                    into any of these fields, the
+                    <code>handleChange</code> function is triggered, updating
+                    the corresponding property in the
+                    <code>formData</code> state.
+                </p>
+                <p>
+                    By structuring your form this way, you ensure that the
+                    component can handle any number of input fields efficiently,
+                    maintaining a clean and scalable codebase.
+                </p>
+            </div>
+            <hr class="section-divider" />
+            <div class="section">
+                <h3>Conclusion</h3>
+                <p>
+                    Handling input changes in React forms is a fundamental skill
+                    for creating interactive and dynamic user interfaces. By
+                    using controlled components and a centralized state, you can
+                    ensure that your form data is always up-to-date and
+                    consistent with user input. The
+                    <code>handleChange</code> function, as demonstrated,
+                    provides a robust and scalable solution for managing form
+                    state in React applications.
+                </p>
+            </div>
+        </section>
+        <footer class="slide-footer">
+            <a href="intro_react_forms_part3_20250527.html" class="btn-primary"
+                >Next: Part 3 - Creating a Form Component</a
+            >
+        </footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </body>
+</html>

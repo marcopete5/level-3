@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 4 - React Forms - Introduction to React Forms (Part 1)
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <header class="slide-header">
+            <h1>Level 4 - React Forms</h1>
+            <h2>Introduction to React Forms (Part 1)</h2>
+        </header>
+        <section
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-content">
+            <div class="section">
+                <h3>Learning Objectives</h3>
+                <p>By the end of this lesson, students will be able to:</p>
+                <ul class="custom-list">
+                    <li>
+                        <strong
+                            >Understand the Importance of Forms in Web
+                            Applications</strong
+                        >: Explain why forms are crucial for user input and data
+                        collection in web applications, and how they are used to
+                        capture and submit data from users.
+                    </li>
+                    <li>
+                        <strong>Learn How React Simplifies Form Handling</strong
+                        >: Describe how React’s declarative approach and state
+                        management simplify form handling compared to
+                        traditional HTML forms, including benefits such as
+                        controlled components and easier validation.
+                    </li>
+                    <li>
+                        <strong
+                            >Understand the Relationship Between React Forms and
+                            State</strong
+                        >: Illustrate how form elements in React are controlled
+                        by state, and how changes in the form fields are managed
+                        and reflected in the component state.
+                    </li>
+                    <li>
+                        <strong>Create a Reusable Form Component</strong>: Build
+                        a reusable Form component that handles user inputs,
+                        validation, and submission logic, demonstrating best
+                        practices for creating modular and maintainable form
+                        components.
+                    </li>
+                    <li>
+                        <strong>Render the Form Component on the Page</strong>:
+                        Implement the Form component within a React application,
+                        ensuring it is rendered correctly and integrated with
+                        the rest of the application to manage user input
+                        effectively.
+                    </li>
+                </ul>
+            </div>
+            <hr class="section-divider" />
+            <div class="section">
+                <h3>Importance of Forms in Web Applications</h3>
+                <p>
+                    Forms are essential for any web application. They allow
+                    users to interact with your app by submitting data, like
+                    filling out registration forms, logging in, or searching for
+                    information. In traditional HTML, handling user input can be
+                    tricky, often requiring multiple steps to capture and
+                    process data.
+                </p>
+            </div>
+            <hr class="section-divider" />
+            <div class="section">
+                <h3>Simplifying Form Handling with React</h3>
+                <p>
+                    But with React, form handling becomes much simpler! React
+                    lets us manage form state and user input more efficiently
+                    using its powerful state management and event handling
+                    features.
+                </p>
+            </div>
+            <hr class="section-divider" />
+            <div class="section">
+                <h3>React Forms and State</h3>
+                <p>
+                    Now, let’s talk about the relationship between React forms
+                    and state. In React, state is like a container that holds
+                    the data that can change in your app. Whenever the state
+                    changes, React re-renders the component to reflect these
+                    changes.
+                </p>
+                <p>
+                    For forms, state is crucial. Each input field in a form can
+                    be connected to a piece of state. This is called controlled
+                    components. The input fields get their values from the state
+                    and update the state whenever they change. This creates a
+                    single source of truth for form data, making the management
+                    of user input more predictable and easier to debug.
+                </p>
+            </div>
+            <hr class="section-divider" />
+            <div class="section">
+                <h3>Creating a Form Component</h3>
+                <p>
+                    Instead of hardcoding a form inside <code>App.jsx</code>, we
+                    can make it reusable by creating a
+                    <code>Form</code> component. Let's create a form with three
+                    fields: title, rating, and description.
+                </p>
+                <h4>Example Code: App.jsx</h4>
+                <pre><code class="language-jsx">
+import React from 'react';
+import Navbar from './Navbar';
+import RandomMovie from './RandomMovie';
+import FavoriteMovie from './FavoriteMovie';
+import Form from './Form';
+import { useTheme } from './useTheme';
+
+const App = () => {
+  const { theme, toggleTheme } = useTheme();
+  const [favMovies, setFavMovies] = React.useState([]);
+
+  const addMovie = (movie) => {
+    setFavMovies([...favMovies, movie]);
+  };
+
+  return (
+    &lt;div className={`${theme} main`}&gt;
+      &lt;Navbar toggleTheme={toggleTheme}/&gt;
+      &lt;RandomMovie addMovie={addMovie}/&gt;
+      &lt;FavoriteMovie favMovies={favMovies}/&gt;
+      &lt;Form /&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default App;
+            </code></pre>
+                <h4>Example Code: Form.jsx</h4>
+                <pre><code class="language-jsx">
+import React from 'react';
+
+const Form = (props) => {
+  return (
+    &lt;form&gt;
+      &lt;input placeholder=&quot;title&quot; /&gt;
+      &lt;input placeholder=&quot;description&quot; /&gt;
+      &lt;input placeholder=&quot;rating&quot; /&gt;
+    &lt;/form&gt;
+  );
+};
+
+export default Form;
+            </code></pre>
+            </div>
+        </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </body>
+</html>

@@ -4,7 +4,8 @@ import Footer from './components/Footer.jsx';
 
 function App() {
     return (
-        <div>
+        <div className="App">
+            <header></header>
             <Header />
             <Body />
             <Footer />

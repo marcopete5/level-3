@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 4 - React Forms - Badge Form Assignment</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+</head>
+<body>
+    <div class="slide-container" role="region" aria-labelledby="assignment-header">
+        <header class="slide-header">
+            <h1 id="assignment-header">React Badge Form Assignment</h1>
+            <h2>Level 4 - React Forms</h2>
+        </header>
+
+        <div class="section">
+            <h3>Objective</h3>
+            <p>Create a React website where users can input and submit badge information. Each submitted badge will be displayed in a list below the form. This assignment will help you practice handling forms, state management, and dynamic rendering in React.</p>
+            <p><span style={{fontSize: "40px"}}>Grok</span> Handling forms in React requires controlled components, where input values are tied to state variables. This ensures React manages the form’s state, enabling real-time validation and updates. For example, a controlled input syncs its value with state via `value` and `onChange` props, providing a single source of truth for form data.</p>
+        </div>
+
+        <hr class="section-divider" />
+
+        <div class="section">
+            <h3>Requirements</h3>
+            <h4>1. Form Setup</h4>
+            <ul class="custom-list">
+                <li>Create a form with the following input fields:
+                    <ul class="custom-list">
+                        <li><strong>Text Input:</strong> For the badge user’s name.</li>
+                        <li><strong>Textarea:</strong> For the badge's description or other relevant details.</li>
+                        <li><strong>Number Input:</strong> For a phone number (must be digits only, no special characters).</li>
+                        <li><strong>Radio Buttons:</strong> For selecting a badge type (e.g., “Employee”, “Guest”).</li>
+                        <li><strong>Checkbox:</strong> To agree to terms or conditions.</li>
+                    </ul>
+                </li>
+                <li>Include a <strong>Submit</strong> button that:
+                    <ul class="custom-list">
+                        <li>Is disabled if any field is empty.</li>
+                        <li>Only enables if all fields meet the validation criteria.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p><span style={{fontSize: "40px"}}>Grok</span> Controlled components are essential for form handling. A common pitfall is using uncontrolled inputs, which can lead to unpredictable behavior. For example:
+                <pre><code class="language-jsx">&lt;input type="text" name="name" /&gt;</code></pre>
+                This lacks state binding. Correct approach:
+                <pre><code class="language-jsx">&lt;input type="text" name="name" value={name} onChange={(e) =&gt; setName(e.target.value)} /&gt;</code></pre>
+                This ensures React controls the input, enabling validation and state updates.</p>
+
+            <h4>2. Validation</h4>
+            <ul class="custom-list">
+                <li>Ensure each input field has a minimum character count of 3.</li>
+            </ul>
+            <p><span style={{fontSize: "40px"}}>Grok</span> Real-time validation improves user experience by providing instant feedback. A pitfall is validating only on submit, which can frustrate users. For the phone number, use a regex like `/^\d+$/` to enforce digits-only input. Incorrect:
+                <pre><code class="language-jsx">if (phone.length &gt;= 3) // Misses non-digit check</code></pre>
+                Correct:
+                <pre><code class="language-jsx">if (phone.length &gt;= 3 &amp;&amp; /^\d+$/.test(phone))</code></pre>
+                This ensures robust validation for all inputs.</p>
+
+            <h4>3. Form Submission</h4>
+            <ul class="custom-list">
+                <li>Upon submitting the form:
+                    <ul class="custom-list">
+                        <li>Clear the input fields.</li>
+                        <li>Add the new badge information to a list displayed below the form.</li>
+                    </ul>
+                </li>
+                <li>Each submitted badge should appear in a list with all previously submitted badges.</li>
+            </ul>
+            <p><span style={{fontSize: "40px"}}>Grok</span> Resetting form inputs after submission requires setting state to initial values. A common mistake is incomplete resets, leaving stale data. Use a single state object for all inputs:
+                <pre><code class="language-jsx">setFormData({ name: '', description: '', phone: '', type: 'Employee', agreed: false })</code></pre>
+                This ensures all fields, including radio buttons and checkboxes, reset correctly.</p>
+
+            <h4>4. Display Badges</h4>
+            <ul class="custom-list">
+                <li>Render each badge as a card or similar component.</li>
+                <li>Alternate the background color of each badge’s heading (e.g., Red, Blue, Red, Blue).</li>
+            </ul>
+            <p><span style={{fontSize: "40px"}}>Grok</span> Use `map` to render dynamic lists, with the index determining alternating colors (e.g., `index % 2 === 0 ? '#ef4444' : '#2563eb'`). A pitfall is using indices as keys without ensuring uniqueness, which can cause rendering issues. Correct:
+                <pre><code class="language-jsx">{badges.map((badge, index) =&gt; &lt;Badge key={index} badge={badge} index={index} /&gt;)}</code></pre>
+                Ensure keys are stable to avoid React re-rendering problems.</p>
+        </div>
+
+        <hr class="section-divider" />
+
+        <div class="section">
+            <h3>Game Plan</h3>
+            <h4>1. Pseudocode</h4>
+            <ul class="custom-list">
+                <li>Define state variables for input values and the list of badges.</li>
+                <li>Create functions for form validation and handling form submissions.</li>
+                <li>Create components for the form and the badge display.</li>
+            </ul>
+
+            <h4>2. Components Needed</h4>
+            <ul class="custom-list">
+                <li><strong>BadgeForm:</strong> A form component with input fields and submit button.</li>
+                <li><strong>BadgeList:</strong> A component to render the list of badges.</li>
+                <li><strong>Badge:</strong> A component to display each individual badge.</li>
+            </ul>
+
+            <h4>3. State Values</h4>
+            <ul class="custom-list">
+                <li><strong>Form Inputs:</strong> To hold current values of name, description, phone number, badge type, and checkbox.</li>
+                <li><strong>Badges Array:</strong> To store the list of submitted badges.</li>
+            </ul>
+            <p>By completing this assignment, you will gain experience with form handling, state management, validation, and dynamic rendering in React.</p>
+            <p><span style={{fontSize: "40px"}}>Grok</span> As a practical example, consider a badge card component:
+                <pre><code class="language-jsx">
+function Badge({ badge, index }) {
+    const headerColor = index % 2 === 0 ? '#ef4444' : '#2563eb';
+    return (
+        &lt;div class="section"&gt;
+            &lt;h3 style={{ backgroundColor: headerColor, color: '#ffffff', padding: '10px', borderRadius: '6px 6px 0 0' }}&gt;
+                Badge {index + 1}: {badge.name}
+            &lt;/h3&gt;
+            &lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt; {badge.description}&lt;/p&gt;
+            &lt;p&gt;&lt;strong&gt;Type:&lt;/strong&gt; {badge.type}&lt;/p&gt;
+        &lt;/div&gt;
+    );
+}
+                </code></pre>
+                This component demonstrates modular design with alternating header colors. Move inline styles to CSS classes in production for better maintainability.</p>
+        </div>
+
+
+    </div>
+</body>
+</html>
