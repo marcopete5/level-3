@@ -19,7 +19,7 @@
         <div class="section">
             <h3>Objective</h3>
             <p>Create a React website where users can input and submit badge information. Each submitted badge will be displayed in a list below the form. This assignment will help you practice handling forms, state management, and dynamic rendering in React.</p>
-            <p><span style={{fontSize: "40px"}}>Grok</span> Handling forms in React requires controlled components, where input values are tied to state variables. This ensures React manages the form’s state, enabling real-time validation and updates. For example, a controlled input syncs its value with state via `value` and `onChange` props, providing a single source of truth for form data.</p>
+            <p> Handling forms in React requires controlled components, where input values are tied to state variables. This ensures React manages the form’s state, enabling real-time validation and updates. For example, a controlled input syncs its value with state via `value` and `onChange` props, providing a single source of truth for form data.</p>
         </div>
 
         <hr class="section-divider" />
@@ -44,7 +44,7 @@
                     </ul>
                 </li>
             </ul>
-            <p><span style={{fontSize: "40px"}}>Grok</span> Controlled components are essential for form handling. A common pitfall is using uncontrolled inputs, which can lead to unpredictable behavior. For example:
+            <p> Controlled components are essential for form handling. A common pitfall is using uncontrolled inputs, which can lead to unpredictable behavior. For example:
                 <pre><code class="language-jsx">&lt;input type="text" name="name" /&gt;</code></pre>
                 This lacks state binding. Correct approach:
                 <pre><code class="language-jsx">&lt;input type="text" name="name" value={name} onChange={(e) =&gt; setName(e.target.value)} /&gt;</code></pre>
@@ -54,7 +54,7 @@
             <ul class="custom-list">
                 <li>Ensure each input field has a minimum character count of 3.</li>
             </ul>
-            <p><span style={{fontSize: "40px"}}>Grok</span> Real-time validation improves user experience by providing instant feedback. A pitfall is validating only on submit, which can frustrate users. For the phone number, use a regex like `/^\d+$/` to enforce digits-only input. Incorrect:
+            <p> Real-time validation improves user experience by providing instant feedback. A pitfall is validating only on submit, which can frustrate users. For the phone number, use a regex like `/^\d+$/` to enforce digits-only input. Incorrect:
                 <pre><code class="language-jsx">if (phone.length &gt;= 3) // Misses non-digit check</code></pre>
                 Correct:
                 <pre><code class="language-jsx">if (phone.length &gt;= 3 &amp;&amp; /^\d+$/.test(phone))</code></pre>
@@ -70,7 +70,7 @@
                 </li>
                 <li>Each submitted badge should appear in a list with all previously submitted badges.</li>
             </ul>
-            <p><span style={{fontSize: "40px"}}>Grok</span> Resetting form inputs after submission requires setting state to initial values. A common mistake is incomplete resets, leaving stale data. Use a single state object for all inputs:
+            <p> Resetting form inputs after submission requires setting state to initial values. A common mistake is incomplete resets, leaving stale data. Use a single state object for all inputs:
                 <pre><code class="language-jsx">setFormData({ name: '', description: '', phone: '', type: 'Employee', agreed: false })</code></pre>
                 This ensures all fields, including radio buttons and checkboxes, reset correctly.</p>
 
@@ -79,7 +79,7 @@
                 <li>Render each badge as a card or similar component.</li>
                 <li>Alternate the background color of each badge’s heading (e.g., Red, Blue, Red, Blue).</li>
             </ul>
-            <p><span style={{fontSize: "40px"}}>Grok</span> Use `map` to render dynamic lists, with the index determining alternating colors (e.g., `index % 2 === 0 ? '#ef4444' : '#2563eb'`). A pitfall is using indices as keys without ensuring uniqueness, which can cause rendering issues. Correct:
+            <p> Use `map` to render dynamic lists, with the index determining alternating colors (e.g., `index % 2 === 0 ? '#ef4444' : '#2563eb'`). A pitfall is using indices as keys without ensuring uniqueness, which can cause rendering issues. Correct:
                 <pre><code class="language-jsx">{badges.map((badge, index) =&gt; &lt;Badge key={index} badge={badge} index={index} /&gt;)}</code></pre>
                 Ensure keys are stable to avoid React re-rendering problems.</p>
         </div>
@@ -108,7 +108,7 @@
                 <li><strong>Badges Array:</strong> To store the list of submitted badges.</li>
             </ul>
             <p>By completing this assignment, you will gain experience with form handling, state management, validation, and dynamic rendering in React.</p>
-            <p><span style={{fontSize: "40px"}}>Grok</span> As a practical example, consider a badge card component:
+            <p> As a practical example, consider a badge card component:
                 <pre><code class="language-jsx">
 function Badge({ badge, index }) {
     const headerColor = index % 2 === 0 ? '#ef4444' : '#2563eb';
@@ -125,6 +125,13 @@ function Badge({ badge, index }) {
                 </code></pre>
                 This component demonstrates modular design with alternating header colors. Move inline styles to CSS classes in production for better maintainability.</p>
         </div>
+        <h3>
+            <a
+                href="https://marcopete5.github.io/level-3/assignments/name-badge/"
+                target="_blank"
+                >DEMO OF DJ REACT</a
+            >
+        </h3>
 
 
     </div>
