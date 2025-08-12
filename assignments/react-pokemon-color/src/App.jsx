@@ -4,6 +4,7 @@ import './App.css';
 function App() {
     const [pokemonList, setPokemonList] = useState([]);
     const [colorTrigger, setColorTrigger] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     // We don't need a separate state for color, we can apply it directly.
 
@@ -24,7 +25,7 @@ function App() {
             .then((data) => {
                 // Apply the color directly to the page's body
                 document.body.style.backgroundColor = data.hex;
-                console.log('Background color changed to:', data.hex);
+                setLoading(false); // Set loading to false after color is applied
             })
             .catch((error) => console.error('Error fetching color:', error));
     }, [colorTrigger]); // Runs on mount and whenever colorTrigger changes
@@ -40,9 +41,13 @@ function App() {
 
     return (
         <div className="app-container">
-            <h1>Pokemon List 📝</h1>
-            <button onClick={changeColor}>Change Background Color 🎨</button>
-            <div className="pokemon-list">{pokemonElements}</div>
+            <h1>Pokemon List</h1>
+            <button onClick={changeColor}>Change Background Color</button>
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <div className="pokemon-list">{pokemonElements}</div>
+            )}
         </div>
     );
 }
