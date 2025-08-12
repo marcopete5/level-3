@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 3 - APIs in React - Understanding useEffect in React
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </head>
+    <body>
+        <div
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-header">
+            <header class="slide-header">
+                <h1 id="lesson-header">Understanding useEffect in React</h1>
+                <h2>APIs in React</h2>
+            </header>
+
+            <div class="section">
+                <h3>Learning Objectives</h3>
+                <p>A student will be able to:</p>
+                <ul class="custom-list">
+                    <li>
+                        Understand and explain the purpose of the
+                        <code>useEffect</code> hook in React for handling side
+                        effects in function components.
+                    </li>
+                    <li>
+                        Differentiate between component mounting and component
+                        rendering, and describe how
+                        <code>useEffect</code> behaves in each scenario.
+                    </li>
+                    <li>
+                        Implement the <code>useEffect</code> hook with and
+                        without a dependency array to control when the effect
+                        runs in a React component.
+                    </li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Introduction</h3>
+                <p>
+                    In this lesson, we'll delve into the
+                    <code>useEffect</code> hook in React, focusing on how it
+                    functions when a component mounts and when it renders. We'll
+                    also cover the basic syntax of
+                    <code>useEffect</code> without going into detail on the
+                    dependency array.
+                </p>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>What is <code>useEffect</code>?</h3>
+                <p>
+                    <code>useEffect</code> is a hook that allows you to perform
+                    side effects in function components. Common use cases
+                    include data fetching, subscriptions, and manually changing
+                    the DOM. <code>useEffect</code> runs after the render phase,
+                    ensuring that the DOM has been updated before your effect
+                    executes.
+                </p>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Basic Syntax</h3>
+                <p>Here's a basic example of <code>useEffect</code>:</p>
+                <pre><code class="language-jsx">
+import React, { useEffect } from 'react';
+
+const ExampleComponent = () => {
+  useEffect(() => {
+    // This code runs when the component mounts and on every render.
+    console.log('Component mounted or rendered')
+  }, []);
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hello, useEffect!&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default ExampleComponent;
+            </code></pre>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Component Mounting vs. Component Rendering</h3>
+                <h4>Component Mounting</h4>
+                <p>
+                    When a component mounts, <code>useEffect</code> runs after
+                    the initial render. This is useful for operations you only
+                    need to perform once, such as fetching data or setting up a
+                    subscription.
+                </p>
+                <pre><code class="language-jsx">
+useEffect(() => {
+  console.log('Component mounted');
+}, []);
+            </code></pre>
+                <p>
+                    In this example, the effect only runs once when the
+                    component mounts.
+                </p>
+
+                <h4>Component Rendering</h4>
+                <p>
+                    By default, <code>useEffect</code> runs after every render.
+                    However, since we're using an empty dependency array
+                    (<code>[]</code>), the effect in our example only runs on
+                    mount and unmount. If you omit the dependency array, the
+                    effect will run after every render.
+                </p>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Recap</h3>
+                <ul class="custom-list">
+                    <li>
+                        <code>useEffect</code> allows you to perform side
+                        effects in function components.
+                    </li>
+                    <li>
+                        It runs after the component mounts and after every
+                        render unless you provide a dependency array.
+                    </li>
+                    <li>
+                        With an empty dependency array (<code>[]</code>),
+                        <code>useEffect</code> only runs on mount and unmount.
+                    </li>
+                </ul>
+                <p>
+                    In the next lesson, we'll dive deeper into the dependency
+                    array and explore how to control when
+                    <code>useEffect</code> runs based on state or props changes.
+                </p>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Conclusion</h3>
+                <p>
+                    Understanding when and how <code>useEffect</code> runs is
+                    crucial for managing side effects in your React components.
+                    Use the empty dependency array to run effects only on mount
+                    and unmount, and stay tuned for the next lesson where we'll
+                    explore the dependency array in more detail.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

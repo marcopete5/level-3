@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 3 - APIs in React - Introduction to API Calls in React
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </head>
+    <body>
+        <div
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-header">
+            <header class="slide-header">
+                <h1 id="lesson-header">Introduction to API Calls in React</h1>
+                <h2>APIs in React</h2>
+            </header>
+
+            <div class="section">
+                <p>
+                    Hey everyone! In this lesson, we're going to explore how to
+                    fetch data in React using axios. We'll cover handling
+                    responses of different data types and avoiding infinite
+                    loops.
+                </p>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Learning Objectives</h3>
+                <p>By the end of this lesson, you will be able to:</p>
+                <ul class="custom-list">
+                    <li>
+                        Make GET requests to external APIs and handle the
+                        responses.
+                    </li>
+                    <li>
+                        Identify the problem of infinite loops caused by state
+                        updates in React.
+                    </li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Using Axios for API Calls</h3>
+                <h4>Why Axios?</h4>
+                <p>
+                    Axios is a popular HTTP client that simplifies making
+                    requests to APIs. Compared to the built-in fetch method,
+                    axios offers features like interceptors, automatic JSON
+                    transformation, and better error handling, making it a
+                    preferred choice for many developers.
+                </p>
+
+                <h4>Making a GET Request</h4>
+                <p>
+                    To fetch data from an API, you can use axios to make GET
+                    requests. For example, to get data from the Star Wars API
+                    (SWAPI), you can use:
+                </p>
+                <pre><code class="language-jsx">
+axios.get('https://swapi.dev/api/people/1')
+  .then(response =&gt; console.log(response))
+  .catch(error =&gt; console.error(error));
+            </code></pre>
+                <p>
+                    This request retrieves information about a specific
+                    character from the Star Wars universe.
+                </p>
+
+                <h4>Handling Complex Responses</h4>
+                <p>
+                    When dealing with more complex APIs, such as the League of
+                    Legends API, you may need to process nested data. Axios
+                    makes this straightforward:
+                </p>
+                <pre><code class="language-jsx">
+axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json')
+  .then(response =&gt; {
+    const champs = Object.values(response.data.data);
+    console.log(champs);
+  })
+  .catch(error =&gt; console.error(error));
+            </code></pre>
+                <p>
+                    In this example, we extract and log an array of champions
+                    from the response.
+                </p>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>State Management and Infinite Loops</h3>
+                <h4>Using State to Store API Data</h4>
+                <p>
+                    In React, we often use state to store the data fetched from
+                    APIs:
+                </p>
+                <pre><code class="language-jsx">
+const [leagueChamps, setLeagueChamps] = useState([]);
+            </code></pre>
+                <p>
+                    Updating this state with API responses allows us to render
+                    the data in our components.
+                </p>
+
+                <h4>The Problem of Infinite Loops</h4>
+                <p>
+                    When you update the state directly inside your component
+                    body, it triggers a re-render, which can lead to an infinite
+                    loop:
+                </p>
+                <pre><code class="language-jsx">
+axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json')
+  .then(response =&gt; {
+    const champs = Object.values(response.data.data);
+    setLeagueChamps(champs);
+  })
+  .catch(error =&gt; console.error(error));
+            </code></pre>
+                <p>
+                    Each state update causes the component to re-render, which
+                    runs the axios request again, creating an infinite loop.
+                </p>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Resources</h3>
+                <ul class="custom-list">
+                    <li>
+                        <a
+                            href="https://swapi.dev/api/people/1"
+                            target="_blank"
+                            rel="noopener"
+                            >SWAPI</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json"
+                            target="_blank"
+                            rel="noopener"
+                            >League of Legends API</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

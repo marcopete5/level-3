@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 3 - APIs in React - Pokemon List with Random Background Color
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </head>
+    <body>
+        <div
+            class="slide-container"
+            role="region"
+            aria-labelledby="assignment-header">
+            <header class="slide-header">
+                <h1 id="assignment-header">
+                    Pokemon List with Random Background Color
+                </h1>
+                <h2>Assignment</h2>
+            </header>
+
+            <div class="section">
+                <h3>Project Overview</h3>
+                <p>
+                    You are tasked with creating a React application that
+                    combines two functionalities:
+                </p>
+                <ol class="custom-list">
+                    <li>Fetching and displaying Pokémon data.</li>
+                    <li>
+                        Managing and updating the background color of the page.
+                    </li>
+                </ol>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Requirements</h3>
+                <h4>1. Fetch and Display Pokémon Data</h4>
+                <ul class="custom-list">
+                    <li>
+                        <strong>Endpoint:</strong> Use
+                        <code>https://api.vschool.io/pokemon</code> to get a
+                        list of Pokémon.
+                    </li>
+                    <li>
+                        <strong>Data Display:</strong> Render each Pokémon’s
+                        name on a separate line in the browser.
+                    </li>
+                    <li>
+                        <strong>Fetching Logic:</strong> Use a
+                        <code>useEffect</code> hook to fetch the Pokémon data
+                        when the component mounts.
+                    </li>
+                </ul>
+
+                <h4>2. Manage Background Color</h4>
+                <ul class="custom-list">
+                    <li>
+                        <strong>Initial Color:</strong> Set the background color
+                        of the page to a random color.
+                    </li>
+                    <li>
+                        <strong>Random Color API:</strong> Use
+                        <code
+                            >https://random-color.onrender.com/colors/random</code
+                        >
+                        to get a random color.
+                    </li>
+                    <li>
+                        <strong>Color Update:</strong> Implement a button that,
+                        when clicked, fetches a new random color and updates the
+                        background color of the page.
+                    </li>
+                    <li>
+                        <strong>State Management:</strong> Use a state variable
+                        to manage the background color and another state
+                        variable to control the color update logic.
+                    </li>
+                </ul>
+
+                <h4>3. React Hooks</h4>
+                <ul class="custom-list">
+                    <li>
+                        <strong>useEffect:</strong> Implement two
+                        <code>useEffect</code> hooks:
+                        <ul class="custom-list">
+                            <li>One for fetching and storing Pokémon data.</li>
+                            <li>
+                                Another for fetching and updating the background
+                                color based on a state variable.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>useState:</strong> Use state variables to manage
+                        Pokémon data, background color, and the count for
+                        triggering color updates.
+                    </li>
+                </ul>
+
+                <h4>4. Component Structure</h4>
+                <ul class="custom-list">
+                    <li>
+                        <strong>Display Pokémon:</strong> Render Pokémon names
+                        in a list format.
+                    </li>
+                    <li>
+                        <strong>Button Functionality:</strong> Include a button
+                        to trigger background color changes.
+                    </li>
+                </ul>
+            </div>
+
+            <h3>
+                <a
+                    href="https://marcopete5.github.io/level-3/assignments/react-pokemon-color/"
+                    target="_blank"
+                    >DEMO OF ASSIGNMENT</a
+                >
+            </h3>
+        </div>
+    </body>
+</html>

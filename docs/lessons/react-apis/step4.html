@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Level 3 - APIs in React - Fetching Data with useEffect</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </head>
+    <body>
+        <div
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-header">
+            <header class="slide-header">
+                <h1 id="lesson-header">Fetching Data with useEffect</h1>
+                <h2>APIs in React</h2>
+            </header>
+
+            <div class="section">
+                <h3>Learning Objectives</h3>
+                <p>By the end of this lesson, students will be able to:</p>
+                <ol class="custom-list">
+                    <li>
+                        Understand the purpose and importance of using
+                        <code>useEffect</code> in React for fetching data.
+                    </li>
+                    <li>
+                        Successfully fetch data from an API using
+                        <code>axios</code> within the
+                        <code>useEffect</code> hook.
+                    </li>
+                    <li>
+                        Set the fetched data to state and use it within the
+                        component.
+                    </li>
+                    <li>
+                        Map over state data to dynamically render content on the
+                        page.
+                    </li>
+                    <li>
+                        Recognize and resolve potential issues related to
+                        component re-renders and infinite loops when fetching
+                        data.
+                    </li>
+                </ol>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Steps and Explanations</h3>
+                <h4>1. Change the GET request URL</h4>
+                <p>
+                    First, update the GET request URL to fetch the latest data
+                    from the League of Legends API:
+                </p>
+                <pre><code class="language-jsx">
+axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json')
+            </code></pre>
+                <p>
+                    This ensures we are fetching the most up-to-date champion
+                    data.
+                </p>
+
+                <h4>2. Console log the response</h4>
+                <p>Next, log the data to understand its structure:</p>
+                <pre><code class="language-jsx">
+axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json')
+  .then(response => console.log(Object.values(response.data.data)))
+            </code></pre>
+                <p>
+                    This helps verify we are getting the expected data format.
+                </p>
+
+                <h4>3. Test the console log</h4>
+                <p>
+                    Run your code to see the logged data in the console. This
+                    step confirms that our API call is working correctly and we
+                    are receiving the champion data.
+                </p>
+
+                <h4>4. Set state with the API response</h4>
+                <p>
+                    Replace the console log with a state update to store the
+                    champion data:
+                </p>
+                <pre><code class="language-jsx">
+axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json')
+  .then(response => setLeagueChamps(Object.values(response.data.data)))
+            </code></pre>
+                <p>
+                    This stores the fetched data in our state, preparing it for
+                    rendering.
+                </p>
+
+                <h4>5. Log the state to the console</h4>
+                <p>
+                    Log the <code>leagueChamps</code> state to verify it
+                    contains the expected data:
+                </p>
+                <pre><code class="language-jsx">
+console.log(lagueChamps)
+            </code></pre>
+                <p>
+                    This allows us to inspect the state and confirm it has been
+                    correctly updated.
+                </p>
+
+                <h4>6. Test in the console</h4>
+                <p>
+                    Check the console to ensure the
+                    <code>leagueChamps</code> state holds the array of champion
+                    data. This step is crucial for verifying our data handling
+                    logic.
+                </p>
+
+                <h4>7. Create a variable to map over data</h4>
+                <p>
+                    Create a variable to map over the
+                    <code>leagueChamps</code> data and render each champion in a
+                    <code>div</code>:
+                </p>
+                <pre><code class="language-jsx">
+const champList = leagueChamps.map(champ => (
+  &lt;div key={champ.id}&gt;
+    &lt;h2&gt;{champ.name}&lt;/h2&gt;
+    &lt;p&gt;{champ.blurb}&lt;/p&gt;
+  &lt;/div&gt;
+))
+            </code></pre>
+                <p>
+                    This variable holds the JSX elements for each champion,
+                    ready to be rendered.
+                </p>
+
+                <h4>8. Render the champions in JSX</h4>
+                <p>
+                    Finally, include the <code>champList</code> variable in your
+                    JSX to display the champions on the page:
+                </p>
+                <pre><code class="language-jsx">
+return (
+  &lt;div&gt;
+    {champList}
+  &lt;/div&gt;
+)
+            </code></pre>
+                <p>
+                    This step brings everything together, rendering the fetched
+                    champion data dynamically on your webpage.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

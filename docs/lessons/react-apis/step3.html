@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Level 3 - APIs in React - Understanding the Dependency Array in
+            useEffect
+        </title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </head>
+    <body>
+        <div
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-header">
+            <header class="slide-header">
+                <h1 id="lesson-header">
+                    Understanding the Dependency Array in useEffect
+                </h1>
+                <h2>APIs in React</h2>
+            </header>
+
+            <div class="section">
+                <h3>Learning Objectives</h3>
+                <p>A student will be able to:</p>
+                <ul class="custom-list">
+                    <li>
+                        Use the dependency array to control the execution of the
+                        <code>useEffect</code> hook in React.
+                    </li>
+                    <li>
+                        Explain the correct usage of the dependency array in
+                        <code>useEffect</code> to avoid unnecessary re-renders
+                        and infinite loops by specifying relevant dependencies.
+                    </li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Introduction</h3>
+                <p>
+                    In this lesson, we'll explore the dependency array in
+                    React's <code>useEffect</code> hook. Using the provided code
+                    example, we'll explain how the dependency array controls
+                    when the <code>useEffect</code> hook runs, helping you avoid
+                    unnecessary re-renders and infinite loops.
+                </p>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>The Code Example</h3>
+                <p>
+                    Let's take a look at the provided code example to see
+                    <code>useEffect</code> and the dependency array in action:
+                </p>
+                <pre><code class="language-jsx">
+import { useState, useEffect } from 'react';
+import axios from "axios";
+
+function App() {
+  const [starWarsData, setStarWarsData] = useState([]);
+  const [count, setCount] = useState(1);
+
+  function incCount() {
+    setCount(prevCount => prevCount + 1);
+  }
+
+  useEffect(() => {
+    axios.get(`https://swapi.dev/api/people/${count}`)
+      .then(res => setStarWarsData(res.data))
+      .catch(err => console.log(err));
+  }, [count]);
+
+  console.log(starWarsData);
+
+  return (
+    &lt;div className="container"&gt;
+      &lt;h1&gt;{starWarsData.name}&lt;/h1&gt;
+      &lt;h1&gt;API CALLS&lt;/h1&gt;
+      &lt;p&gt;axios&lt;/p&gt;
+      &lt;p&gt;fetch&lt;/p&gt;
+      &lt;p&gt;the response&lt;/p&gt;
+      &lt;p&gt;infinite loops&lt;/p&gt;
+      &lt;p&gt;useEffect&lt;/p&gt;
+      &lt;button onClick={incCount}&gt;Click Me&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+            </code></pre>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>What is the Dependency Array?</h3>
+                <p>
+                    The dependency array is an optional second argument in the
+                    <code>useEffect</code> hook. It is an array of values that
+                    the effect depends on. When one of these values changes, the
+                    effect will re-run.
+                </p>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>How it Works in the Example</h3>
+                <p>
+                    In the provided code, the <code>useEffect</code> hook
+                    fetches data from the Star Wars API based on the
+                    <code>count</code> state:
+                </p>
+                <pre><code class="language-jsx">
+useEffect(() => {
+  axios.get(`https://swapi.dev/api/people/${count}`)
+    .then(res => setStarWarsData(res.data))
+    .catch(err => console.log(err));
+}, [count]);
+            </code></pre>
+                <p>
+                    Here, the dependency array contains <code>[count]</code>.
+                    This means the effect will run:
+                </p>
+                <ul class="custom-list">
+                    <li>Initially, when the component mounts.</li>
+                    <li>Whenever the <code>count</code> state changes.</li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Why Use a Dependency Array?</h3>
+                <ol class="custom-list">
+                    <li>
+                        <strong>Preventing Infinite Loops</strong>: Without a
+                        dependency array, the effect would run after every
+                        render, potentially causing an infinite loop if the
+                        effect itself causes a state change that triggers a
+                        re-render.
+                    </li>
+                    <li>
+                        <strong>Optimizing Performance</strong>: By specifying
+                        dependencies, you ensure the effect only runs when it
+                        truly needs to, reducing unnecessary operations and
+                        improving performance.
+                    </li>
+                </ol>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Examples of Dependency Array Usage</h3>
+                <ol class="custom-list">
+                    <li>
+                        <strong>Empty Dependency Array (<code>[]</code>)</strong
+                        >: The effect runs only once, after the initial render.
+                        <pre><code class="language-jsx">
+useEffect(() => {
+  // This code runs only once
+  console.log('Component mounted');
+}, []);
+                    </code></pre>
+                    </li>
+                    <li>
+                        <strong>Single Dependency</strong>: The effect runs on
+                        initial render and whenever the specified dependency
+                        changes.
+                        <pre><code class="language-jsx">
+useEffect(() => {
+  console.log('Count changed:', count);
+}, [count]);
+                    </code></pre>
+                    </li>
+                    <li>
+                        <strong>Multiple Dependencies</strong>: The effect runs
+                        on initial render and whenever any of the specified
+                        dependencies change.
+                        <pre><code class="language-jsx">
+useEffect(() => {
+  console.log('Count or otherState changed');
+}, [count, otherState]);
+                    </code></pre>
+                    </li>
+                </ol>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Avoiding Common Pitfalls</h3>
+                <ul class="custom-list">
+                    <li>
+                        <strong>Including Unnecessary Dependencies</strong>:
+                        Including variables that don't change frequently or
+                        aren't relevant can cause unnecessary re-renders.
+                    </li>
+                    <li>
+                        <strong>Omitting Necessary Dependencies</strong>:
+                        Missing variables that the effect relies on can lead to
+                        bugs or inconsistent behavior.
+                    </li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Recap</h3>
+                <ul class="custom-list">
+                    <li>
+                        <strong>Dependency Array</strong>: An array of values
+                        that <code>useEffect</code> depends on.
+                    </li>
+                    <li>
+                        <strong>Controls Effect Execution</strong>: The effect
+                        runs only when dependencies change.
+                    </li>
+                    <li>
+                        <strong>Optimization</strong>: Prevents infinite loops
+                        and optimizes performance by reducing unnecessary effect
+                        executions.
+                    </li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Conclusion</h3>
+                <p>
+                    Understanding the dependency array in
+                    <code>useEffect</code> is crucial for managing side effects
+                    efficiently in your React applications. By correctly
+                    specifying dependencies, you can control when effects run,
+                    avoid infinite loops, and optimize your components'
+                    performance.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
