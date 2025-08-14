@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Assignment - Meme Generator App</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    </head>
+    <body>
+        <div
+            class="slide-container"
+            role="region"
+            aria-labelledby="lesson-header">
+            <header class="slide-header">
+                <h1 id="lesson-header">Meme Generator Project</h1>
+                <h2>Level 3 Capstone</h2>
+            </header>
+
+            <div class="section">
+                <p>
+                    Before beginning, consider watching these workshops as a
+                    review of the content needed to complete this assignment
+                </p>
+                <ul class="custom-list">
+                    <li>
+                        <a
+                            href="https://youtu.be/963TYDrmQkk"
+                            target="_blank"
+                            rel="noopener"
+                            >Vite Setup / Simple Form
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://youtu.be/exrF7WdcEAk"
+                            target="_blank"
+                            rel="noopener"
+                            >handleChange / handleSubmit</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://youtu.be/DNNVs64S9sg"
+                            target="_blank"
+                            rel="noopener"
+                            >Conditional Rendering</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://youtu.be/Q4MEurOsvX4"
+                            target="_blank"
+                            rel="noopener"
+                            >React State Management and Prop Drilling</a
+                        >
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <p>
+                    You will make an app that satisfies the following user
+                    stories. It will be similar to what was completed in
+                    Scrimba, but will be done in VS Code using git:
+                </p>
+                <ul class="custom-list">
+                    <li>A user will see a meme image on page load</li>
+                    <li>
+                        A user can click "refresh meme image" to load a new one
+                    </li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>2 Hours ~</h3>
+                <ul class="custom-list">
+                    <li>
+                        A user will see a form with two inputs and a submit
+                        button
+                    </li>
+                    <li>
+                        Inputs will be:
+                        <ul>
+                            <li>top text</li>
+                            <li>bottom text</li>
+                        </ul>
+                    </li>
+                    <li>A user will be able to see a preview of their meme</li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>2 Hours ~</h3>
+                <ul class="custom-list">
+                    <li>A user will be able to add created memes to a list</li>
+                    <li>A user will be able to delete memes from the list</li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>2 Hours ~</h3>
+                <ul class="custom-list">
+                    <li>A user will be able to edit an existing meme</li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>2 Hours ~</h3>
+                <p>
+                    <strong>Warning:</strong> The project will be maintained on
+                    GitHub. It is suggested you read and watch everything in
+                    Resources before starting the project.
+                </p>
+                <h4>Additional Tips:</h4>
+                <ol>
+                    <li>
+                        Do not set the ID from the meme image as the ID for each
+                        created meme. This will cause issues if 2 or more memes
+                        use the same image. You can either use the index number
+                        from the meme list as the ID or use a
+                        <a
+                            href="https://www.npmjs.com/package/uuid"
+                            target="_blank"
+                            rel="noopener"
+                            >UUID generator package</a
+                        >.
+                    </li>
+                    <li>
+                        Perform an HTTP request to
+                        <code>https://api.imgflip.com/get_memes</code> to get a
+                        list of memes.
+                    </li>
+                </ol>
+                <p>
+                    <a
+                        href="https://imgflip.com/api"
+                        target="_blank"
+                        rel="noopener"
+                        >API Documentation</a
+                    >
+                </p>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="section">
+                <h3>Task Rubric</h3>
+                <table border="1" cellpadding="8" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Criteria</th>
+                            <th>Level 1: Emerging</th>
+                            <th>Level 2: Developing</th>
+                            <th>Level 3: Proficient</th>
+                            <th>Level 4: Mastery</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Integrated React Forms</td>
+                            <td>
+                                Form doesn’t correctly manage input field data
+                                or isn’t able to generate new meme images
+                            </td>
+                            <td>
+                                Meme image is generated but input fields aren’t
+                                handled correctly.
+                            </td>
+                            <td>
+                                Meme image and input fields are correctly
+                                managed with a few minor issues with naming and
+                                code organization
+                            </td>
+                            <td>
+                                Meme image and input fields are correctly
+                                managed. Code is well organized and DRY
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>State Management and CRUD basics</td>
+                            <td>
+                                User is unable to either view, update, and/or
+                                delete items in the list
+                            </td>
+                            <td>
+                                List is viewable but items are not added
+                                correctly or problems persist during edit/delete
+                            </td>
+                            <td>
+                                CRUD operations work with minor issues with
+                                naming and code organization
+                            </td>
+                            <td>
+                                CRUD operations work seamlessly. Code is well
+                                organized and DRY
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Styling</td>
+                            <td>
+                                Little CSS is used or doesn’t use or follow the
+                                existing CSS provided by the example
+                            </td>
+                            <td>
+                                Styling is inconsistent or glitchy. Doesn’t fit
+                                the theme of the existing example
+                            </td>
+                            <td>
+                                Styling matches the example for the most part
+                                with a few minor inconsistencies
+                            </td>
+                            <td>
+                                UI is clean and perfectly matches the theme of
+                                the given example.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>
+                <a
+                    href="https://marcopete5.github.io/level-3/assignments/meme-generator/#/"
+                    target="_blank"
+                    >DEMO OF ASSIGNMENT</a
+                >
+            </h3>
+        </div>
+    </body>
+</html>
