@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Setup React Vite App</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Setup React Vite App</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="learning-objectives-heading">
+                <h3 id="learning-objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        Students will be able to install a Vite package to
+                        create a React app from scratch to their local machine.
+                    </li>
+                    <li>
+                        Students will be able to test the Vite install by
+                        running the default Vite app in the browser.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/Uwixl9RkQHM?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=2"
+                    title="Setup React Vite App"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=Uwixl9RkQHM&list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=2&pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="what-is-vite-heading">
+                <h3 id="what-is-vite-heading">What is Vite?</h3>
+                <p>
+                    <strong>Vite</strong> (pronounced “veet”) is a modern build
+                    tool that helps you develop and build web applications
+                    faster and more efficiently. When you're learning React,
+                    Vite can make your experience smoother and more enjoyable.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="why-vite-heading">
+                <h3 id="why-vite-heading">Why Use Vite with React?</h3>
+                <ol>
+                    <li>
+                        <strong>Fast Development:</strong> Vite starts your
+                        development server quickly, almost instantly, so you
+                        don't have to wait long to see your changes.
+                    </li>
+                    <li>
+                        <strong>Hot Module Replacement (HMR):</strong> See code
+                        changes immediately without refreshing the entire page;
+                        app state stays intact.
+                    </li>
+                    <li>
+                        <strong>Simpler Setup:</strong> Easy project scaffolding
+                        with sensible defaults so you can focus on React.
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section" aria-labelledby="getting-started-heading">
+                <h3 id="getting-started-heading">
+                    How to Get Started with Vite and React
+                </h3>
+
+                <h4>1) Create a New Project</h4>
+                <pre><code class="language-bash" role="region" aria-label="Code block">
+npm create vite@latest
+</code></pre>
+
+                <h4>2) Follow the Prompts</h4>
+                <ul>
+                    <li>
+                        <strong>Project name:</strong> e.g.
+                        <code>my-react-app</code>
+                    </li>
+                    <li><strong>Select a framework:</strong> React</li>
+                    <li><strong>Select a variant:</strong> JavaScript</li>
+                </ul>
+
+                <h4>3) Navigate to Your Project</h4>
+                <pre><code class="language-bash" role="region" aria-label="Code block">
+cd my-react-app
+</code></pre>
+
+                <h4>4) Install Dependencies</h4>
+                <pre><code class="language-bash" role="region" aria-label="Code block">
+npm install
+</code></pre>
+
+                <h4>5) Start the Development Server</h4>
+                <pre><code class="language-bash" role="region" aria-label="Code block">
+npm run dev
+</code></pre>
+                <p>
+                    Open the local address Vite prints in your terminal (usually
+                    <code>http://localhost:5173</code>). You should see your
+                    React app running.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="summary-heading">
+                <h3 id="summary-heading">Summary</h3>
+                <p>
+                    Vite makes developing React apps faster and easier by
+                    providing instant server starts, HMR, and minimal
+                    configuration. With Vite, you can focus on learning React
+                    and building features instead of tooling setup.
+                </p>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section WELCOME, Lesson 003) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-WELCOME-003"
+            data-lesson-title="Setup React Vite App"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-WELCOME-003"
+            data-lesson-title="Setup React Vite App"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>
