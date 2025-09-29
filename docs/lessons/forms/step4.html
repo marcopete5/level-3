@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Input Types</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Input Types</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="learning-objectives">
+                <h3 id="learning-objectives">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        Understand and implement different input types
+                        (<code>select</code>, <code>radio</code>, and
+                        <code>checkbox</code>) in React to build interactive
+                        forms.
+                    </li>
+                    <li>
+                        Manage form input values through React state to create
+                        controlled components.
+                    </li>
+                    <li>
+                        Set and handle predetermined values for form inputs to
+                        enhance user experience in React applications.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="video">
+                <h3 id="video">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/iasR8x8ePP0"
+                    title="Input Types in React"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=iasR8x8ePP0&list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=22&pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="understanding-inputs">
+                <h3 id="understanding-inputs">
+                    Understanding Input Types in React
+                </h3>
+                <p>
+                    In this lesson, we'll explore different input types in
+                    React, focusing specifically on <code>select</code>,
+                    <code>radio</code>, and <code>checkbox</code> inputs. These
+                    input types are fundamental in building interactive forms
+                    and managing user input in a React application.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="repo-steps">
+                <h3 id="repo-steps">Instructions for Cloning the Repository</h3>
+                <ol>
+                    <li><strong>Clone the Repository</strong></li>
+                </ol>
+
+                <pre
+                    role="region"
+                    aria-label="git clone command"><code class="language-bash">git clone https://github.com/VSchool/react-input-types.git</code></pre>
+
+                <ol start="2">
+                    <li>
+                        <strong
+                            >Remove the Nested
+                            <code>.git</code> Directory</strong
+                        >
+                    </li>
+                </ol>
+
+                <pre
+                    role="region"
+                    aria-label="cd into project and remove nested .git"><code class="language-bash">cd react-input-types
+rm -rf .git</code></pre>
+
+                <ol start="3">
+                    <li>
+                        <strong
+                            >Install Dependencies and Start the
+                            Application</strong
+                        >
+                    </li>
+                </ol>
+
+                <pre
+                    role="region"
+                    aria-label="install deps and start vite"><code class="language-bash">npm install
+npm run dev</code></pre>
+            </div>
+
+            <div class="section" aria-labelledby="overview-inputs">
+                <h3 id="overview-inputs">Overview of Input Types in React</h3>
+                <p>
+                    React handles form inputs through controlled components. A
+                    controlled component is an input element whose value is
+                    controlled by React state. Here's a brief overview of the
+                    input types we'll discuss, including how to set
+                    predetermined values:
+                </p>
+                <ol>
+                    <li>
+                        <p>
+                            <strong
+                                >Select Input
+                                (<code>&lt;select&gt;</code>)</strong
+                            >
+                        </p>
+                        <ul>
+                            <li>
+                                The <code>&lt;select&gt;</code> element allows
+                                users to choose from a list of options.
+                            </li>
+                            <li>
+                                <em>How it works:</em> The <code>value</code> of
+                                the <code>&lt;select&gt;</code> element is
+                                managed through React state. The
+                                <code>onChange</code> updates that state.
+                            </li>
+                            <li>
+                                <em>Predetermined Value:</em> Initialize the
+                                state with the desired option value (e.g.,
+                                <code>'dark'</code>) to preselect it.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>
+                            <strong
+                                >Radio Input (<code
+                                    >&lt;input type="radio"&gt;</code
+                                >)</strong
+                            >
+                        </p>
+                        <ul>
+                            <li>
+                                Radio buttons let users select one option from a
+                                group (same <code>name</code>, different
+                                <code>value</code>).
+                            </li>
+                            <li>
+                                <em>How it works:</em> Control each radio’s
+                                <code>checked</code> via state; update state on
+                                <code>onChange</code>.
+                            </li>
+                            <li>
+                                <em>Predetermined Value:</em> Set initial state
+                                to the default radio’s <code>value</code> (e.g.,
+                                <code>'email'</code>).
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>
+                            <strong
+                                >Checkbox Input (<code
+                                    >&lt;input type="checkbox"&gt;</code
+                                >)</strong
+                            >
+                        </p>
+                        <ul>
+                            <li>
+                                Checkboxes support toggles or multiple
+                                selections.
+                            </li>
+                            <li>
+                                <em>How it works:</em> Control the
+                                <code>checked</code> prop via state; toggle it
+                                on <code>onChange</code>.
+                            </li>
+                            <li>
+                                <em>Predetermined Value:</em> Initialize the
+                                boolean state (e.g., <code>true</code>) to start
+                                checked.
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section" aria-labelledby="code-overview">
+                <h3 id="code-overview">Code Explanation (General Overview)</h3>
+                <p>
+                    <strong>Select Input:</strong> Use state to drive the
+                    dropdown’s <code>value</code>; update it via
+                    <code>onChange</code>. Set an initial selection by
+                    initializing the state.
+                </p>
+                <p>
+                    <strong>Radio Input:</strong> Radios share a
+                    <code>name</code> and differ by <code>value</code>. Control
+                    which is selected via a state value; initialize that state
+                    to preselect.
+                </p>
+                <p>
+                    <strong>Checkbox Input:</strong> Bind the checkbox’s
+                    <code>checked</code> to a boolean state. Initialize to
+                    <code>true</code> to start checked; toggle on change.
+                </p>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section REACT_FORMS, Lesson 004) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_FORMS-004"
+            data-lesson-title="Input Types"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_FORMS-004"
+            data-lesson-title="Input Types"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>

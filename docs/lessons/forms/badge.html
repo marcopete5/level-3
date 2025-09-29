@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Name Badge - Assignment</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Name Badge</h1>
+                <h2>Assignment</h2>
+            </header>
+
+            <div class="section" aria-labelledby="objective">
+                <h3 id="objective">Objective</h3>
+                <p>
+                    Create a React website where users can input and submit
+                    badge information. Each submitted badge will be displayed in
+                    a list below the form. This assignment will help you
+                    practice handling forms, state management, and dynamic
+                    rendering in React.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="requirements">
+                <h3 id="requirements">Requirements</h3>
+                <ol>
+                    <li>
+                        <strong>Form Setup:</strong>
+                        <ul>
+                            <li>
+                                Create a form with the following input fields:
+                                <ul>
+                                    <li>
+                                        <strong>Text Input:</strong> For the
+                                        badge user’s name.
+                                    </li>
+                                    <li>
+                                        <strong>Textarea:</strong> For the
+                                        badge's description or other relevant
+                                        details.
+                                    </li>
+                                    <li>
+                                        <strong>Number Input:</strong> For a
+                                        phone number (must be digits only, no
+                                        special characters).
+                                    </li>
+                                    <li>
+                                        <strong>Radio Buttons:</strong> For
+                                        selecting a badge type (e.g.,
+                                        “Employee”, “Guest”).
+                                    </li>
+                                    <li>
+                                        <strong>Checkbox:</strong> To agree to
+                                        terms or conditions.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Include a <strong>Submit</strong> button that:
+                                <ul>
+                                    <li>Is disabled if any field is empty.</li>
+                                    <li>
+                                        Only enables if all fields meet the
+                                        validation criteria.
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Validation:</strong>
+                        <ul>
+                            <li>
+                                Ensure each input field has a minimum character
+                                count of 3.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Form Submission:</strong>
+                        <ul>
+                            <li>
+                                Upon submitting the form:
+                                <ul>
+                                    <li>Clear the input fields.</li>
+                                    <li>
+                                        Add the new badge information to a list
+                                        displayed below the form.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Each submitted badge should appear in a list
+                                with all previously submitted badges.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Display Badges:</strong>
+                        <ul>
+                            <li>
+                                Render each badge as a card or similar
+                                component.
+                            </li>
+                            <li>
+                                Alternate the background color of each badge’s
+                                heading (e.g., Red, Blue, Red, Blue).
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section" aria-labelledby="game-plan">
+                <h3 id="game-plan">Game Plan</h3>
+                <ol>
+                    <li>
+                        <strong>Pseudocode:</strong>
+                        <ul>
+                            <li>
+                                Define state variables for input values and the
+                                list of badges.
+                            </li>
+                            <li>
+                                Create functions for form validation and
+                                handling form submissions.
+                            </li>
+                            <li>
+                                Create components for the form and the badge
+                                display.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Components Needed:</strong>
+                        <ul>
+                            <li>
+                                <code>BadgeForm</code>: A form component with
+                                input fields and submit button.
+                            </li>
+                            <li>
+                                <code>BadgeList</code>: A component to render
+                                the list of badges.
+                            </li>
+                            <li>
+                                <code>Badge</code>: A component to display each
+                                individual badge.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>State Values:</strong>
+                        <ul>
+                            <li>
+                                <strong>Form Inputs:</strong> To hold current
+                                values of name, description, phone number, badge
+                                type, and checkbox.
+                            </li>
+                            <li>
+                                <strong>Badges Array:</strong> To store the list
+                                of submitted badges.
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer">
+                <h3>
+                    <a
+                        href="https://marcopete5.github.io/level-3/assignments/name-badge/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >DEMO OF COMPLETED ASSIGNMENT</a
+                    >
+                </h3>
+            </footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section REACT_FORMS, Lesson 005) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_FORMS-005"
+            data-lesson-title="Name Badge - Assignment"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_FORMS-005"
+            data-lesson-title="Name Badge - Assignment"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>

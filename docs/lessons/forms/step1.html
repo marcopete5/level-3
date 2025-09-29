@@ -3,25 +3,26 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Introduction to React Forms</title>
-        <link rel="stylesheet" href="styles.css" />
+        <title>React Forms Intro</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
     </head>
     <body>
-        <header class="slide-header">
-            <h1>React Forms</h1>
-            <h2>Introduction to React Forms</h2>
-        </header>
-        <section
-            class="slide-container"
-            role="region"
-            aria-labelledby="lesson-content">
-            <div class="section">
-                <h3>Learning Objectives</h3>
-                <p>By the end of this lesson, students will be able to:</p>
-                <ul class="custom-list">
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">React Forms Intro</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="learning-objectives">
+                <h3 id="learning-objectives">Learning Objectives</h3>
+                <ul>
                     <li>
                         <strong
                             >Understand the Importance of Forms in Web
@@ -61,9 +62,29 @@
                     </li>
                 </ul>
             </div>
-            <hr class="section-divider" />
-            <div class="section">
-                <h3>Importance of Forms in Web Applications</h3>
+
+            <div class="section" aria-labelledby="video">
+                <h3 id="video">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/podkeMkK4ek"
+                    title="React Forms Intro"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=podkeMkK4ek&list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=19&pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="importance">
+                <h3 id="importance">Importance of Forms in Web Applications</h3>
                 <p>
                     Forms are essential for any web application. They allow
                     users to interact with your app by submitting data, like
@@ -73,9 +94,9 @@
                     process data.
                 </p>
             </div>
-            <hr class="section-divider" />
-            <div class="section">
-                <h3>Simplifying Form Handling with React</h3>
+
+            <div class="section" aria-labelledby="simplifying">
+                <h3 id="simplifying">Simplifying Form Handling with React</h3>
                 <p>
                     But with React, form handling becomes much simpler! React
                     lets us manage form state and user input more efficiently
@@ -83,9 +104,9 @@
                     features.
                 </p>
             </div>
-            <hr class="section-divider" />
-            <div class="section">
-                <h3>React Forms and State</h3>
+
+            <div class="section" aria-labelledby="forms-and-state">
+                <h3 id="forms-and-state">React Forms and State</h3>
                 <p>
                     Now, let’s talk about the relationship between React forms
                     and state. In React, state is like a container that holds
@@ -102,29 +123,30 @@
                     of user input more predictable and easier to debug.
                 </p>
             </div>
-            <hr class="section-divider" />
-            <div class="section">
-                <h3>Creating a Form Component</h3>
+
+            <div class="section" aria-labelledby="creating-form">
+                <h3 id="creating-form">Creating a Form Component</h3>
                 <p>
                     Instead of hardcoding a form inside <code>App.jsx</code>, we
                     can make it reusable by creating a
                     <code>Form</code> component. Let's create a form with three
                     fields: title, rating, and description.
                 </p>
-                <h4>Example Code: App.jsx</h4>
-                <pre><code class="language-jsx">
-import React from 'react';
+
+                <h4>App.jsx</h4>
+
+                <pre><code class="language-jsx">import React from 'react';
 import Navbar from './Navbar';
 import RandomMovie from './RandomMovie';
 import FavoriteMovie from './FavoriteMovie';
 import Form from './Form';
 import { useTheme } from './useTheme';
 
-const App = () => {
+const App = () =&gt; {
   const { theme, toggleTheme } = useTheme();
   const [favMovies, setFavMovies] = React.useState([]);
 
-  const addMovie = (movie) => {
+  const addMovie = (movie) =&gt; {
     setFavMovies([...favMovies, movie]);
   };
 
@@ -138,28 +160,36 @@ const App = () => {
   );
 };
 
-export default App;
-            </code></pre>
-                <h4>Example Code: Form.jsx</h4>
-                <pre><code class="language-jsx">
-import React from 'react';
+export default App;</code></pre>
 
-const Form = (props) => {
-  return (
-    &lt;form&gt;
-      &lt;input placeholder=&quot;title&quot; /&gt;
-      &lt;input placeholder=&quot;description&quot; /&gt;
-      &lt;input placeholder=&quot;rating&quot; /&gt;
-    &lt;/form&gt;
-  );
-};
-
-export default Form;
-            </code></pre>
+                <h4>Form.jsx</h4>
+                <p>(Add your reusable controlled form component here.)</p>
             </div>
-        </section>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section REACT_FORMS, Lesson 001) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_FORMS-001"
+            data-lesson-title="React Forms Intro"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_FORMS-001"
+            data-lesson-title="React Forms Intro"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
     </body>
 </html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Submitting the Form</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Submitting the Form</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="learning-objectives">
+                <h3 id="learning-objectives">Learning Objective</h3>
+                <ul>
+                    <li>
+                        Students will be able to create a
+                        <code>handleSubmit</code> function in the form.
+                    </li>
+                    <li>
+                        Students will be able to add an
+                        <code>onSubmit</code> property to the form.
+                    </li>
+                    <li>
+                        Students will be able to
+                        <code>setFavoritesList</code> in the FavoriteMovies
+                        component thus rerendering our favorites list.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="video">
+                <h3 id="video">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/ztj4j-eQ7Rw"
+                    title="Submitting the Form"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=ztj4j-eQ7Rw&list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=21&pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="intro">
+                <h3 id="intro">
+                    Lesson: Implementing <code>handleSubmit</code> in React
+                </h3>
+                <p>
+                    We’ll wire a form to add a movie to the favorites list and
+                    clear the form afterward. Below are the key pieces you’ll
+                    implement.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="initial-state">
+                <h3 id="initial-state">1) Initial State</h3>
+
+                <pre
+                    role="region"
+                    aria-label="Initial state with useState"><code class="language-jsx">const initState = {
+  title: '',
+  description: '',
+  rating: ''
+}
+
+const [formData, setFormData] = useState(initState)</code></pre>
+            </div>
+
+            <div class="section" aria-labelledby="handle-change">
+                <h3 id="handle-change">2) Handling Input Changes</h3>
+
+                <pre
+                    role="region"
+                    aria-label="handleChange updates form state"><code class="language-jsx">function handleChange(e) {
+  const { name, value } = e.target
+  setFormData(prevFormData =&gt; ({
+    ...prevFormData,
+    [name]: value
+  }))
+}</code></pre>
+            </div>
+
+            <div class="section" aria-labelledby="handle-submit">
+                <h3 id="handle-submit">
+                    3) <code>handleSubmit</code> Function
+                </h3>
+
+                <pre
+                    role="region"
+                    aria-label="handleSubmit prevents default, adds movie, resets form"><code class="language-jsx">function handleSubmit(e) {
+  e.preventDefault()          // Prevent full page reload
+  addMovie(formData)          // Push current form values to favorites
+  setFormData(initState)      // Clear the form
+}</code></pre>
+
+                <p>Attach it to your form:</p>
+
+                <pre
+                    role="region"
+                    aria-label="Form with onSubmit"><code class="language-jsx">&lt;form onSubmit={handleSubmit}&gt;
+  {/* inputs bound to formData + handleChange */}
+  &lt;button className="btn-primary" type="submit"&gt;Add to Favorites&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+
+            <div class="section" aria-labelledby="css-file">
+                <h3 id="css-file">CSS file</h3>
+
+                <pre
+                    role="region"
+                    aria-label="Lesson CSS"><code class="language-css">*{
+  margin: 0;
+  box-sizing: border-box;
+  padding: 2px;
+}
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5vh;
+  border-bottom: solid black 1px;
+}
+
+.light{
+  background-color: white;
+  color: black;
+}
+
+.dark{
+  background-color: black;
+  color: white;
+}
+
+.main{
+  height: 100vh;
+  display: flex; 
+  flex-direction: column;
+  gap: 20px;
+}
+
+.random-movie-container {
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  width: 75vw;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.random-movie-container &gt; h2 {
+  border-bottom: 1px solid grey;
+  padding: 2px;
+  margin-bottom: 5px;
+}
+
+button {
+  max-width: 200px;
+}
+
+.favorite-movie-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 2px solid black; 
+  padding: 10px;
+}
+
+.favorite-movie-list &gt; h2 {
+  border-bottom: 1px solid grey;
+  padding: 2px;
+  margin-bottom: 5px;
+}</code></pre>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section REACT_FORMS, Lesson 003) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_FORMS-003"
+            data-lesson-title="Submitting the Form"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_FORMS-003"
+            data-lesson-title="Submitting the Form"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>

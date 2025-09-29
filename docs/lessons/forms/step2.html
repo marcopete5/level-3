@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Handling Input Changes</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Handling Input Changes</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="learning-objectives">
+                <h3 id="learning-objectives">Learning Objective</h3>
+                <ul>
+                    <li>
+                        Students will be able to create a state to hold the
+                        value of an input.
+                    </li>
+                    <li>
+                        Students will be able to create a function that logs the
+                        <code>e.target</code> and sets the state.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="video">
+                <h3 id="video">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/WHkRfzNFufU"
+                    title="Handling Input Changes"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=WHkRfzNFufU&list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=20&pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="handling-input-changes">
+                <h3 id="handling-input-changes">
+                    Handling Input Changes in React Forms
+                </h3>
+                <p>
+                    When working with forms in React, one of the most common
+                    tasks is handling changes to input fields. This process
+                    ensures that the form data is kept in sync with the
+                    component's state. In the provided code, the
+                    <code>handleChange</code> function plays a crucial role in
+                    managing these updates efficiently.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="understanding-handlechange">
+                <h3 id="understanding-handlechange">
+                    Understanding <code>handleChange</code>
+                </h3>
+                <ol>
+                    <li>
+                        <strong>Event Handling</strong>: The function receives
+                        an event object <code>e</code> as its parameter. This
+                        object contains information about the event that
+                        triggered the handler, including the target element (the
+                        input field).
+                    </li>
+                    <li>
+                        <strong>Destructuring</strong>: Inside the function, the
+                        <code>name</code> and <code>value</code> properties are
+                        extracted from the event target (<code>e.target</code>).
+                        The <code>name</code> corresponds to a key in state, and
+                        <code>value</code> is the current input value.
+                    </li>
+                    <li>
+                        <strong>State Update</strong>:
+                        <code>setFormData</code> updates state using the
+                        previous state to preserve other fields, and a computed
+                        key (<code>[name]</code>) to set the changed field.
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section" aria-labelledby="key-concepts">
+                <h3 id="key-concepts">
+                    Key Concepts in Handling Input Changes
+                </h3>
+                <ul>
+                    <li>
+                        <strong>Controlled Components</strong>: Inputs derive
+                        their value from state and update state on change.
+                    </li>
+                    <li>
+                        <strong>Single Source of Truth</strong>: Component state
+                        holds the canonical form values.
+                    </li>
+                    <li>
+                        <strong>Dynamic Keys</strong>: Use
+                        <code>[name]: value</code> to handle many inputs with
+                        one change handler.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="practical-example">
+                <h3 id="practical-example">Practical Example</h3>
+
+                <pre><code class="language-jsx">import React from 'react';
+
+export default function Form() {
+  const [formData, setFormData] = React.useState({
+    title: '',
+    description: '',
+    rating: ''
+  });
+
+  function handleChange(e) {
+    console.log(e.target); // log the event target
+    const { name, value } = e.target;
+    setFormData(prevFormData =&gt; ({
+      ...prevFormData,
+      [name]: value
+    }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log('Submitting:', formData);
+  }
+
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;label htmlFor=&quot;title&quot;&gt;Title&lt;/label&gt;
+      &lt;input
+        id=&quot;title&quot;
+        name=&quot;title&quot;
+        type=&quot;text&quot;
+        value={formData.title}
+        onChange={handleChange}
+        placeholder=&quot;Movie title&quot;
+      /&gt;
+
+      &lt;label htmlFor=&quot;description&quot;&gt;Description&lt;/label&gt;
+      &lt;textarea
+        id=&quot;description&quot;
+        name=&quot;description&quot;
+        value={formData.description}
+        onChange={handleChange}
+        placeholder=&quot;Short description&quot;
+      /&gt;
+
+      &lt;label htmlFor=&quot;rating&quot;&gt;Rating&lt;/label&gt;
+      &lt;input
+        id=&quot;rating&quot;
+        name=&quot;rating&quot;
+        type=&quot;number&quot;
+        min=&quot;0&quot;
+        max=&quot;10&quot;
+        step=&quot;0.1&quot;
+        value={formData.rating}
+        onChange={handleChange}
+        placeholder=&quot;e.g. 8.6&quot;
+      /&gt;
+
+      &lt;button className=&quot;btn-primary&quot; type=&quot;submit&quot;&gt;Save Movie&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+            </div>
+
+            <div class="section" aria-labelledby="conclusion">
+                <h3 id="conclusion">Conclusion</h3>
+                <p>
+                    Handling input changes in React forms is foundational for
+                    building interactive UIs. Using controlled components and a
+                    centralized state keeps your data consistent with user
+                    input. The <code>handleChange</code> pattern above scales
+                    well as forms grow.
+                </p>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section REACT_FORMS, Lesson 002) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_FORMS-002"
+            data-lesson-title="Handling Input Changes"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_FORMS-002"
+            data-lesson-title="Handling Input Changes"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>
