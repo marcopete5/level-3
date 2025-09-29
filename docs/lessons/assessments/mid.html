@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mid Level Skill Check</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Mid Level Skill Check</h1>
+                <h2>Assessment</h2>
+            </header>
+
+            <div class="section" aria-labelledby="intro-heading">
+                <h3 id="intro-heading">Overview</h3>
+                <p>
+                    This is a moment for you to test your coding skills and
+                    prepare yourself for an interview. Below you will see two
+                    code challenges for you to complete. You will also need to
+                    add comments or pseudo-code to your project in order to
+                    describe your process and solution. Next you will complete a
+                    quiz that will test the knowledge you have gained so far.
+                    Once you have completed the challenges and quiz, schedule an
+                    assessment to review with an instructor and do a third
+                    coding challenge live!
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="challenges-heading">
+                <h3 id="challenges-heading">Code Challenges</h3>
+
+                <h4>
+                    Challenge 1: Sort Array with Preserved Index for
+                    <code>-1</code> Values
+                </h4>
+                <p>
+                    You are given an array <code>a</code> containing integers.
+                    Implement <code>solution(arr)</code> to sort the array in
+                    ascending order while preserving the original index
+                    positions of <code>-1</code> values.
+                </p>
+                <ul>
+                    <li>
+                        All non-<code>-1</code> values are sorted ascending.
+                    </li>
+                    <li>
+                        All <code>-1</code> values remain at their original
+                        indices.
+                    </li>
+                </ul>
+
+                <pre><code class="language-jsx" role="region" aria-label="Challenge 1 starter and tests">
+function solution(arr){
+  // TODO: implement
+}
+
+console.log(solution([-1, 150, 190, 170, -1, -1, 160, 180]))
+console.log(solution([5, 3, 1]))
+console.log(solution([-1, -1, -1, -1]))
+console.log(solution([100, -1, 50, -1, 75]))
+</code></pre>
+
+                <h4>Challenge 2: Count Vowels</h4>
+                <p>
+                    Write a function <code>countVowels</code> that takes a
+                    string and returns the number of vowels (<code
+                        >a, e, i, o, u</code
+                    >).
+                </p>
+
+                <pre><code class="language-jsx" role="region" aria-label="Challenge 2 starter and examples">
+function countVowels(str){
+  // TODO: implement
+}
+
+const input1 = 'Hello, World!';
+console.log(countVowels(input1)); // Output: 3
+
+const input2 = 'Counting Vowels';
+console.log(countVowels(input2)); // Output: 5
+</code></pre>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section MID_LEVEL, Lesson 001) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-MID_LEVEL-001"
+            data-lesson-title="Mid Level Skill Check"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-MID_LEVEL-001"
+            data-lesson-title="Mid Level Skill Check"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>
