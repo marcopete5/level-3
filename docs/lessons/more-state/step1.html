@@ -3,147 +3,222 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Level 3 - React State Continued - Updating State with Ternary
-            Operator (Part 1)
-        </title>
-        <link rel="stylesheet" href="styles.css" />
+        <title>Updating State</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
     </head>
     <body>
-        <header>
-            <h1>Level 3 - React State Continued</h1>
-            <h2>Updating State with Ternary Operator (Part 1)</h2>
-        </header>
-        <section
-            class="slide-container"
-            role="region"
-            aria-labelledby="lesson-content">
-            <h3>Learning Objectives</h3>
-            <p>By the end of this lesson, students will be able to:</p>
-            <ul>
-                <li>
-                    <strong>Initialize and Manage State</strong>: Demonstrate
-                    how to initialize state using the <code>useState</code> hook
-                    and manage its updates in a React component.
-                </li>
-                <li>
-                    <strong>Use the Ternary Operator for State Updates</strong>:
-                    Apply the ternary operator within a state updater function
-                    to toggle between two states based on the current state
-                    value.
-                </li>
-                <li>
-                    <strong>Pass Functions as Props</strong>: Illustrate how to
-                    pass state update functions as props to child components and
-                    use them to handle user interactions.
-                </li>
-                <li>
-                    <strong>Handle User Interactions</strong>: Create event
-                    handlers that use state update functions to respond to user
-                    interactions, such as button clicks, to update the
-                    component’s state.
-                </li>
-                <li>
-                    <strong>Apply Conditional Styling</strong>: Use dynamic
-                    class names based on the current state value to
-                    conditionally apply styles and create interactive UI
-                    elements.
-                </li>
-                <li>
-                    <strong>Create Interactive Components</strong>: Develop
-                    components that leverage state and props to create dynamic
-                    and responsive user interfaces, such as a theme toggle
-                    feature.
-                </li>
-            </ul>
-            <h3>Updating State in React: Ternary Operator</h3>
-            <p>
-                In this lesson, we explore how to manage and update state in
-                React using the <code>useState</code> hook. We use a ternary
-                operator to toggle between two states. Let’s break down how this
-                works with the provided example code.
-            </p>
-            <p>
-                The <code>useState</code> hook is essential for state management
-                in functional components. The ternary operator enables concise
-                state toggling, but improper use can cause issues. A common
-                pitfall is neglecting the functional update form, risking stale
-                state:
-            </p>
-            <pre><code class="language-jsx">
-/* Incorrect */
-function toggleTheme() {
-    setTheme(theme === 'light' ? 'dark' : 'light'); // Risks stale state
-}
-        </code></pre>
-            <p>
-                Using <code>prevTheme =></code> ensures the latest state,
-                especially during rapid updates. Another pitfall is overusing
-                ternaries for complex logic, which can obscure code. For
-                multi-state scenarios, consider a state machine or object
-                mapping.
-            </p>
-            <h4><code>App</code> Component</h4>
-            <p>
-                Here's the <code>App</code> component where we implemented the
-                state toggle functionality:
-            </p>
-            <pre><code class="language-jsx">
-import { useState } from &quot;react&quot;;
-import RandomMovie from &quot;./components/RandomMovie&quot;;
-import Navbar from &quot;./components/Navbar&quot;;
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Updating State</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="objectives-heading">
+                <h3 id="objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        <strong>Initialize and Manage State</strong>:
+                        Demonstrate how to initialize state using the
+                        <code>useState</code> hook and manage its updates in a
+                        React component.
+                    </li>
+                    <li>
+                        <strong
+                            >Use the Ternary Operator for State Updates</strong
+                        >: Apply the ternary operator within a state updater
+                        function to toggle between two states based on the
+                        current state value.
+                    </li>
+                    <li>
+                        <strong>Pass Functions as Props</strong>: Illustrate how
+                        to pass state update functions as props to child
+                        components and use them to handle user interactions.
+                    </li>
+                    <li>
+                        <strong>Handle User Interactions</strong>: Create event
+                        handlers that use state update functions to respond to
+                        user interactions, such as button clicks, to update the
+                        component’s state.
+                    </li>
+                    <li>
+                        <strong>Apply Conditional Styling</strong>: Use dynamic
+                        class names based on the current state value to
+                        conditionally apply styles and create interactive UI
+                        elements.
+                    </li>
+                    <li>
+                        <strong>Create Interactive Components</strong>: Develop
+                        components that leverage state and props to create
+                        dynamic and responsive user interfaces, such as a theme
+                        toggle feature.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/eprfHn7ScnM"
+                    title="Updating State - Lesson Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+
+            <div class="section" aria-labelledby="concepts-heading">
+                <h3 id="concepts-heading">
+                    Updating State in React: Ternary Operator
+                </h3>
+                <p>
+                    In this lesson, we explored how to manage and update state
+                    in React using the <code>useState</code> hook. We used a
+                    ternary operator to toggle between two states. Let’s break
+                    down how this works with the provided example code.
+                </p>
+
+                <h4><code>App</code> Component</h4>
+
+                <pre><code class="language-jsx">import { useState } from "react";
+import RandomMovie from "./components/RandomMovie";
+import Navbar from "./components/Navbar";
 
 function App() {
-    const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('light');
 
-    function toggleTheme() {
-        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-    }
+  function toggleTheme() {
+    setTheme(prevTheme =&gt; prevTheme === 'light' ? 'dark' : 'light');
+  }
 
-    return (
-        &lt;div className={`${theme} main`}&gt;
-            &lt;Navbar toggleTheme={toggleTheme} /&gt;
-            &lt;RandomMovie /&gt;
-        &lt;/div&gt;
-    );
+  return (
+    &lt;div className={`${theme} main`}&gt;
+      &lt;Navbar toggleTheme={toggleTheme} /&gt;
+      &lt;RandomMovie /&gt;
+    &lt;/div&gt;
+  );
 }
 
-export default App;
-        </code></pre>
-            <p>
-                A practical example is a notification toggle, illustrating state
-                and props:
-            </p>
-            <pre><code class="language-jsx">
-import { useState } from &quot;react&quot;;
+export default App;</code></pre>
 
-function Notification() {
-    const [isEnabled, setIsEnabled] = useState(true);
+                <h4><code>Navbar</code> Component</h4>
 
-    const toggleNotification = () => {
-        setIsEnabled(prev => !prev);
-    };
+                <pre><code class="language-jsx">export default function Navbar(props) {
+  const { toggleTheme } = props;
 
-    return (
-        &lt;div className={isEnabled ? 'enabled' : 'disabled'}&gt;
-            &lt;button onClick={toggleNotification}&gt;
-                {isEnabled ? 'Disable' : 'Enable'} Notifications
-            &lt;/button&gt;
-        &lt;/div&gt;
-    );
-}
-        </code></pre>
-            <p>
-                This component toggles notification visibility, similar to the
-                theme toggle, and is reusable in settings panels, demonstrating
-                state-driven UI updates.
-            </p>
-        </section>
+  return (
+    &lt;nav className="nav"&gt;
+      &lt;h1&gt;MovieBuddy&lt;/h1&gt;
+      &lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;
+    &lt;/nav&gt;
+  );
+}</code></pre>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+                <h4>Detailed Explanation</h4>
+                <ol>
+                    <li>
+                        <strong>Initializing State</strong>:
+
+                        <pre><code class="language-jsx">const [theme, setTheme] = useState('light');</code></pre>
+
+                        We initialize the <code>theme</code> state with an
+                        initial value of <code>'light'</code>.
+                        <code>setTheme</code> updates the state.
+                    </li>
+                    <li>
+                        <strong>Toggling State with a Ternary Operator</strong>:
+
+                        <pre><code class="language-jsx">function toggleTheme() {
+  setTheme(prevTheme =&gt; prevTheme === 'light' ? 'dark' : 'light');
+}</code></pre>
+
+                        The updater uses a ternary to toggle between
+                        <code>'light'</code> and <code>'dark'</code> based on
+                        the previous state.
+                    </li>
+                    <li>
+                        <strong>Passing the Function as a Prop</strong>:
+
+                        <pre><code class="language-jsx">&lt;Navbar toggleTheme={toggleTheme} /&gt;</code></pre>
+
+                        The <code>toggleTheme</code> function is passed to
+                        <code>Navbar</code>.
+                    </li>
+                    <li>
+                        <strong
+                            >Using the Function in the
+                            <code>Navbar</code> Component</strong
+                        >:
+
+                        <pre><code class="language-jsx">&lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;</code></pre>
+
+                        Clicking the button triggers the state toggle.
+                    </li>
+                    <li>
+                        <strong>Applying the Theme</strong>:
+
+                        <pre><code class="language-jsx">&lt;div className={`${theme} main`}&gt;</code></pre>
+
+                        The current theme is applied to the container for
+                        conditional styling.
+                    </li>
+                </ol>
+
+                <h4>Why Use a Ternary Operator?</h4>
+                <p>
+                    The ternary operator is a concise way to handle conditional
+                    logic directly within a state updater, making toggle logic
+                    compact and readable.
+                </p>
+
+                <h4>Summary</h4>
+                <ul>
+                    <li>Initialize state with <code>useState</code>.</li>
+                    <li>
+                        Use a ternary in the updater to toggle values based on
+                        previous state.
+                    </li>
+                    <li>
+                        Pass the updater as a prop to child components to handle
+                        interactions.
+                    </li>
+                    <li>
+                        Apply conditional class names to reflect state in the
+                        UI.
+                    </li>
+                </ul>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section MORE_REACT_STATE, Lesson 001) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-MORE_REACT_STATE-001"
+            data-lesson-title="Updating State"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-MORE_REACT_STATE-001"
+            data-lesson-title="Updating State"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
     </body>
 </html>

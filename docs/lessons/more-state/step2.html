@@ -3,173 +3,140 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Level 3 - React State Continued - Updating State with Ternary
-            Operator (Part 2)
-        </title>
-        <link rel="stylesheet" href="styles.css" />
+        <title>Conditional Rendering</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
     </head>
     <body>
-        <header>
-            <h1>Level 3 - React State Continued</h1>
-            <h2>Updating State with Ternary Operator (Part 2)</h2>
-        </header>
-        <section
-            class="slide-container"
-            role="region"
-            aria-labelledby="lesson-content">
-            <h4><code>Navbar</code> Component</h4>
-            <p>
-                Here's the <code>Navbar</code> component that uses the
-                <code>toggleTheme</code> function passed as a prop:
-            </p>
-            <pre><code class="language-jsx">
-export default function Navbar(props) {
-    const { toggleTheme } = props;
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Conditional Rendering</h1>
+                <h2>Lesson</h2>
+            </header>
 
-    return (
-        &lt;nav className="nav"&gt;
-            &lt;h1&gt;MovieBuddy&lt;/h1&gt;
-            &lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;
-        &lt;/nav&gt;
-    );
-}
-        </code></pre>
-            <p>
-                Passing <code>toggleTheme</code> as a prop exemplifies React’s
-                unidirectional data flow, keeping <code>Navbar</code> stateless
-                and reusable. A common pitfall is invoking the function
-                immediately in the event handler:
-            </p>
-            <pre><code class="language-jsx">
-/* Incorrect */
-&lt;button onClick={toggleTheme()}&gt;Toggle Theme&lt;/button&gt; // Runs on render
-        </code></pre>
-            <p>Use <code>onClick={toggleTheme}</code> to pass the reference.</p>
-            <h4>Detailed Explanation</h4>
-            <ol>
-                <li>
-                    <strong>Initializing State:</strong>
-                    <pre><code class="language-jsx">
-const [theme, setTheme] = useState('light');
-                </code></pre>
-                    <p>
-                        We initialize the <code>theme</code> state with an
-                        initial value of <code>'light'</code>.
-                        <code>setTheme</code> is the function used to update the
+            <div class="section" aria-labelledby="objectives-heading">
+                <h3 id="objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        Students will be able to conditionally render the
+                        description and rating paragraph elements by toggling
                         state.
-                    </p>
-                </li>
-                <li>
-                    <strong>Toggling State with a Ternary Operator:</strong>
-                    <pre><code class="language-jsx">
-function toggleTheme() {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-}
-                </code></pre>
-                    <p>
-                        The <code>toggleTheme</code> function updates the
-                        <code>theme</code> state using a ternary operator to
-                        switch between <code>'light'</code> and
-                        <code>'dark'</code>.
-                    </p>
-                </li>
-                <li>
-                    <strong>Passing the Function as a Prop:</strong>
-                    <pre><code class="language-jsx">
-&lt;Navbar toggleTheme={toggleTheme} /&gt;
-                </code></pre>
-                    <p>
-                        We pass the <code>toggleTheme</code> function to the
-                        <code>Navbar</code> component as a prop.
-                    </p>
-                </li>
-                <li>
-                    <strong
-                        >Using the Function in the
-                        <code>Navbar</code> Component:</strong
-                    >
-                    <pre><code class="language-jsx">
-&lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;
-                </code></pre>
-                    <p>
-                        The <code>toggleTheme</code> function is used as an
-                        <code>onClick</code> handler in <code>Navbar</code>,
-                        toggling the theme on click.
-                    </p>
-                </li>
-                <li>
-                    <strong>Applying the Theme:</strong>
-                    <pre><code class="language-jsx">
-&lt;div className={`${theme} main`}&gt;
-                </code></pre>
-                    <p>
-                        The theme class (<code>light</code> or
-                        <code>dark</code>) is dynamically applied to the main
-                        <code>div</code>.
-                    </p>
-                </li>
-            </ol>
-            <p>
-                The ternary operator’s conciseness is powerful but can lead to
-                nested complexity if overused. A practical example is a modal
-                toggle:
-            </p>
-            <pre><code class="language-jsx">
-import { useState } from &quot;react&quot;;
+                    </li>
+                    <li>
+                        Students will be able to conditionally render the
+                        details button by toggling state.
+                    </li>
+                </ul>
+            </div>
 
-function Modal() {
-    const [isOpen, setIsOpen] = useState(false);
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/gzGvFU2HUaw"
+                    title="Conditional Rendering - Lesson Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
 
-    const toggleModal = () => {
-        setIsOpen(prev => !prev);
-    };
+            <div class="section" aria-labelledby="intro-heading">
+                <h3 id="intro-heading">
+                    MovieBuddy App: Conditionally Rendering and Flipping State
+                </h3>
+                <p>
+                    In this lesson, we'll extend our MovieBuddy app to
+                    demonstrate conditionally rendering UI and flipping boolean
+                    state in React.
+                </p>
 
-    return (
-        &lt;div&gt;
-            &lt;button onClick={toggleModal}&gt;
-                {isOpen ? 'Close Modal' : 'Open Modal'}
-            &lt;/button&gt;
-            {isOpen && (
-                &lt;div className="modal"&gt;
-                    &lt;h2&gt;Modal Content&lt;/h2&gt;
-                    &lt;p&gt;This is a simple modal.&lt;/p&gt;
-                &lt;/div&gt;
-            )}
-        &lt;/div&gt;
-    );
-}
-        </code></pre>
-            <p>
-                This modal uses a ternary for button text and
-                <code>&&</code> for rendering, ideal for forms or alerts,
-                showing practical state management.
-            </p>
-            <h4>Summary</h4>
-            <p>
-                In this lesson, we demonstrated how to use a ternary operator to
-                toggle state in a React component. The key points include:
-            </p>
-            <ul>
-                <li>Initializing state with <code>useState</code>.</li>
-                <li>
-                    Using a ternary operator in the state updater function to
-                    toggle between two states.
-                </li>
-                <li>
-                    Passing the updater function as a prop to child components.
-                </li>
-                <li>
-                    Using the function to update the state based on user
-                    interactions.
-                </li>
-            </ul>
-        </section>
+                <h4>Add a <code>showDetails</code> state</h4>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+                <pre><code class="language-jsx">const [showDetails, setShowDetails] = useState(false);</code></pre>
+
+                <h4>Create a function to toggle <code>showDetails</code></h4>
+
+                <pre><code class="language-jsx">function toggleDetails() {
+  setShowDetails(prevShowDetails =&gt; !prevShowDetails);
+}</code></pre>
+
+                <h4>
+                    Conditionally render description &amp; rating and toggle
+                    button text
+                </h4>
+
+                <pre><code class="language-jsx">return (
+  &lt;div&gt;
+    &lt;h1&gt;{movies[movieIndex].title}&lt;/h1&gt;
+
+    {showDetails &amp;&amp; (
+      &lt;&gt;
+        &lt;p&gt;Description: {movies[movieIndex].description}&lt;/p&gt;
+        &lt;p&gt;Rating: {movies[movieIndex].rating}&lt;/p&gt;
+      &lt;/&gt;
+    )}
+
+    &lt;button onClick={() =&gt; nextMovie(-1)}&gt;Prev Movie&lt;/button&gt;
+    &lt;button onClick={() =&gt; nextMovie(1)}&gt;Next Movie&lt;/button&gt;
+    &lt;button onClick={getRandomMovie}&gt;Random Movie&lt;/button&gt;
+
+    &lt;button onClick={toggleDetails}&gt;
+      {showDetails ? "Hide Details" : "Show Details"}
+    &lt;/button&gt;
+  &lt;/div&gt;
+);</code></pre>
+
+                <h3>Detailed Concepts</h3>
+
+                <h4>&amp;&amp; Operation</h4>
+
+                <pre><code class="language-jsx">{condition &amp;&amp; &lt;JSXElement /&gt;}</code></pre>
+
+                <p>
+                    If <code>condition</code> is <code>true</code>, the element
+                    renders; otherwise nothing renders.
+                </p>
+
+                <h4>Ternary Operator</h4>
+
+                <pre><code class="language-jsx">condition ? &lt;TrueJSXElement /&gt; : &lt;FalseJSXElement /&gt;</code></pre>
+
+                <p>
+                    Use for toggling between two different UI elements (e.g.,
+                    button label).
+                </p>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section MORE_REACT_STATE, Lesson 002) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-MORE_REACT_STATE-002"
+            data-lesson-title="Conditional Rendering"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-MORE_REACT_STATE-002"
+            data-lesson-title="Conditional Rendering"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
     </body>
 </html>

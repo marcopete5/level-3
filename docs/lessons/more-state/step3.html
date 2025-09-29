@@ -3,90 +3,212 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Level 3 - MovieBuddy App - Conditionally Rendering and Flipping
-            State (Part 1)
-        </title>
-        <link rel="stylesheet" href="styles.css" />
+        <title>Complex State</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
     </head>
     <body>
-        <header>
-            <h1>Level 3 - MovieBuddy App</h1>
-            <h2>Conditionally Rendering and Flipping State (Part 1)</h2>
-        </header>
-        <section
-            class="slide-container"
-            role="region"
-            aria-labelledby="lesson-content">
-            <h3>Learning Objectives</h3>
-            <p>By the end of this lesson, students will be able to:</p>
-            <ul>
-                <li>
-                    Conditionally render the description and rating paragraph
-                    elements by toggling state.
-                </li>
-                <li>
-                    Conditionally render the details button by toggling state.
-                </li>
-            </ul>
-            <h3>Introduction</h3>
-            <p>
-                In this lesson, we'll extend our MovieBuddy app to demonstrate
-                the concepts of conditionally rendering state and flipping state
-                in React. These techniques are essential for creating dynamic
-                and interactive user interfaces.
-            </p>
-            <p>
-                Conditional rendering and state flipping enable responsive UIs.
-                Misuse of operators like <code>&&</code> can lead to errors,
-                such as rendering <code>undefined</code>:
-            </p>
-            <pre><code class="language-jsx">
-/* Incorrect */
-{showDetails && movies[movieIndex].description} // Crashes if undefined
-        </code></pre>
-            <p>
-                Use optional chaining
-                (<code>movies[movieIndex]?.description</code>) or checks.
-                Overusing conditionals can also clutter JSX; extract logic to
-                functions for clarity.
-            </p>
-            <h3>Key Concepts</h3>
-            <ol>
-                <li>
-                    <strong>Conditional Rendering:</strong> Displaying different
-                    content based on the state.
-                </li>
-                <li>
-                    <strong>Flipping State:</strong> Toggling a boolean state
-                    between <code>true</code> and <code>false</code>.
-                </li>
-            </ol>
-            <p>A simple toggle button illustrates these concepts:</p>
-            <pre><code class="language-jsx">
-import { useState } from &quot;react&quot;;
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Complex State</h1>
+                <h2>Lesson</h2>
+            </header>
 
-function ToggleButton() {
-    const [isActive, setIsActive] = useState(false);
+            <div class="section" aria-labelledby="objectives-heading">
+                <h3 id="objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        <strong>Manage Complex Data Types with State</strong>:
+                        Demonstrate how to manage and update complex data types,
+                        such as arrays and objects, using the
+                        <code>useState</code> hook in React.
+                    </li>
+                    <li>
+                        <strong>Lift State to Parent Components</strong>:
+                        Explain the concept of lifting state to a parent
+                        component and illustrate how to pass state and functions
+                        as props to child components for efficient state
+                        management and inter-component communication.
+                    </li>
+                    <li>
+                        <strong>Handle State Updates without Mutation</strong>:
+                        Apply best practices for updating state without mutating
+                        the original state. Use techniques such as spreading
+                        syntax to create new arrays or objects when updating
+                        state.
+                    </li>
+                    <li>
+                        <strong>Pass Functions as Props</strong>: Show how to
+                        define functions in a parent component and pass them as
+                        props to child components. Use these functions to manage
+                        state updates and trigger actions based on user
+                        interactions.
+                    </li>
+                    <li>
+                        <strong>Render Dynamic Content</strong>: Use the
+                        <code>map</code> method to dynamically render a list of
+                        elements based on an array of data stored in state.
+                        Ensure that the UI updates in response to changes in
+                        state.
+                    </li>
+                    <li>
+                        <strong>Dynamically Change Styles</strong>: Manage and
+                        update styles dynamically using state. Implement
+                        functionality to change component styles in response to
+                        user interactions or state changes.
+                    </li>
+                    <li>
+                        <strong
+                            >Create Interactive and Responsive
+                            Components</strong
+                        >: Develop components that leverage state and props to
+                        build interactive and responsive user interfaces,
+                        ensuring that the application remains dynamic and
+                        user-friendly.
+                    </li>
+                </ul>
+            </div>
 
-    return (
-        &lt;button onClick={() => setIsActive(prev => !prev)}&gt;
-            {isActive ? 'Deactivate' : 'Activate'}
-        &lt;/button&gt;
-    );
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/963Aw7OPxv0"
+                    title="Complex State - Lesson Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+
+            <div class="section" aria-labelledby="complex-state-heading">
+                <h3 id="complex-state-heading">
+                    Complex Data Types with State in React
+                </h3>
+                <p>
+                    In this lesson we manage complex data with state by adding
+                    favorite-movie functionality and dynamic styles. We also
+                    demonstrate lifting state to a parent component and mapping
+                    arrays to render UI.
+                </p>
+
+                <h4>Managing State in the Parent Component</h4>
+
+                <pre><code class="language-jsx">import { useState } from "react";
+import Navbar from "./components/Navbar";
+import RandomMovie from "./components/RandomMovie";
+import FavoriteMovie from "./components/FavoriteMovie";
+
+function App() {
+  const [theme, setTheme] = useState("light");
+  const [favMovies, setFavMovies] = useState([]);
+
+  function toggleTheme() {
+    setTheme(prev =&gt; (prev === "light" ? "dark" : "light"));
+  }
+
+  function addMovie(newMovie) {
+    // array update without mutation
+    setFavMovies(prev =&gt; [...prev, newMovie]);
+  }
+
+  return (
+    &lt;div className={`${theme} main`}&gt;
+      &lt;Navbar toggleTheme={toggleTheme} /&gt;
+      &lt;RandomMovie addMovie={addMovie} /&gt;
+      &lt;FavoriteMovie favMovies={favMovies} /&gt;
+    &lt;/div&gt;
+  );
 }
-        </code></pre>
-            <p>
-                This button toggles state and text, useful for
-                enabling/disabling features, showing conditional rendering
-                basics.
-            </p>
-        </section>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+export default App;</code></pre>
+
+                <h4>Managing Objects with State (Dynamic Styles)</h4>
+
+                <pre><code class="language-jsx">import { useState } from "react";
+
+export default function FavoriteMovie({ favMovies }) {
+  const [movieStyles, setMovieStyles] = useState({
+    backgroundColor: "red",
+    color: "white",
+    border: "1px solid black",
+    padding: "12px",
+    borderRadius: "8px",
+    marginBottom: "12px"
+  });
+
+  function changeTheme() {
+    // object update without mutation
+    setMovieStyles(prev =&gt; ({
+      ...prev,
+      backgroundColor: "lightBlue",
+      color: "black"
+    }));
+  }
+
+  const movieElements = favMovies.map((movie, i) =&gt; (
+    &lt;div style={movieStyles} key={i}&gt;
+      &lt;h1&gt;{movie.title}&lt;/h1&gt;
+      &lt;p&gt;{movie.description}&lt;/p&gt;
+      &lt;p&gt;Rating: {movie.rating}&lt;/p&gt;
+      &lt;button onClick={changeTheme}&gt;Change theme&lt;/button&gt;
+    &lt;/div&gt;
+  ));
+
+  return &lt;section&gt;{movieElements}&lt;/section&gt;;
+}</code></pre>
+
+                <h4>
+                    Passing Functions as Props (Child triggers Parent state
+                    updates)
+                </h4>
+
+                <pre><code class="language-jsx">import movies from "../movies";
+
+export default function RandomMovie({ addMovie }) {
+  function addCurrentMovieToFavs() {
+    const randomIndex = Math.floor(Math.random() * movies.length);
+    const current = movies[randomIndex];
+    addMovie(current); // call parent's updater via props
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;button onClick={addCurrentMovieToFavs}&gt;Add Random Favorite&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section MORE_REACT_STATE, Lesson 003) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-MORE_REACT_STATE-003"
+            data-lesson-title="Complex State"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-MORE_REACT_STATE-003"
+            data-lesson-title="Complex State"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
     </body>
 </html>

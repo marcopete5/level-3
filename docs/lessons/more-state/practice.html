@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>UseState Practice - Assignment</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">UseState Practice - Assignment</h1>
+                <h2>Assignment</h2>
+            </header>
+
+            <div class="section" aria-labelledby="objectives-heading">
+                <h3 id="objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        Practice updating React state with the
+                        <code>useState</code> hook.
+                    </li>
+                    <li>
+                        Toggle boolean and string state values and apply
+                        conditional UI updates.
+                    </li>
+                    <li>
+                        Update arrays and objects in state without mutation.
+                    </li>
+                    <li>Verify state updates via expected console outputs.</li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="objective-overview">
+                <h3 id="objective-overview">Objective</h3>
+                <p>
+                    The goal of this assignment is to practice updating state in
+                    React. This is a fundamental skill for managing and
+                    manipulating data within your components. By completing this
+                    exercise, you will gain confidence in using the
+                    <code>useState</code> hook to handle various state updates.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="instructions-heading">
+                <h3 id="instructions-heading">Instructions</h3>
+
+                <h4>1. Clone the Repository</h4>
+
+                <pre><code class="language-bash">git clone https://github.com/VSchool/useState-practice.git</code></pre>
+
+                <h4>2. Remove the .git Directory</h4>
+
+                <pre><code class="language-bash">cd useState-practice
+rm -rf .git</code></pre>
+
+                <h4>3. Install Dependencies</h4>
+
+                <pre><code class="language-bash">npm install</code></pre>
+
+                <h4>4. Implement the Following State Updates</h4>
+                <ol>
+                    <li>
+                        <strong>Set a New Color:</strong> Pass in a new color of
+                        your choosing in place of the old one. We don’t care
+                        what the previous color was.
+                        <em>Expected Output:</em> The console should log the new
+                        color you chose (e.g., "blue").
+                    </li>
+                    <li>
+                        <strong>Toggle Between Two Colors:</strong> Toggle
+                        between the colors pink and blue. If the current color
+                        is pink, set it to blue. If it's currently blue, set it
+                        back to pink. <em>Expected Output:</em> Console
+                        alternates between "pink" and "blue".
+                    </li>
+                    <li>
+                        <strong>Add a New Person to the Array:</strong> Add a
+                        new person object to the <code>people</code> array in
+                        state (must include <code>firstName</code> and
+                        <code>lastName</code>). Final array should contain two
+                        person objects. <em>Expected Output:</em>
+                        <code
+                            >[ { firstName: "John", lastName: "Smith" }, {
+                            firstName: "Jane", lastName: "Doe" } ]</code
+                        >
+                    </li>
+                    <li>
+                        <strong>Multiply the Number by 2:</strong> Update
+                        numeric state to be doubled. <em>Expected Output:</em>
+                        <code>8</code> (if initial state was <code>4</code>).
+                    </li>
+                    <li>
+                        <strong>Add a New Property to an Object:</strong> Add an
+                        <code>age</code> property to the existing
+                        <code>person</code> state object (do not overwrite other
+                        properties). <em>Expected Output:</em>
+                        <code
+                            >{ firstName: "John", lastName: "Smith", age: 30
+                            }</code
+                        >
+                    </li>
+                    <li>
+                        <strong>Fix an Incorrect State Update:</strong> Correct
+                        the following so it adds a new color to the
+                        <code>colors</code> array:
+
+                        <pre><code class="language-jsx">const [colors, setColors] = useState(["pink", "blue"]);
+
+setColors("green"); // Fix this state update</code></pre>
+
+                        <em>Expected Output:</em>
+                        <code>["pink", "blue", "green"]</code>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section" aria-labelledby="verify-heading">
+                <h3 id="verify-heading">Verify Your Work</h3>
+                <p>
+                    Check the browser console output. The assignment is
+                    considered correct when the
+                    <code>console.log</code> statements in the code display the
+                    expected data for each update described above.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="reason-heading">
+                <h3 id="reason-heading">Reason for Practice</h3>
+                <p>
+                    Understanding how to update state is crucial for building
+                    interactive and dynamic React applications. This exercise
+                    covers common state-management scenarios: setting new
+                    values, toggling values, adding items to arrays, multiplying
+                    numerical state, updating objects without overwriting
+                    existing properties, and correctly updating arrays.
+                </p>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer">
+                <h3>
+                    <a
+                        href="https://marcopete5.github.io/level-3/assignments/useState-practice/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >DEMO OF COMPLETED ASSIGNMENT</a
+                    >
+                </h3>
+            </footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section MORE_REACT_STATE, Lesson 004) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-MORE_REACT_STATE-004"
+            data-lesson-title="UseState Practice - Assignment"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-MORE_REACT_STATE-004"
+            data-lesson-title="UseState Practice - Assignment"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>
