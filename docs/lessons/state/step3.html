@@ -3,269 +3,257 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Event Handling: Syntax and Examples</title>
+        <title>Our Current Conundrum</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
         <link
-            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
-            rel="stylesheet" />
-        <link rel="stylesheet" href="styles.css" />
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
-            rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
     </head>
     <body>
-        <h1>Event Handling: Syntax and Examples</h1>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Our Current Conundrum</h1>
+                <h2>Lesson</h2>
+            </header>
 
-        <h2>Overview</h2>
-        <p>
-            This section builds on the basics of event handling by exploring the
-            syntax for attaching handlers in JSX, common event types, and
-            practical examples tailored to MovieBuddy. We’ll learn how to write
-            robust event handlers that integrate with state to create a seamless
-            user experience, such as clicking buttons to select random movies or
-            manage favorites.
-        </p>
+            <div class="section" aria-labelledby="objectives-heading">
+                <h3 id="objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        <strong>Understand the Concept of State in React</strong
+                        >: Explain what state is, its key features (mutability,
+                        locality, and its ability to trigger re-renders), and
+                        how it differs from props.
+                    </li>
+                    <li>
+                        <strong
+                            >Utilize the <code>useState</code> Hook in
+                            Functional Components</strong
+                        >: Describe the syntax and usage of the
+                        <code>useState</code> hook, including how to initialize
+                        state, update state using the state update function, and
+                        apply array destructuring to manage state variables and
+                        update functions.
+                    </li>
+                    <li>
+                        <strong>Implement State Updates</strong>: Demonstrate
+                        how to update state using the state update function,
+                        including how to update state based on the previous
+                        state by passing a function to the state update
+                        function.
+                    </li>
+                    <li>
+                        <strong>Integrate State into React Components</strong>:
+                        Develop React components that use state to manage
+                        dynamic data, including initializing state, updating
+                        state in response to events, and rendering the current
+                        state in the UI.
+                    </li>
+                    <li>
+                        <strong>Recognize the Benefits of State in React</strong
+                        >: Articulate the advantages of using state in React,
+                        such as encapsulated data management, reactive UI
+                        updates, and the declarative nature of state changes
+                        that enhance code readability and maintainability.
+                    </li>
+                </ul>
+            </div>
 
-        <h2>Learning Objectives</h2>
-        <ul>
-            <li>
-                <strong>Master JSX Event Syntax</strong>: Attach handlers to JSX
-                elements using camelCase (e.g.,
-                <code class="language-javascript"
-                    ><span class="token-keyword">onClick</span></code
-                >) and pass functions correctly.
-            </li>
-            <li>
-                <strong>Explore Common Events</strong>: Understand events like
-                <code class="language-javascript"
-                    ><span class="token-keyword">onClick</span></code
-                >,
-                <code class="language-javascript"
-                    ><span class="token-keyword">onChange</span></code
-                >,
-                <code class="language-javascript"
-                    ><span class="token-keyword">onSubmit</span></code
-                >, and their applications in MovieBuddy.
-            </li>
-            <li>
-                <strong>Write Effective Handlers</strong>: Create concise,
-                reusable handler functions that integrate with state updates.
-            </li>
-            <li>
-                <strong>Handle Event Objects</strong>: Use synthetic event
-                properties (e.g.,
-                <code class="language-javascript">event.target</code>) to access
-                user input.
-            </li>
-            <li>
-                <strong>Apply Best Practices</strong>: Organize handlers for
-                maintainability and avoid common pitfalls.
-            </li>
-        </ul>
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/5T-Hq6JTBRA"
+                    title="Our Current Conundrum - React State"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=5T-Hq6JTBRA&list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=13&pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
 
-        <h2>JSX Event Syntax</h2>
-        <p>
-            In React, event handlers are attached to JSX elements using
-            camelCase attributes. The handler is a function reference, not a
-            function call:
-        </p>
-        <pre><code class="language-javascript">import React from 'react';
+            <div class="section" aria-labelledby="what-is-state-heading">
+                <h3 id="what-is-state-heading">What is State in React?</h3>
 
-function App() {
-  const handleClick = () => {
-    alert('Button clicked!');
-  };
+                <h4>Introduction</h4>
+                <ul>
+                    <li>
+                        <strong>State</strong> is a built-in object used to
+                        contain data or information about the component.
+                    </li>
+                    <li>
+                        State is managed within the component and can change
+                        over time.
+                    </li>
+                    <li>
+                        React re-renders the component whenever the state
+                        changes, providing an interactive and dynamic user
+                        experience.
+                    </li>
+                </ul>
 
-  return (
-    &lt;div&gt;
-      &lt;button onClick={handleClick}&gt;Click Me&lt;/button&gt;
-    &lt;/div&gt;
-  );
-}
+                <h4>Key Features of State</h4>
+                <ul>
+                    <li>
+                        <strong>Mutable</strong>: Unlike props, state can
+                        change.
+                    </li>
+                    <li>
+                        <strong>Local</strong>: State is local to the component
+                        and not accessible to other components.
+                    </li>
+                    <li>
+                        <strong>Triggers Re-render</strong>: Any update to the
+                        state triggers a re-render of the component to reflect
+                        the new state.
+                    </li>
+                </ul>
+            </div>
 
-export default App;
+            <div class="section" aria-labelledby="usestate-heading">
+                <h3 id="usestate-heading">The <code>useState</code> Hook</h3>
+                <p>
+                    <code>useState</code> is a Hook that allows you to add state
+                    to functional components.
+                </p>
+
+                <h4>Syntax</h4>
+
+                <pre><code class="language-jsx" role="region" aria-label="useState syntax">
+const [stateVariable, setStateFunction] = useState(initialValue);
 </code></pre>
-        <p>Key points:</p>
-        <ul>
-            <li>
-                <code class="language-javascript">onClick={handleClick}</code>
-                passes the function reference.
-            </li>
-            <li>
-                <code class="language-javascript">onClick={handleClick()}</code>
-                would call the function on render, causing bugs.
-            </li>
-            <li>
-                Handlers can access a synthetic
-                <code class="language-javascript">event</code> object for
-                details like
-                <code class="language-javascript">event.target</code>.
-            </li>
-        </ul>
 
-        <h2>Common Event Types</h2>
-        <p>
-            React supports a wide range of events, mirroring HTML events but
-            with camelCase naming:
-        </p>
-        <ul>
-            <li>
-                <code class="language-javascript"
-                    ><span class="token-keyword">onClick</span></code
-                >: Triggers on mouse clicks (e.g., selecting a random movie).
-            </li>
-            <li>
-                <code class="language-javascript"
-                    ><span class="token-keyword">onChange</span></code
-                >: Triggers on input changes (e.g., future search feature).
-            </li>
-            <li>
-                <code class="language-javascript"
-                    ><span class="token-keyword">onSubmit</span></code
-                >: Triggers on form submission (e.g., submitting a movie
-                rating).
-            </li>
-            <li>
-                <code class="language-javascript"
-                    ><span class="token-keyword">onMouseEnter</span></code
-                >/<code class="language-javascript"
-                    ><span class="token-keyword">onMouseLeave</span></code
-                >: Triggers on hover (e.g., showing movie details).
-            </li>
-            <li>
-                <code class="language-javascript"
-                    ><span class="token-keyword">onKeyDown</span></code
-                >/<code class="language-javascript"
-                    ><span class="token-keyword">onKeyUp</span></code
-                >/<code class="language-javascript"
-                    ><span class="token-keyword">onKeyPress</span></code
-                >: Triggers on keyboard input (e.g., navigating movies with
-                arrows).
-            </li>
-        </ul>
+                <ul>
+                    <li>
+                        <code>stateVariable</code>: The current state value.
+                    </li>
+                    <li>
+                        <code>setStateFunction</code>: A function that updates
+                        the state.
+                    </li>
+                    <li>
+                        <code>initialValue</code>: The initial value of the
+                        state.
+                    </li>
+                </ul>
 
-        <h2>MovieBuddy Example</h2>
-        <p>
-            Here’s a button to select a random movie, integrating with state
-            (previewing later concepts):
-        </p>
-        <pre><code class="language-javascript">import React, { useState } from 'react';
-import movies from './movies';
+                <h4>Array Destructuring with <code>useState</code></h4>
 
-function RandomMovie() {
-  const [movieIndex, setMovieIndex] = useState(0);
-
-  const handleRandomClick = () => {
-    const randomIndex = Math.floor(Math.random() * movies.length);
-    setMovieIndex(randomIndex);
-  };
-
-  return (
-    &lt;div&gt;
-      &lt;button onClick={handleRandomClick}&gt;Get Random Movie&lt;/button&gt;
-      &lt;h2&gt;{movies[movieIndex].title}&lt;/h2&gt;
-    &lt;/div&gt;
-  );
-}
+                <pre><code class="language-jsx" role="region" aria-label="useState destructuring example">
+const [count, setCount] = useState(0);
 </code></pre>
-        <p>
-            This handler updates the movie index, which we’ll explore fully in
-            state-focused steps.
-        </p>
 
-        <h2>Handling Event Objects</h2>
-        <p>
-            Synthetic events provide properties like
-            <code class="language-javascript">event.target</code>. Example for a
-            potential search feature:
-        </p>
-        <pre><code class="language-javascript">function MovieSearch() {
-  const handleInputChange = (event) => {
-    console.log('Search query:', event.target.value);
-  };
+                <ul>
+                    <li>
+                        <code>count</code>: Current state value, initially set
+                        to 0.
+                    </li>
+                    <li>
+                        <code>setCount</code>: Function to update
+                        <code>count</code>.
+                    </li>
+                </ul>
+            </div>
 
-  return &lt;input type="text" onChange={handleInputChange} placeholder="Search movies..." /&gt;;
-}
+            <div class="section" aria-labelledby="updating-state-heading">
+                <h3 id="updating-state-heading">Updating State</h3>
+
+                <p>Use the state update function to change the state.</p>
+
+                <pre><code class="language-jsx" role="region" aria-label="Direct state update">
+setCount(newValue);
 </code></pre>
-        <p>
-            This logs the user’s input, which could filter movies in a future
-            iteration.
-        </p>
 
-        <h2>Analogy</h2>
-        <p>
-            Event handlers are like movie theater ushers. When a customer (user)
-            performs an action (event, like pressing a button), the usher
-            (handler) responds by guiding them to their seat (updating the UI or
-            state). The usher follows a clear protocol (synthetic event system),
-            ensuring every customer’s request is handled consistently,
-            regardless of the theater’s setup (browser).
-        </p>
+                <p>
+                    State updates are asynchronous and batched for performance.
+                </p>
 
-        <h2>Pitfall</h2>
-        <p>
-            Calling a handler function directly in JSX causes it to run on
-            render:
-        </p>
-        <pre><code class="language-javascript">// Incorrect
-&lt;button onClick={handleClick()}&gt;Click Me&lt;/button&gt; // Runs immediately
+                <h4>Using Previous State</h4>
 
-// Correct
-&lt;button onClick={handleClick}&gt;Click Me&lt;/button&gt; // Runs on click
+                <pre><code class="language-jsx" role="region" aria-label="Functional state update with previous value">
+setCount(prevCount =&gt; prevCount + 1);
 </code></pre>
-        <p>
-            This mistake can trigger unintended actions or infinite loops if
-            state is updated.
-        </p>
+            </div>
 
-        <h2>Best Practices</h2>
-        <ul>
-            <li>
-                Use descriptive handler names (e.g.,
-                <code class="language-javascript">handleRandomClick</code>).
-            </li>
-            <li>Define handlers outside JSX for clarity and performance.</li>
-            <li>
-                Pass parameters via arrow functions if needed:
-                <code class="language-javascript"
-                    >onClick={() => handleAction(param)}</code
-                >.
-            </li>
-        </ul>
+            <div class="section" aria-labelledby="example-usage-heading">
+                <h3 id="example-usage-heading">Example Usage</h3>
 
-        <div class="exercise">
-            <strong>Quick Exercise (10 min):</strong> Create a JSX snippet with
-            a button that logs “Random Movie Selected” when clicked. Then,
-            sketch a MovieBuddy handler to add a movie to favorites. Share with
-            a partner.
-            <p><strong>Possible answers:</strong></p>
-            <ul>
-                <li>
-                    Random button:
-                    <pre><code class="language-javascript">function RandomMovie() {
-  const handleClick = () => {
-    console.log('Random Movie Selected');
-  };
-  return &lt;button onClick={handleClick}&gt;Get Random Movie&lt;/button&gt;;
-}
+                <h4>1. Initial State</h4>
+                <pre><code class="language-jsx" role="region" aria-label="Initial state example">
+const [message, setMessage] = useState("Hello, World!");
 </code></pre>
-                </li>
-                <li>
-                    Favorites handler:
-                    <pre><code class="language-javascript">const handleAddFavorite = () => {
-  setFavorites([...favorites, movies[movieIndex]]);
+
+                <h4>2. Updating State</h4>
+                <pre><code class="language-jsx" role="region" aria-label="Update function example">
+const updateMessage = () =&gt; {
+  setMessage("Hello, React!");
 };
 </code></pre>
-                </li>
-            </ul>
-        </div>
 
-        <h2>Next Steps</h2>
-        <p>
-            Next, we’ll explore the movie dataset powering MovieBuddy, learning
-            how to structure and access data for random selection and favorites
-            management.
-        </p>
+                <h4>3. Rendering State</h4>
+                <pre><code class="language-jsx" role="region" aria-label="Rendering state with JSX">
+return (
+  &lt;div&gt;
+    &lt;p&gt;{message}&lt;/p&gt;
+    &lt;button onClick={updateMessage}&gt;Update Message&lt;/button&gt;
+  &lt;/div&gt;
+);
+</code></pre>
+            </div>
+
+            <div class="section" aria-labelledby="benefits-heading">
+                <h3 id="benefits-heading">Benefits of Using State</h3>
+                <ul>
+                    <li>
+                        <strong>Encapsulated</strong>: Keeps data management
+                        within the component.
+                    </li>
+                    <li>
+                        <strong>Reactive UI</strong>: Automatically re-renders
+                        the UI to reflect the latest state.
+                    </li>
+                    <li>
+                        <strong>Declarative</strong>: Makes it easier to reason
+                        about the UI and state changes.
+                    </li>
+                </ul>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section REACT_STATE, Lesson 003) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_STATE-003"
+            data-lesson-title="Our Current Conundrum"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_STATE-003"
+            data-lesson-title="Our Current Conundrum"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
     </body>
 </html>

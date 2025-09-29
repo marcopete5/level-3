@@ -1,124 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Introduction to State in React</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
-</head>
-<body>
-  <h1>Introduction to State in React</h1>
-  
-  <h2>Overview</h2>
-  <p>State is the heart of React’s interactivity, enabling components to manage dynamic data and respond to user actions. In MovieBuddy, state will store the current movie, favorites list, and UI conditions, making the app responsive and engaging. This section introduces state’s core concepts, its differences from props, and its role in building dynamic applications.</p>
-  
-  <h2>Learning Objectives</h2>
-  <ul>
-    <li><strong>Understand State’s Role</strong>: Explain state’s mutability, locality, and re-rendering behavior, and how it differs from props.</li>
-    <li><strong>Prepare for useState</strong>: Set the stage for using the <code class="language-javascript"><span class="token-keyword">useState</span></code> hook to manage state in functional components.</li>
-    <li><strong>Integrate State in MovieBuddy</strong>: Identify state needs for random movie selection and favorites management.</li>
-    <li><strong>Recognize State Benefits</strong>: Articulate how state enables encapsulated, reactive, and declarative UIs.</li>
-    <li><strong>Compare State and Props</strong>: Understand when to use state vs. props in component design.</li>
-  </ul>
-  
-  <h2>What is State in React?</h2>
-  <p>State is a mutable object that stores component data, such as user inputs, UI conditions, or app data like MovieBuddy’s current movie. When state changes, React automatically re-renders the component to reflect the new data. State is:</p>
-  <ul>
-    <li><strong>Mutable</strong>: Can be updated, unlike props which are read-only.</li>
-    <li><strong>Local</strong>: Scoped to the component, inaccessible to others unless passed explicitly.</li>
-    <li><strong>Reactive</strong>: Triggers re-renders to keep the UI in sync with data.</li>
-  </ul>
-  
-  <h2>State vs. Props</h2>
-  <p>State and props both hold data, but serve different purposes:</p>
-  <ul>
-    <li><strong>State</strong>: Internal, mutable, managed by the component (e.g., current movie index).</li>
-    <li><strong>Props</strong>: External, immutable, passed from parent components (e.g., movie data passed to a display component).</li>
-  </ul>
-  <pre><code class="language-javascript">function MovieDisplay({ movie }) { // Props
-  const [isFavorite, setIsFavorite] = useState(false); // State
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Changing State</title>
 
-  return (
-    <div>
-      <h2>{movie.title}</h2>
-      <button onClick={() => setIsFavorite(!isFavorite)}>
-        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-      </button>
-    </div>
-  );
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Changing State</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="objectives-heading">
+                <h3 id="objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        <strong
+                            >Understand the Role of State Updater
+                            Functions</strong
+                        >: Explain how to use state updater functions, such as
+                        <code>setMovieIndex</code>, with
+                        <code>useState</code> to manage and update component
+                        state based on the previous state value.
+                    </li>
+                    <li>
+                        <strong>Implement State-Based Calculations</strong>:
+                        Demonstrate how to calculate a new state value using the
+                        previous state, including handling edge cases such as
+                        wrapping around in a circular list (e.g., navigating
+                        through a movie list).
+                    </li>
+                    <li>
+                        <strong>Handle Edge Cases in State Updates</strong>:
+                        Identify and address common edge cases when updating
+                        state, such as ensuring indices stay within valid bounds
+                        (e.g., wrapping around from the beginning to the end of
+                        an array).
+                    </li>
+                    <li>
+                        <strong>Apply Asynchronous State Updates</strong>:
+                        Describe the importance of using the previous state
+                        value to calculate new state, especially in scenarios
+                        where state updates may be batched or asynchronous.
+                    </li>
+                    <li>
+                        <strong>Create Robust State Management Logic</strong>:
+                        Develop state management functions that efficiently
+                        handle dynamic state changes and maintain the integrity
+                        of the component’s state, ensuring a smooth and
+                        predictable user experience.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/2eJmGRoD0yc"
+                    title="Changing State - React useState updater & edge cases"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=2eJmGRoD0yc&list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=15&t=2s&pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="updating-state-heading">
+                <h3 id="updating-state-heading">
+                    Updating State in React: <code>nextMovie</code> Function
+                    Breakdown
+                </h3>
+                <p>
+                    In this lesson, we focused on managing and updating state in
+                    React using the <code>useState</code> hook. One key part of
+                    our example was the <code>nextMovie</code> function, which
+                    handles navigating through a list of movies.
+                </p>
+
+                <h4><code>nextMovie</code> Function</h4>
+                <pre><code class="language-jsx" role="region" aria-label="nextMovie state updater">
+function nextMovie(num) {
+  setMovieIndex(prevMovieIndex =&gt; {
+    const newIndex = prevMovieIndex + num;
+    if (newIndex &lt; 0) {
+      return movies.length - 1;
+    } else if (newIndex === movies.length) {
+      return 0;
+    } else {
+      return newIndex;
+    }
+  });
 }
 </code></pre>
-  <p>Props provide static data; state handles dynamic changes within the component.</p>
-  
-  <h2>State in MovieBuddy</h2>
-  <p>MovieBuddy requires state for:</p>
-  <ul>
-    <li><strong>Current Movie</strong>: Store the index or object of the displayed movie.</li>
-    <li><strong>Favorites List</strong>: Maintain an array of favorite movies.</li>
-    <li><strong>UI States</strong>: Track conditions like “is loading” or “error” for future enhancements.</li>
-  </ul>
-  
-  <h2>Benefits of State</h2>
-  <ul>
-    <li><strong>Encapsulated</strong>: Keeps data management within the component, reducing complexity.</li>
-    <li><strong>Reactive UI</strong>: Automatically updates the UI when state changes.</li>
-    <li><strong>Declarative</strong>: Simplifies reasoning about UI changes, as state updates directly drive rendering.</li>
-  </ul>
-  
-  <h2>Analogy</h2>
-  <p>State is like a movie theater’s digital marquee. The marquee (component) displays the current movie (state). When the theater manager updates the movie (state change), the marquee automatically refreshes (re-render) to show the new title. The marquee doesn’t rely on external instructions (props) to change; it manages its own display internally.</p>
-  
-  <h2>Pitfall</h2>
-  <p>Directly modifying state prevents re-renders and causes bugs:</p>
-  <pre><code class="language-javascript">// Incorrect
-const [movies, setMovies] = useState([]);
-movies.push(newMovie); // No re-render
 
-// Correct
-setMovies([...movies, newMovie]); // Triggers re-render
-</code></pre>
-  <p>Always use the state updater function to ensure React detects changes and updates the UI.</p>
-  
-  <h2>Getting Started with State</h2>
-  <p>Here’s a simple state example for MovieBuddy’s favorite toggle:</p>
-  <pre><code class="language-javascript">import { useState } from 'react';
+                <h4>Detailed Explanation</h4>
+                <ol>
+                    <li>
+                        <strong>Updater Function</strong>: Using
+                        <code>setMovieIndex(prev =&gt; ...)</code> guarantees
+                        your update is calculated from the most recent state
+                        value.
+                    </li>
+                    <li>
+                        <strong>Calculating the New Index</strong>:
+                        <code>const newIndex = prevMovieIndex + num;</code>
+                        moves forward when <code>num</code> is
+                        <code>1</code> and backward when <code>num</code> is
+                        <code>-1</code>.
+                    </li>
+                    <li>
+                        <strong>Handling Edge Cases</strong>:
+                        <ul>
+                            <li>
+                                <em>Negative index</em>: wrap to the last item
+                                (<code>movies.length - 1</code>).
+                            </li>
+                            <li>
+                                <em>Index equal to length</em>: wrap to the
+                                first item (<code>0</code>).
+                            </li>
+                            <li>
+                                <em>Otherwise</em>: use the computed
+                                <code>newIndex</code>.
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
 
-function MovieCard() {
-  const [isFavorite, setIsFavorite] = useState(false);
+                <h4>Why This Approach?</h4>
+                <p>
+                    React may batch updates. Computing the next value from the
+                    previous state avoids race conditions and ensures
+                    consistent, predictable updates.
+                </p>
+            </div>
 
-  return (
-    <div>
-      <h2>Sample Movie</h2>
-      <button onClick={() => setIsFavorite(!isFavorite)}>
-        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-      </button>
-    </div>
-  );
-}
-</code></pre>
-  <p>This demonstrates state’s role in tracking user preferences, which we’ll expand in later steps.</p>
-  
-  <div class="exercise">
-    <strong>Quick Exercise (10 min):</strong> Discuss with a partner: How could state track a movie’s favorite status in MovieBuddy? Write a JSX snippet to toggle a favorite button. Share your idea.
-    <p><strong>Possible answers:</strong></p>
-    <ul>
-      <li>Track favorite status:
-        <pre><code class="language-javascript">const [isFavorite, setIsFavorite] = useState(false);
-<button onClick={() => setIsFavorite(!isFavorite)}>
-  {isFavorite ? 'Unfavorite' : 'Favorite'}
-</button>
-</code></pre>
-      </li>
-      <li>Use state to add a movie to a favorites array.</li>
-      <li>Display a star icon that changes color when favorited.</li>
-    </ul>
-  </div>
-  
-  <h2>Next Steps</h2>
-  <p>Next, we’ll introduce the <code class="language-javascript"><span class="token-keyword">useState</span></code> hook, learning how to declare and update state to make MovieBuddy’s features dynamic.</p>
-</body>
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section REACT_STATE, Lesson 005) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_STATE-005"
+            data-lesson-title="Changing State"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_STATE-005"
+            data-lesson-title="Changing State"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
 </html>

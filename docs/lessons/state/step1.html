@@ -3,274 +3,136 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Introduction to MovieBuddy and Challenge</title>
+        <title>Moviebuddy App Setup</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
         <link
-            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
-            rel="stylesheet" />
-        <link rel="stylesheet" href="styles.css" />
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
-            rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
     </head>
     <body>
-        <h1>Introduction to MovieBuddy and Challenge</h1>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Moviebuddy App Setup</h1>
+                <h2>Lesson</h2>
+            </header>
 
-        <h2>Overview</h2>
-        <p>
-            In thissection, we'll build the MovieBuddy app, which allows users
-            to:
-        </p>
-        <ul>
-            <li>
-                Get a random movie from a dataset - helping users discover new
-                films they might not have considered
-            </li>
-            <li>
-                Create a favorites list - allowing users to save movies they're
-                interested in watching
-            </li>
-            <li>
-                Add or delete movies from the favorites list - giving users
-                control over their personalized collection
-            </li>
-        </ul>
-        <p>
-            The goal is to master <strong>state</strong>, a core React feature
-            for dynamic UIs. By the end of this section, you'll understand how
-            state transforms static components into interactive applications
-            that respond to user input and maintain data between renders.
-        </p>
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/6_qgBNm_iBw"
+                    title="Moviebuddy App Setup"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=6_qgBNm_iBw&list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=11&pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
 
-        <h2>Key Concepts</h2>
-        <ul>
-            <li>
-                <strong>State Management</strong>: State is a mutable object
-                storing component data, triggering re-renders when updated.
-                Unlike regular variables that don't cause visual updates, state
-                changes automatically refresh the UI to reflect new information.
-            </li>
-            <li>
-                <strong>Random Movie Selection</strong>: Use state to display a
-                randomly selected movie. We'll implement a feature to pick a
-                movie from our dataset, store it in state, and display it to the
-                user.
-            </li>
-            <li>
-                <strong>Favorites List</strong>: Manage a list of favorite
-                movies with state. We'll learn how to maintain and update arrays
-                in state, adding and removing items as users interact with the
-                application.
-            </li>
-            <li>
-                <strong>Component Architecture</strong>: Learn how to structure
-                your application with reusable components that maintain their
-                own state or receive data from parent components.
-            </li>
-            <li>
-                <strong>React Hooks</strong>: Understand how
-                <code class="language-javascript"
-                    ><span class="token-keyword">useState</span></code
-                >
-                allows functional components to use state, replacing the need
-                for class components.
-            </li>
-        </ul>
-
-        <h2>Understanding State in React</h2>
-        <p>
-            State in React represents data that changes over time in response to
-            events or user interactions. When state changes:
-        </p>
-        <ol>
-            <li>React re-renders the component</li>
-            <li>The UI updates to reflect the new state</li>
-            <li>The component maintains this state between renders</li>
-        </ol>
-        <p>
-            State provides the essential mechanism for creating dynamic,
-            interactive web applications that respond to user actions.
-        </p>
-
-        <h2>The MovieBuddy State Requirements</h2>
-        <p>Our MovieBuddy app will need several pieces of state:</p>
-        <ul>
-            <li>
-                A state variable to store the currently displayed random movie
-            </li>
-            <li>A state array to store the user's list of favorite movies</li>
-            <li>
-                Potentially additional state for UI features like loading
-                indicators or error messages
-            </li>
-        </ul>
-
-        <h2>Challenge</h2>
-        <ol>
-            <li>
-                Create a new Vite application using the command:
-                <code class="language-javascript"
-                    >npm create vite@latest moviebuddy --template react</code
-                >
-            </li>
-            <li>
-                Navigate to your project directory:
-                <code class="language-javascript">cd moviebuddy</code>
-            </li>
-            <li>
-                Install dependencies:
-                <code class="language-javascript">npm install</code>
-            </li>
-            <li>
-                Clear unnecessary files (e.g., <code>App.css</code>) to start
-                with a clean workspace
-            </li>
-            <li>
-                Create a
-                <code class="language-javascript">RandomMovie</code> component
-                that renders:
-                <pre><code class="language-javascript">&lt;h1&gt;RandomMovieComponent&lt;/h1&gt;</code></pre>
-            </li>
-            <li>
-                Import and use this component in your
-                <code class="language-javascript">App.jsx</code> file
-            </li>
-            <li>
-                Run the development server with
-                <code class="language-javascript">npm run dev</code> to verify
-                your component renders correctly
-            </li>
-        </ol>
-
-        <h2>Analogy</h2>
-        <p>
-            State is like a movie playlist that updates the screen when you add
-            or remove titles. Imagine you have a physical board displaying "Now
-            Playing" movies at a theater:
-        </p>
-        <ul>
-            <li>
-                The board's current display is like a component's rendered
-                output
-            </li>
-            <li>
-                When you change the movie list (state), someone must update the
-                physical board (re-render)
-            </li>
-            <li>
-                For viewers to see the changes, the update must be visible (UI
-                reflects state)
-            </li>
-            <li>
-                The theater keeps track of all movies currently showing (state
-                persists between renders)
-            </li>
-        </ul>
-        <p>
-            In React, state automates this process - when you update state,
-            React automatically "updates the board" so users always see the
-            current information.
-        </p>
-
-        <h2>Pitfall</h2>
-        <p>
-            Never modify state directly (e.g.,
-            <code class="language-javascript">state = newValue</code> or
-            <code class="language-javascript">favorites.push(movie)</code>). Use
-            the state updater function instead:
-        </p>
-        <pre><code class="language-javascript">// Incorrect
-favorites.push(newMovie); // Modifies state directly
-
-// Correct
-setFavorites([...favorites, newMovie]); // Creates a new array with the additional movie
+            <div class="section" aria-labelledby="challenge-heading">
+                <h3 id="challenge-heading">CHALLENGE FOR NEXT LESSON</h3>
+                <ol>
+                    <li>
+                        Create a new Vite application on your local machine.
+                    </li>
+                    <li>Clear any and all unnecessary code or files.</li>
+                    <li>
+                        Create and render a <code>RandomMovie</code> component
+                        that renders:
+                        <pre><code class="language-jsx" role="region" aria-label="RandomMovie component snippet">
+&lt;h1&gt;RandomMovieComponent&lt;/h1&gt;
 </code></pre>
-        <p>
-            Direct state mutations don't trigger re-renders and can lead to bugs
-            that are difficult to track down. Always treat state as immutable
-            and use the setter function provided by
-            <code class="language-javascript"
-                ><span class="token-keyword">useState</span></code
-            >.
-        </p>
+                    </li>
+                </ol>
+            </div>
 
-        <h2>Getting Started with useState</h2>
-        <p>
-            The
-            <code class="language-javascript"
-                ><span class="token-keyword">useState</span></code
-            >
-            hook is React's built-in function for adding state to functional
-            components:
-        </p>
-        <pre><code class="language-javascript">import { useState } from 'react';
+            <div class="section" aria-labelledby="overview-heading">
+                <h3 id="overview-heading">
+                    MovieBuddy App - Introduction to State in React
+                </h3>
+                <h4>Overview</h4>
+                <p>
+                    In this section, we'll be creating a MovieBuddy app. This
+                    app allows users to:
+                </p>
+                <ul>
+                    <li>Get a random movie from the data</li>
+                    <li>Create a favorites list</li>
+                    <li>Add or delete movies from the favorites list</li>
+                </ul>
+                <p>
+                    The primary goal of this section is to introduce one of the
+                    most powerful tools in React: <strong>State</strong>.
+                </p>
 
-function RandomMovie() {
-  // Declare a state variable called "movie" with initial value null
-  const [movie, setMovie] = useState(null);
-  
-  return (
-    &lt;div&gt;
-      &lt;h1&gt;RandomMovieComponent&lt;/h1&gt;
-      {movie ? (
-        &lt;p&gt;Current Movie: {movie.title}&lt;/p&gt;
-      ) : (
-        &lt;p&gt;No movie selected yet&lt;/p&gt;
-      )}
-    &lt;/div&gt;
-  );
-}
-</code></pre>
-        <p>
-            This pattern lets you read the current state (<code
-                class="language-javascript"
-                >movie</code
-            >) and update it (<code class="language-javascript">setMovie</code>)
-            whenever necessary.
-        </p>
+                <h4>Key Concepts</h4>
+                <ol>
+                    <li>
+                        <strong>State Management</strong>:
+                        <ul>
+                            <li>
+                                State is a built-in object that is used to
+                                contain data or information about the component.
+                            </li>
+                            <li>
+                                State in React is mutable, meaning it can change
+                                over time.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Random Movie Selection</strong>: Use state to
+                        store and display a randomly selected movie from the
+                        data.
+                    </li>
+                    <li>
+                        <strong>Favorites List</strong>:
+                        <ul>
+                            <li>
+                                Use state to manage a list of favorite movies.
+                            </li>
+                            <li>Add movies to the favorites list.</li>
+                            <li>Delete movies from the favorites list.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
 
-        <div class="exercise">
-            <strong>Quick Exercise (5 min):</strong> Discuss with a partner: Why
-            is state crucial for MovieBuddy? Share one example use case.
-            <p><strong>Possible answers:</strong></p>
-            <ul>
-                <li>
-                    State allows us to store and update the randomly selected
-                    movie whenever the user clicks the "Get Random Movie" button
-                </li>
-                <li>
-                    State enables us to maintain a list of favorite movies that
-                    persists as users navigate through the application
-                </li>
-                <li>
-                    State lets us track UI conditions like loading states when
-                    fetching movie data or error states when operations fail
-                </li>
-                <li>
-                    Without state, the app would reset every time a user
-                    interacts with it, making it impossible to build features
-                    that remember previous actions
-                </li>
-            </ul>
-        </div>
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
 
-        <h2>
-            <a
-                href="https://marcopete5.github.io/level-3/assignments/moviebuddy/"
-                target="_blank"
-                >CLICK FOR DEMO OF MOVIEBUDDY APP</a
-            >
-        </h2>
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
 
-        <h2>Next Steps</h2>
-        <p>In the following sections, we'll learn how to:</p>
-        <ul>
-            <li>Handle events to respond to user interactions</li>
-            <li>Update state based on those events</li>
-            <li>
-                Build out our MovieBuddy interface with functional components
-            </li>
-        </ul>
+        <!-- Lesson entry script (Level 3, Section REACT_STATE, Lesson 001) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_STATE-001"
+            data-lesson-title="Moviebuddy App Setup"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_STATE-001"
+            data-lesson-title="Moviebuddy App Setup"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
     </body>
 </html>

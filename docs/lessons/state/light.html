@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lightswitch - Assignment</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Lightswitch - Assignment</h1>
+                <h2>Assignment</h2>
+            </header>
+
+            <div class="section" aria-labelledby="objectives-heading">
+                <h3 id="objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        Understand how to manage boolean state in a React
+                        component.
+                    </li>
+                    <li>
+                        Learn how to use the <code>useState</code> hook to
+                        toggle state.
+                    </li>
+                    <li>
+                        Practice creating a function to update state based on
+                        user interaction.
+                    </li>
+                    <li>Update the UI dynamically based on state changes.</li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="requirements-heading">
+                <h3 id="requirements-heading">Requirements</h3>
+                <ul>
+                    <li>Set up a new React project using Vite.</li>
+                    <li>
+                        Create a <code>LightSwitch</code> component with state
+                        management using <code>useState</code>.
+                    </li>
+                    <li>
+                        Implement functionality to toggle between light and dark
+                        modes.
+                    </li>
+                    <li>
+                        Ensure the UI reflects the current mode with appropriate
+                        styling.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="steps-heading">
+                <h3 id="steps-heading">Assignment Steps</h3>
+
+                <h4>Create a Basic Vite React App</h4>
+                <ol>
+                    <li>Set up a new React project using Vite.</li>
+                </ol>
+
+                <h4>Create a LightSwitch Component</h4>
+                <ol>
+                    <li>
+                        Inside your React app, create a new component named
+                        <code>LightSwitch</code>.
+                    </li>
+                    <li>
+                        Add a <code>div</code> containing:
+                        <ul>
+                            <li>
+                                An <code>h2</code> to display the current mode
+                                (e.g., “Light” or “Dark”).
+                            </li>
+                            <li>
+                                A button to toggle between light and dark modes.
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>Implement State Management</h4>
+                <ol>
+                    <li>
+                        Use the <code>useState</code> hook to create a state
+                        variable called <code>isDarkMode</code>.
+                    </li>
+                    <li>
+                        Initialize <code>isDarkMode</code> to
+                        <code>false</code> (light mode).
+                    </li>
+                </ol>
+
+                <h4>Update the UI on Button Click</h4>
+                <ol>
+                    <li>
+                        Ensure that clicking the toggle button switches
+                        <code>isDarkMode</code> between <code>true</code> and
+                        <code>false</code>.
+                    </li>
+                    <li>
+                        Apply different styles (e.g., background and text
+                        colors) to the <code>div</code> based on
+                        <code>isDarkMode</code>.
+                    </li>
+                    <li>
+                        The <code>h2</code> should reflect the current mode, and
+                        the UI should update instantly after each toggle.
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section" aria-labelledby="outcome-heading">
+                <h3 id="outcome-heading">Expected Outcome</h3>
+                <ul>
+                    <li>
+                        A fully functional <code>LightSwitch</code> component
+                        where the current mode is displayed in an
+                        <code>h2</code>.
+                    </li>
+                    <li>
+                        Clicking the toggle button switches between light and
+                        dark modes, updating the UI’s appearance.
+                    </li>
+                    <li>
+                        State management is handled using React’s
+                        <code>useState</code> hook, with clear and concise code.
+                    </li>
+                </ul>
+                
+            </div>
+
+            <div class="section" aria-labelledby="tips-heading">
+                <h3 id="tips-heading">Tips</h3>
+                <ul>
+                    <li>
+                        Use a function to toggle <code>isDarkMode</code> that
+                        correctly updates the boolean state (e.g., using the
+                        previous state value).
+                    </li>
+                    <li>
+                        Apply styles conditionally using class names (e.g.,
+                        <code>className={isDarkMode ? 'dark' : 'light'}</code>)
+                        or inline styles.
+                    </li>
+                    <li>
+                        Ensure state updates are handled asynchronously by using
+                        functional updates to avoid stale state issues.
+                    </li>
+                </ul>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer">
+                <h3>
+                    <a
+                        href="https://marcopete5.github.io/level-3/assignments/light-switch-app/"
+                        target="_blank"
+                        rel="noopener noreferrer">DEMO OF COMPLETED ASSIGNMENT</a>
+            </footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section REACT_STATE, Lesson 007) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_STATE-007"
+            data-lesson-title="Lightswitch - Assignment"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-REACT_STATE-007"
+            data-lesson-title="Lightswitch - Assignment"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>
