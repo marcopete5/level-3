@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Styling w/ Classes</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Styling w/ Classes</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="lo-heading">
+                <h3 id="lo-heading">Learning Objectives</h3>
+                <p>By the end of this lesson, students will be able to:</p>
+                <ol>
+                    <li>
+                        <strong>Understand JSX Syntax</strong>: Explain the
+                        purpose of JSX in React and how it allows the writing of
+                        HTML-like code within JavaScript.
+                    </li>
+                    <li>
+                        <strong>Apply CSS Classes in JSX</strong>: Correctly use
+                        <code>className</code> instead of
+                        <code>class</code> when applying CSS styles in JSX to
+                        avoid conflicts with JavaScript reserved keywords.
+                    </li>
+                    <li>
+                        <strong>Identify and Correct Common Errors</strong>:
+                        Recognize and resolve common errors related to the
+                        misuse of <code>className</code> in JSX, ensuring proper
+                        styling and functionality of React components.
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    width="1184"
+                    height="666"
+                    src="https://www.youtube.com/embed/D0Lf4J04ZPU?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM"
+                    title="Styling w/ Classes"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=D0Lf4J04ZPU&amp;list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&amp;index=6&amp;pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="intro-heading">
+                <h3 id="intro-heading">
+                    React CSS Styles: Changing from <code>class</code> to
+                    <code>className</code>
+                </h3>
+
+                <h4>Introduction</h4>
+                <p>
+                    When working with React, JSX allows us to write HTML-like
+                    syntax within JavaScript. However, there are important
+                    distinctions to be aware of, particularly when it comes to
+                    applying CSS styles. One key difference is the use of
+                    <code>className</code> in JSX instead of the
+                    <code>class</code> attribute used in HTML.
+                </p>
+
+                <h4>Key Points</h4>
+                <ul>
+                    <li>
+                        <strong>JSX Syntax</strong>:
+                        <ul>
+                            <li>
+                                JSX lets you write HTML-like code within
+                                JavaScript.
+                            </li>
+                            <li>
+                                It must be transpiled to JavaScript before it
+                                can be executed by the browser.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Using CSS Classes in HTML vs. JSX</strong>:
+                        <ul>
+                            <li>
+                                In HTML, you use the
+                                <code>class</code> attribute to apply CSS
+                                classes.
+                            </li>
+                            <li>
+                                In JSX, you use <code>className</code> instead
+                                of <code>class</code>.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Why <code>className</code>?</strong>:
+                        <ul>
+                            <li>
+                                <code>class</code> is a reserved keyword in
+                                JavaScript, so JSX uses
+                                <code>className</code> to avoid conflicts.
+                            </li>
+                            <li>
+                                This ensures consistency and prevents potential
+                                errors in your code.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>HTML Example</h4>
+                <p>
+                    In HTML, you use the <code>class</code> attribute like this:
+                </p>
+                <pre><code class="language-html" role="region" aria-label="Code block">
+&lt;div class=&quot;container&quot;&gt;
+  &lt;h1 class=&quot;title&quot;&gt;Hello, World!&lt;/h1&gt;
+  &lt;p class=&quot;description&quot;&gt;This is an example of using class in HTML.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+                <h4>JSX Example</h4>
+                <p>In JSX, you use <code>className</code> instead:</p>
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+import React from 'react';
+
+function App() {
+  return (
+    &lt;div className=&quot;container&quot;&gt;
+      &lt;h1 className=&quot;title&quot;&gt;Hello, World!&lt;/h1&gt;
+      &lt;p className=&quot;description&quot;&gt;This is an example of using className in JSX.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</code></pre>
+
+                <h4>Additional Points</h4>
+                <ul>
+                    <li>
+                        <strong>Transpilation</strong>:
+                        <ul>
+                            <li>
+                                Tools like Babel transpile JSX into JavaScript,
+                                converting <code>className</code> to
+                                <code>class</code> in the process.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Common Errors</strong>:
+                        <ul>
+                            <li>
+                                Forgetting to use <code>className</code> in JSX
+                                can lead to errors or unexpected behavior.
+                            </li>
+                            <li>
+                                Always double-check your JSX code to ensure
+                                you're using <code>className</code> for CSS
+                                classes.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>Conclusion</h4>
+                <p>
+                    Understanding the switch from <code>class</code> in HTML to
+                    <code>className</code> in JSX is crucial for writing clean
+                    and functional React code. This small change helps prevent
+                    conflicts with JavaScript reserved keywords and ensures your
+                    components are styled properly. With practice, using
+                    <code>className</code> in JSX will become second nature,
+                    allowing you to build well-structured and maintainable React
+                    applications.
+                </p>
+            </div>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section JSX_CUSTOM_COMPONENTS, Lesson 005) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-JSX_CUSTOM_COMPONENTS-005"
+            data-lesson-title="Styling w/ Classes"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-JSX_CUSTOM_COMPONENTS-005"
+            data-lesson-title="Styling w/ Classes"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>

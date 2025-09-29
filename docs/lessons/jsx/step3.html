@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Custom Components Part 1</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Custom Components Part 1</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="lo-heading">
+                <h3 id="lo-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        Students will be able to define what a custom component
+                        is in React.
+                    </li>
+                    <li>Students will be able to add JSX to the App.</li>
+                    <li>
+                        Students will be able to describe a React fragment and
+                        its purpose.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    width="1184"
+                    height="666"
+                    src="https://www.youtube.com/embed/qQa2yayjowI?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM"
+                    title="Custom Components Part 1"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=qQa2yayjowI&amp;list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&amp;index=4&amp;pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="intro-heading">
+                <h3 id="intro-heading">
+                    Introduction to React Custom Components
+                </h3>
+
+                <h4>Overview</h4>
+                <p>
+                    In this lesson, we'll introduce the concept of custom
+                    components in React. Custom components are the building
+                    blocks of a React application, allowing us to create
+                    reusable, modular pieces of UI that make our code more
+                    maintainable and organized.
+                </p>
+
+                <h4>What are Custom Components?</h4>
+                <p>
+                    Custom components in React are user-defined elements that
+                    encapsulate specific functionality or parts of the user
+                    interface. They are similar to JavaScript functions but are
+                    used to create and manage portions of the UI. These
+                    components help in breaking down complex UIs into smaller,
+                    manageable pieces.
+                </p>
+
+                <h4>Why Use Custom Components?</h4>
+                <ol>
+                    <li>
+                        <strong>Reusability</strong>: Custom components can be
+                        reused across different parts of your application,
+                        reducing redundancy and making your codebase more
+                        efficient.
+                    </li>
+                    <li>
+                        <strong>Modularity</strong>: Breaking down the UI into
+                        smaller components makes it easier to understand,
+                        manage, and debug.
+                    </li>
+                    <li>
+                        <strong>Maintainability</strong>: With components,
+                        updates and changes can be made in one place without
+                        affecting other parts of the application.
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section" aria-labelledby="create-heading">
+                <h3 id="create-heading">Creating a Custom Component</h3>
+
+                <h4>Step 1: Define the Component</h4>
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+function App() {
+  // JS
+
+  return (
+    // JSX
+    &lt;&gt;
+      &lt;h1&gt;Why Learn React?&lt;/h1&gt;
+      &lt;ol&gt;
+        &lt;li&gt;Its a popular library, so I&apos;ll be in the know&lt;/li&gt;
+        &lt;li&gt;I&apos;m more likely to get a job if I know React&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/&gt;
+  )
+}
+
+export default App
+</code></pre>
+
+                <h4>Step 2: Use the Component</h4>
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;,
+)
+</code></pre>
+
+                <h4>Explanation</h4>
+                <ul>
+                    <li>
+                        <strong>Function Definition</strong>:
+                        <code>App</code> is a simple function that returns a
+                        fragment containing an <code>&lt;h1&gt;</code> and an
+                        <code>&lt;ol&gt;</code> element.
+                    </li>
+                    <li>
+                        <strong>Using the Component</strong>: In the
+                        bootstrapping file, <code>&lt;App /&gt;</code> is
+                        rendered into the root, demonstrating how custom
+                        components can be nested and reused.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="takeaways-heading">
+                <h3 id="takeaways-heading">Key Takeaways</h3>
+                <ul>
+                    <li>
+                        <strong>Simplicity</strong>: Custom components are
+                        essentially JavaScript functions that return JSX.
+                    </li>
+                    <li>
+                        <strong>Usage</strong>: Once created, custom components
+                        can be used like any other HTML element, allowing for
+                        reusable and modular code.
+                    </li>
+                    <li>
+                        <strong>Structure</strong>: Ensure that your custom
+                        component returns a single parent container (e.g., a
+                        fragment) to keep React organized.
+                    </li>
+                </ul>
+
+                <h4>Conclusion</h4>
+                <p>
+                    Custom components are fundamental to building efficient and
+                    maintainable React applications. By encapsulating UI
+                    elements and logic within reusable components, you can
+                    create more organized and scalable applications. Start
+                    simple, and as you grow more comfortable, you can build more
+                    complex and dynamic components.
+                </p>
+                <p>Happy coding!</p>
+            </div>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section JSX_CUSTOM_COMPONENTS, Lesson 003) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-JSX_CUSTOM_COMPONENTS-003"
+            data-lesson-title="Custom Components Part 1"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-JSX_CUSTOM_COMPONENTS-003"
+            data-lesson-title="Custom Components Part 1"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>

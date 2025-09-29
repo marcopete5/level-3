@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Custom Components Part 2</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Custom Components Part 2</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="lo-heading">
+                <h3 id="lo-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        Students will be able to create header, navbar, and
+                        footer elements.
+                    </li>
+                    <li>
+                        Students will be able to identify the need for separate
+                        component functions.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    width="1184"
+                    height="666"
+                    src="https://www.youtube.com/embed/UJp7VJcf-gs?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM"
+                    title="Custom Components Part 2"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=UJp7VJcf-gs&amp;list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&amp;index=5&amp;t=4s&amp;pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="build-org-heading">
+                <h3 id="build-org-heading">
+                    Building and Organizing Components in React
+                </h3>
+
+                <h4>1. Building a Component</h4>
+                <p>
+                    Building a component in React involves defining a function
+                    or class that returns a React element. Here’s a step-by-step
+                    guide on how to create a simple functional component:
+                </p>
+                <ol>
+                    <li>
+                        <strong>Create a New File</strong>: Start by creating a
+                        new file in the <code>components</code> folder. Name the
+                        file with the component's name, using PascalCase, and
+                        give it a <code>.jsx</code> extension. For example,
+                        <code>MyComponent.jsx</code>.
+                    </li>
+                    <li>
+                        <strong>Define the Component Function</strong>: Define a
+                        function with the same name as your file. This function
+                        will return the JSX that represents your component.
+                    </li>
+                    <li>
+                        <strong>Export the Component</strong>: Export the
+                        component so it can be imported and used in other parts
+                        of your application.
+                    </li>
+                </ol>
+
+                <p>Here’s an example:</p>
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+// MyComponent.jsx
+import React from 'react';
+
+function MyComponent() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default MyComponent;
+</code></pre>
+
+                <h4>2. Component Naming Conventions</h4>
+                <p>
+                    When building components in React, it's essential to follow
+                    specific naming conventions to ensure your code is readable
+                    and maintainable. Here are some key points:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Capitalize the First Letter</strong>: Always
+                        capitalize the first letter of your component's file and
+                        function name. For example:
+                        <ul>
+                            <li>File: <code>MyComponent.jsx</code></li>
+                            <li>
+                                Function:
+                                <code>function MyComponent() { ... }</code>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>PascalCase for Component Names</strong>: Use
+                        PascalCase for your component names. This makes it clear
+                        the file represents a React component.
+                    </li>
+                </ul>
+
+                <h4>3. Organizing Components</h4>
+                <p>
+                    Organizing your components properly is crucial for
+                    maintaining a clean and scalable codebase. Here's why and
+                    how you should organize your components:
+                </p>
+                <p>
+                    <strong>Component Folder Structure</strong>: Create a
+                    dedicated folder for your components.
+                </p>
+                <pre><code class="language-bash" role="region" aria-label="Code block">
+src/
+├── components/
+│   ├── MyComponent.jsx
+│   ├── AnotherComponent.jsx
+│   └── Header.jsx
+├── App.jsx
+└── main.jsx
+</code></pre>
+
+                <p>
+                    <strong>Group Related Components</strong>: If you have
+                    multiple related components, group them in subfolders.
+                </p>
+                <pre><code class="language-bash" role="region" aria-label="Code block">
+src/
+├── components/
+│   ├── header/
+│   │   ├── Header.jsx
+│   │   └── NavBar.jsx
+│   ├── footer/
+│   │   └── Footer.jsx
+│   ├── MyComponent.jsx
+│   └── AnotherComponent.jsx
+├── App.jsx
+└── main.jsx
+</code></pre>
+
+                <h4>4. Importing and Using Components</h4>
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+// App.jsx
+import React from 'react';
+import MyComponent from './components/MyComponent';
+import Header from './components/header/Header';
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;Header /&gt;
+      &lt;MyComponent /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</code></pre>
+
+                <h4>5. Importance of Proper Component Organization</h4>
+                <ul>
+                    <li>
+                        <strong>Readability</strong>: A well-organized project
+                        structure makes your code more readable.
+                    </li>
+                    <li>
+                        <strong>Maintainability</strong>: Clear structure helps
+                        in maintaining and updating your codebase efficiently.
+                    </li>
+                    <li>
+                        <strong>Scalability</strong>: Proper organization allows
+                        your project to scale without becoming messy.
+                    </li>
+                </ul>
+            </div>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section JSX_CUSTOM_COMPONENTS, Lesson 004) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-JSX_CUSTOM_COMPONENTS-004"
+            data-lesson-title="Custom Components Part 2"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-JSX_CUSTOM_COMPONENTS-004"
+            data-lesson-title="Custom Components Part 2"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>

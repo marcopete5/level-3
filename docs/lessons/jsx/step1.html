@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>React JSX</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">React JSX</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="learning-objectives-heading">
+                <h3 id="learning-objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        Students will be able to clear any unnecessary
+                        code/components from the default app.
+                    </li>
+                    <li>
+                        Students will be able to revise <code>App.jsx</code> to
+                        render new JSX.
+                    </li>
+                    <li>
+                        Students will be able to use curly braces to access JS
+                        inside JSX.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/EKxL3FysB34?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=3"
+                    title="React JSX"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=EKxL3FysB34&list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&index=3&pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="jsx-heading">
+                <h3 id="jsx-heading">JSX</h3>
+                <p>
+                    JSX stands for JavaScript XML, and it is an extension syntax
+                    in React that allows you to write HTML-like code directly in
+                    your JavaScript files. It's a way to describe the structure
+                    and appearance of your components in a familiar and concise
+                    manner.
+                </p>
+
+                <h4>Example 1: Creating a React component with JSX</h4>
+
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+import React from 'react';
+
+const Greeting = () =&gt; {
+  return &lt;h1&gt;Hello, World!&lt;/h1&gt;;
+};
+</code></pre>
+
+                <p>
+                    In this example, we define a functional component called
+                    <code>Greeting</code> using JSX syntax. The component
+                    renders an <code>&lt;h1&gt;</code> element with the text
+                    &quot;Hello, World!&quot;.
+                </p>
+
+                <h4>Example 2: Embedding JavaScript expressions in JSX</h4>
+
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+import React from 'react';
+
+const Profile = () =&gt; {
+  const name = 'John Doe';
+  const age = 25;
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;{name}&lt;/h2&gt;
+      &lt;p&gt;Age: {age}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+};
+</code></pre>
+
+                <p>
+                    In this example, we define a component called
+                    <code>Profile</code> using JSX. We embed JavaScript
+                    expressions within curly braces <code>{'{}'}</code> to
+                    dynamically render the <code>name</code> and
+                    <code>age</code> variables in the JSX code. The resulting
+                    HTML will display the name and age values.
+                </p>
+
+                <p>
+                    In both examples, JSX simplifies the process of defining and
+                    rendering components by providing a concise and intuitive
+                    syntax that closely resembles HTML. It allows you to combine
+                    JavaScript logic and HTML-like structure within a single
+                    file, making it easier to build dynamic and interactive user
+                    interfaces in React.
+                </p>
+            </div>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section JSX_CUSTOM_COMPONENTS, Lesson 001) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-JSX_CUSTOM_COMPONENTS-001"
+            data-lesson-title="React JSX"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-JSX_CUSTOM_COMPONENTS-001"
+            data-lesson-title="React JSX"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>
