@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Blog Props - Assignment</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Blog Props - Assignment</h1>
+                <h2>Assignment</h2>
+            </header>
+
+            <div class="section" aria-labelledby="objective-heading">
+                <h3 id="objective-heading">Objective</h3>
+                <p>
+                    Your task is to re-create the first page of the
+                    <a
+                        href="https://startbootstrap.github.io/startbootstrap-clean-blog/"
+                        target="_blank"
+                        rel="noopener"
+                        >Clean Blog</a
+                    >
+                    sample website. Practice structuring a React application and
+                    passing data through components.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="requirements-heading">
+                <h3 id="requirements-heading">Requirements</h3>
+
+                <h4>1. Component Structure</h4>
+                <p>
+                    Organize your React app into the following components (note
+                    nesting):
+                </p>
+
+                <pre><code class="language-jsx" role="region" aria-label="Component structure">
+&lt;Header /&gt;
+  &lt;Navbar /&gt;
+&lt;BlogList /&gt;
+  &lt;BlogPost /&gt;
+&lt;Footer /&gt;
+</code></pre>
+
+                <ul>
+                    <li>
+                        <strong>Header</strong> should include the
+                        <code>Navbar</code> component.
+                    </li>
+                    <li>
+                        <strong>BlogList</strong> should include the
+                        <code>BlogPost</code> component.
+                    </li>
+                </ul>
+
+                <h4>2. Data Handling</h4>
+                <p>
+                    Use the array below to populate each
+                    <code>&lt;BlogPost /&gt;</code>. Pass <code>title</code>,
+                    <code>subTitle</code>, <code>author</code>, and
+                    <code>date</code> as props.
+                </p>
+
+                <pre><code class="language-jsx" role="region" aria-label="Blog data array">
+[
+  {
+    title: "Man must explore, and this is exploration at its greatest",
+    subTitle: "Problems look mighty small from 150 miles up",
+    author: "Start Bootstrap",
+    date: "September 24, 2019"
+  },{
+    title: "I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.",
+    subTitle: "",
+    author: "Start Bootstrap",
+    date: "September 18, 2019"
+  },{
+    title: "Science has not yet mastered prophecy",
+    subTitle: "We predict too much for the next year and yet far too little for the next ten.",
+    author: "Start Bootstrap",
+    date: "August 24, 2019"
+  },{
+    title: "Failure is not an option",
+    subTitle: "Many say exploration is part of our destiny, but it’s actually our duty to future generations.",
+    author: "Start Bootstrap",
+    date: "July 8, 2019"
+  }
+]
+</code></pre>
+
+                <h4>3. Design and Styling</h4>
+                <ul>
+                    <li>
+                        Overlay blog text on the image; style consistently with
+                        the sample site.
+                    </li>
+                    <li>
+                        Ensure readability and visual polish aligned with the
+                        Clean Blog aesthetic.
+                    </li>
+                    <li>
+                        Experiment within a focused timeframe to achieve a
+                        clean, appealing layout.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="passing-heading">
+                <h3 id="passing-heading">Passing Criteria</h3>
+                <ul>
+                    <li>
+                        Correct blog page layout is rendered using the provided
+                        data.
+                    </li>
+                    <li>
+                        Components display titles, subtitles, authors, and dates
+                        via props.
+                    </li>
+                    <li>
+                        Text is clearly readable over images; overall page looks
+                        polished.
+                    </li>
+                </ul>
+            </div>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section PROPS, Lesson 005) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-PROPS-005"
+            data-lesson-title="Blog Props - Assignment"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-PROPS-005"
+            data-lesson-title="Blog Props - Assignment"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>

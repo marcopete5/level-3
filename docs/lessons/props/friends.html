@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Friends with Pets - Assignment</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Friends with Pets - Assignment</h1>
+                <h2>Assignment</h2>
+            </header>
+
+            <div class="section" aria-labelledby="objective-heading">
+                <h3 id="objective-heading">Objective</h3>
+                <p>
+                    Create a React app that displays a list of friends and their
+                    pets. This assignment will help you practice creating
+                    components, using props, and rendering lists dynamically in
+                    React.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="requirements-heading">
+                <h3 id="requirements-heading">Requirements</h3>
+                <p>
+                    The final product should render a list of friends. Each
+                    friend should be displayed with their name and age, followed
+                    by a list of their pets. Each pet should be displayed with
+                    its name and breed.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="instructions-heading">
+                <h3 id="instructions-heading">Instructions</h3>
+
+                <h4>1. Project Setup:</h4>
+                <ul>
+                    <li>Start a new React project or use an existing one.</li>
+                    <li>
+                        Create the following components:
+                        <code>&lt;FriendList /&gt;</code>,
+                        <code>&lt;Friend /&gt;</code>, and
+                        <code>&lt;Pet /&gt;</code>.
+                    </li>
+                </ul>
+
+                <h4>2. Data Provided:</h4>
+                <p>Use the following data to populate your components:</p>
+
+                <pre><code class="language-jsx" role="region" aria-label="Friends data array">
+const friends = [
+  {
+    name: "Ben",
+    age: 29,
+    pets: [
+      { name: "spot", breed: "tabby" },
+      { name: "John Johnson", breed: "husky" },
+      { name: "Bear the bear", breed: "Grizzly" }
+    ]
+  },
+  {
+    name: "Bob",
+    age: 31,
+    pets: [{ name: "Sally", breed: "Australian Shepard" }]
+  },
+  {
+    name: "Marcus",
+    age: 25,
+    pets: [
+      { name: "Indy", breed: "Akita" },
+      { name: "Anna", breed: "persian cat" }
+    ]
+  },
+  {
+    name: "Jacob",
+    age: 20,
+    pets: [
+      { name: "fluffy", breed: "sphynx cat" },
+      { name: "patches", breed: "sphynx cat" },
+      { name: "tiger", breed: "sphynx cat" },
+      { name: "oscar", breed: "sphynx cat" }
+    ]
+  }
+];
+</code></pre>
+
+                <h4>3. Styling:</h4>
+                <ul>
+                    <li>
+                        Use appropriate HTML (JSX) tags and CSS to ensure the
+                        app is visually appealing and easy to read.
+                    </li>
+                </ul>
+
+                <h4>4. Verification:</h4>
+                <ul>
+                    <li>
+                        Check that the app displays each friend with their pets
+                        listed underneath them, as specified.
+                    </li>
+                    <li>
+                        Ensure that the data is rendered accurately according to
+                        the provided structure.
+                    </li>
+                </ul>
+
+                <p>
+                    By completing this assignment, you will strengthen your
+                    skills in managing component hierarchy and rendering lists
+                    in React.
+                </p>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer">
+                <h3>
+                    <a
+                        href="https://marcopete5.github.io/level-3/assignments/friends-and-pets/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >DEMO OF COMPLETED ASSIGNMENT</a
+                    >
+                </h3>
+            </footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section PROPS, Lesson 006) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-PROPS-006"
+            data-lesson-title="Friends with Pets - Assignment"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-PROPS-006"
+            data-lesson-title="Friends with Pets - Assignment"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>

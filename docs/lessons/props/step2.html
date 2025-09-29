@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mapping Data</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Mapping Data</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="objectives-heading">
+                <h3 id="objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        <strong>Understand Data Mapping in React</strong>:
+                        Explain the purpose and importance of using the
+                        <code>.map</code> method in React for dynamically
+                        generating JSX elements based on an array of data.
+                    </li>
+                    <li>
+                        <strong>Implement Data Mapping with JSX</strong>: Use
+                        the <code>.map</code> method to iterate over an array of
+                        objects and return JSX elements for rendering in a React
+                        component.
+                    </li>
+                    <li>
+                        <strong>Differentiate Between Data and UI Logic</strong
+                        >: Recognize the benefits of separating data logic from
+                        UI logic by using the <code>.map</code> method to handle
+                        dynamic data rendering in a clean and maintainable way.
+                    </li>
+                    <li>
+                        <strong
+                            >Enhance Component Reusability and
+                            Scalability</strong
+                        >: Demonstrate how data mapping enhances the reusability
+                        and scalability of components, allowing for efficient
+                        updates and modifications to rendered lists.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <div aria-labelledby="video-heading">
+                    <iframe
+                        class="video-embed"
+                        width="1184"
+                        height="666"
+                        src="https://www.youtube.com/embed/-FgbADo5AW4?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM"
+                        title="Mapping Data (React)"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                    <p>
+                        <a
+                            class="btn-primary"
+                            href="https://www.youtube.com/watch?v=-FgbADo5AW4&amp;list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&amp;index=8&amp;pp=gAQBiAQB"
+                            target="_blank"
+                            rel="noopener"
+                            >Open in Browser</a
+                        >
+                    </p>
+                </div>
+            </div>
+
+            <div class="section" aria-labelledby="css-heading">
+                <h3 id="css-heading"><code>index.css</code></h3>
+                <pre><code class="language-css" role="region" aria-label="Code block">
+.skateboard {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px;
+  display: inline-block;
+  width: 200px;
+  text-align: left;
+}
+
+.skateboard h2 {
+  font-size: 1.5em;
+}
+
+.skateboard p {
+  margin: 5px 0;
+}
+</code></pre>
+            </div>
+
+            <div class="section" aria-labelledby="mapping-heading">
+                <h3 id="mapping-heading">
+                    Understanding Data Mapping in React with JSX Elements
+                </h3>
+                <p>
+                    In this part of our series, we're focusing on how the
+                    <code>.map</code> method in JavaScript is used to
+                    dynamically create JSX elements based on an array of data.
+                    This is an essential concept in React for rendering lists of
+                    items efficiently.
+                </p>
+
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+const skateboards = [
+  {
+    id: 1,
+    name: "Street Cruiser",
+    size: ["8.0", "6.0"],
+    style: "Street",
+    design: "Classic Black",
+    price: 75.99
+  },
+  {
+    id: 2,
+    name: "Pro Trickster",
+    size: ["8.25", "6.0"],
+    style: "Park",
+    design: "Flame Graphics",
+    price: 89.99
+  },
+  {
+    id: 3,
+    name: "Vert Master",
+    size: ["8.5", "6.0"],
+    style: "Vert",
+    design: "Skull and Bones",
+    price: 95.00
+  },
+  {
+    id: 4,
+    name: "Longboard Cruiser",
+    size: ["9.0", "6.0"],
+    style: "Cruising",
+    design: "Palm Trees",
+    price: 120.49
+  }
+];
+
+const skateboardElements = skateboards.map(board =&gt; {
+  return (
+    &lt;div className="skateboard" key={board.id}&gt;
+      &lt;h2&gt;{board.name}&lt;/h2&gt;
+      &lt;p&gt;&lt;strong&gt;Style:&lt;/strong&gt; {board.style}&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;Design:&lt;/strong&gt; {board.design}&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;Price:&lt;/strong&gt; ${board.price}&lt;/p&gt;
+    &lt;/div&gt;
+  )
+});
+</code></pre>
+
+                <h4>What’s Happening Here?</h4>
+                <ol>
+                    <li>
+                        <strong>Array of Objects</strong>: We start with an
+                        array of objects named <code>skateboards</code>. Each
+                        object represents a skateboard with various properties
+                        such as <code>id</code>, <code>name</code>,
+                        <code>size</code>, <code>style</code>,
+                        <code>design</code>, and <code>price</code>.
+                    </li>
+                    <li>
+                        <strong>Mapping Over the Array</strong>: The
+                        <code>.map</code> method is used on the
+                        <code>skateboards</code> array. This method iterates
+                        over each item in the array and executes the provided
+                        function for each element.
+                    </li>
+                    <li>
+                        <strong>Generating JSX Elements</strong>: Inside the
+                        <code>.map</code> method, we return a JSX
+                        <code>&lt;div&gt;</code> element for each skateboard
+                        object. This element includes headings and paragraphs
+                        that display the skateboard’s details.
+                    </li>
+                </ol>
+
+                <h4>Why Use <code>.map</code>?</h4>
+                <ul>
+                    <li>
+                        <strong>Dynamic Rendering</strong>: Generate lists of
+                        elements from your data in a scalable, efficient way.
+                    </li>
+                    <li>
+                        <strong>Separation of Concerns</strong>: Keep data logic
+                        separate from UI logic for cleaner, more maintainable
+                        code.
+                    </li>
+                    <li>
+                        <strong>Reusability</strong>: Easily update the rendered
+                        output by changing the data or the JSX returned inside
+                        the mapping function.
+                    </li>
+                </ul>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section PROPS, Lesson 002) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-PROPS-002"
+            data-lesson-title="Mapping Data"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-PROPS-002"
+            data-lesson-title="Mapping Data"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>

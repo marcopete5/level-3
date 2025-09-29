@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Key Props and Nested Data</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Key Props and Nested Data</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="objectives-heading">
+                <h3 id="objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        <strong
+                            >Understand the Role of the
+                            <code>key</code> Prop</strong
+                        >: Explain the importance of the <code>key</code> prop
+                        in React for efficiently rendering, adding, removing,
+                        and updating list elements.
+                    </li>
+                    <li>
+                        <strong
+                            >Implement the <code>key</code> Prop in
+                            Lists</strong
+                        >: Demonstrate how to use the <code>key</code> prop
+                        correctly when mapping over arrays to create unique
+                        identifiers for each element.
+                    </li>
+                    <li>
+                        <strong>Handle Nested Data Structures</strong>: Use the
+                        <code>map</code> method to render nested arrays within
+                        objects, ensuring each level of the nested structure has
+                        unique <code>key</code> props for efficient updates.
+                    </li>
+                    <li>
+                        <strong>Create and Render Dynamic Components</strong>:
+                        Apply the principles of dynamic rendering to build
+                        custom components that handle nested data, enhancing the
+                        modularity and maintainability of their React
+                        applications.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="video-heading">
+                <h3 id="video-heading">Video Lesson</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/L8kfna3QcUM?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM"
+                    title="Key Props and Nested Data (React)"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+                <p>
+                    <a
+                        class="btn-primary"
+                        href="https://www.youtube.com/watch?v=L8kfna3QcUM&amp;list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&amp;index=10&amp;pp=gAQBiAQB"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in Browser</a
+                    >
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="key-works-heading">
+                <h3 id="key-works-heading">
+                    How the <code>key</code> Prop Works
+                </h3>
+
+                <h4>Adding</h4>
+                <p>
+                    When a new skateboard is added to the
+                    <code>skateboards</code> array, React will create a new
+                    <code>Skateboard</code> component for it. The existing
+                    components remain undisturbed; React efficiently inserts the
+                    new component where it belongs.
+                </p>
+
+                <h4>Removing</h4>
+                <p>
+                    When a skateboard is removed, React removes the
+                    corresponding <code>Skateboard</code> component. The rest of
+                    the components are unchanged. React uses the
+                    <code>key</code> to identify and remove the specific
+                    component without affecting others.
+                </p>
+
+                <h4>Updating</h4>
+                <p>
+                    When a skateboard’s data changes, React updates only the
+                    component with the matching <code>key</code>, improving
+                    performance—especially for large lists.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="nested-data-heading">
+                <h3 id="nested-data-heading">Handling Nested Data</h3>
+                <p>
+                    When dealing with nested data (e.g., arrays inside objects),
+                    ensure each level of the structure uses unique
+                    <code>key</code> values.
+                </p>
+
+                <h4>Example: Rendering Skateboards and Sizes</h4>
+
+                <h4>1) Data Structure</h4>
+                <pre><code class="language-json" role="region" aria-label="Code block">
+{
+  "id": 1,
+  "name": "Street Cruiser",
+  "size": ["8.0", "6.0"],
+  "style": "Street",
+  "design": "Classic Black",
+  "price": 75.99
+}
+</code></pre>
+
+                <h4>2) Rendering Skateboards</h4>
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+const skateboardElements = skateboards.map(board =&gt; {
+  return (
+    &lt;Skateboard {...board} key={board.id} /&gt;
+  )
+});
+</code></pre>
+
+                <h4>3) Rendering Nested Sizes</h4>
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+const Skateboard = ({ name, size, style, design, price }) =&gt; {
+  const sizeElements = size.map((num, index) =&gt; {
+    return (
+      &lt;p key={index}&gt;{num}&lt;/p&gt;
+    );
+  });
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;{name}&lt;/h2&gt;
+      &lt;div&gt;{sizeElements}&lt;/div&gt;
+      &lt;p&gt;Style: {style}&lt;/p&gt;
+      &lt;p&gt;Design: {design}&lt;/p&gt;
+      &lt;p&gt;Price: ${price}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+};
+</code></pre>
+
+                <h4>Key Takeaways</h4>
+                <ul>
+                    <li>
+                        <strong>Key Prop</strong>: Unique among siblings;
+                        empowers React’s diffing to add/remove/update
+                        efficiently.
+                    </li>
+                    <li>
+                        <strong>Nested Data</strong>: Map at each level and
+                        provide a <code>key</code> for each element rendered.
+                    </li>
+                    <li>
+                        <strong>Efficient Updates</strong>: Proper keys minimize
+                        unnecessary re-renders.
+                    </li>
+                </ul>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section PROPS, Lesson 004) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-PROPS-004"
+            data-lesson-title="Key Props and Nested Data"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-PROPS-004"
+            data-lesson-title="Key Props and Nested Data"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>

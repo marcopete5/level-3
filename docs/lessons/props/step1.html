@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Intro to Props</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+    </head>
+    <body>
+        <main class="slide-container" aria-labelledby="page-title">
+            <header class="slide-header">
+                <h1 id="page-title">Intro to Props</h1>
+                <h2>Lesson</h2>
+            </header>
+
+            <div class="section" aria-labelledby="objectives-heading">
+                <h3 id="objectives-heading">Learning Objectives</h3>
+                <ul>
+                    <li>
+                        <strong>Define and Understand Props</strong>: Explain
+                        what props are in React and their role in passing data
+                        from parent components to child components.
+                    </li>
+                    <li>
+                        <strong>Implement Dynamic Rendering</strong>:
+                        Demonstrate how to use props to render dynamic content
+                        within components, enhancing the flexibility and
+                        reusability of components.
+                    </li>
+                    <li>
+                        <strong>Pass and Use Props in Components</strong>: Pass
+                        data as props from a parent component to child
+                        components and utilize those props within the child
+                        components to display content.
+                    </li>
+                    <li>
+                        <strong>Enhance Component Reusability</strong>:
+                        Illustrate how props help create reusable components by
+                        allowing the same component to render different data
+                        based on the props it receives.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <div aria-labelledby="video-heading">
+                    <iframe
+                        class="video-embed"
+                        width="1184"
+                        height="666"
+                        src="https://www.youtube.com/embed/qtM2knjrLJQ?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM"
+                        title="Intro to Props"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                    <p>
+                        <a
+                            class="btn-primary"
+                            href="https://www.youtube.com/watch?v=qtM2knjrLJQ&amp;list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM&amp;index=7&amp;pp=gAQBiAQB"
+                            target="_blank"
+                            rel="noopener"
+                            >Open in Browser</a
+                        >
+                    </p>
+                </div>
+            </div>
+
+            <div class="section" aria-labelledby="intro-heading">
+                <h3 id="intro-heading">Introduction to Props in React</h3>
+            </div>
+
+            <div class="section" aria-labelledby="what-are-props-heading">
+                <h3 id="what-are-props-heading">What are Props?</h3>
+                <p>
+                    In React, <strong>props</strong> (short for
+                    &quot;properties&quot;) are a way to pass data from a parent
+                    component to a child component. Props allow you to make your
+                    components more dynamic and reusable by providing them with
+                    different data. Think of props like function parameters:
+                    just as you can pass arguments to functions, you can pass
+                    props to components.
+                </p>
+            </div>
+
+            <div class="section" aria-labelledby="why-props-heading">
+                <h3 id="why-props-heading">Why Use Props?</h3>
+                <ul>
+                    <li>
+                        <strong>Dynamic Rendering</strong>: Components can
+                        display different data based on the props they receive.
+                    </li>
+                    <li>
+                        <strong>Reusability</strong>: A single component can be
+                        used multiple times with different data.
+                    </li>
+                    <li>
+                        <strong>Separation of Concerns</strong>: Props help keep
+                        your components focused on rendering UI based on the
+                        data they receive, rather than managing data.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" aria-labelledby="example-heading">
+                <h3 id="example-heading">
+                    Understanding Props Through Example
+                </h3>
+                <p>
+                    To understand how to use props, let&apos;s consider a small
+                    app for a skateboard shop. We&apos;ll create a main
+                    <code>App</code> component that will render a
+                    <code>Navbar</code> component and a
+                    <code>Store</code> component. We&apos;ll pass data to these
+                    components using props.
+                </p>
+
+                <h4>Example Data</h4>
+
+                <pre><code class="language-jsx" role="region" aria-label="Code block">
+const skateboards = [
+  {
+    id: 1,
+    name: "Street Cruiser",
+    size: "8.0",
+    style: "Street",
+    design: "Classic Black",
+    price: 75.99
+  },
+  {
+    id: 2,
+    name: "Pro Trickster",
+    size: "8.25",
+    style: "Park",
+    design: "Flame Graphics",
+    price: 89.99
+  },
+  {
+    id: 3,
+    name: "Vert Master",
+    size: "8.5",
+    style: "Vert",
+    design: "Skull and Bones",
+    price: 95.00
+  },
+  {
+    id: 4,
+    name: "Longboard Cruiser",
+    size: "9.0",
+    style: "Cruising",
+    design: "Palm Trees",
+    price: 120.49
+  }
+];
+</code></pre>
+            </div>
+
+            <div class="section" aria-labelledby="key-points-heading">
+                <h3 id="key-points-heading">
+                    Key Points from the Video Lesson
+                </h3>
+                <ol>
+                    <li>
+                        <strong>Defining Props in Parent Component</strong>: In
+                        the <code>App</code> component, we define some data
+                        (e.g., the store name and an array of skateboards) and
+                        pass this data as props to child components.
+                    </li>
+                    <li>
+                        <strong>Receiving Props in Child Components</strong>:
+                        Child components (e.g., <code>Navbar</code> and
+                        <code>Store</code>) receive these props and use them to
+                        render content dynamically. The
+                        <code>Navbar</code> component receives the
+                        <code>name</code> prop and displays the store&apos;s
+                        name, while the <code>Store</code> component receives
+                        the <code>name</code> and
+                        <code>skateboards</code> props.
+                    </li>
+                    <li>
+                        <strong>Rendering Multiple Instances</strong>: By
+                        passing different values to the same prop, we can render
+                        multiple instances of a component with different data.
+                        For example, rendering <code>Navbar</code> twice with
+                        different <code>name</code> values.
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section" aria-labelledby="summary-heading">
+                <h3 id="summary-heading">Summary</h3>
+                <p>
+                    Props are essential in React for creating dynamic, reusable
+                    components. By passing data from parent components to child
+                    components, props allow you to keep your components flexible
+                    and focused on rendering UI based on the data they receive.
+                    This approach enhances the modularity and maintainability of
+                    your code, making it easier to manage and scale your
+                    application.
+                </p>
+            </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section PROPS, Lesson 001) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-PROPS-001"
+            data-lesson-title="Intro to Props"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-PROPS-001"
+            data-lesson-title="Intro to Props"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
+    </body>
+</html>
