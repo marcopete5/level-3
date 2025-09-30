@@ -3,149 +3,118 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Level 3 - APIs in React - Introduction to API Calls in React
-        </title>
-        <link rel="stylesheet" href="styles.css" />
+        <title>Making API Calls</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
     </head>
     <body>
-        <div
-            class="slide-container"
-            role="region"
-            aria-labelledby="lesson-header">
+        <main class="slide-container" aria-labelledby="page-title">
             <header class="slide-header">
-                <h1 id="lesson-header">Introduction to API Calls in React</h1>
-                <h2>APIs in React</h2>
+                <h1 id="page-title">Making API Calls</h1>
+                <h2>Lesson</h2>
             </header>
 
-            <div class="section">
-                <p>
-                    Hey everyone! In this lesson, we're going to explore how to
-                    fetch data in React using axios. We'll cover handling
-                    responses of different data types and avoiding infinite
-                    loops.
-                </p>
+            <div class="section" aria-labelledby="video">
+                <h3 id="video">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/B-nBR6XrmiA?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM"
+                    title="Making API Calls"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
             </div>
 
-            <hr class="section-divider" />
-
-            <div class="section">
-                <h3>Learning Objectives</h3>
-                <p>By the end of this lesson, you will be able to:</p>
-                <ul class="custom-list">
+            <div class="section" aria-labelledby="objectives">
+                <h3 id="objectives">Learning Objectives</h3>
+                <ul>
                     <li>
-                        Make GET requests to external APIs and handle the
-                        responses.
+                        Make GET requests to external APIs using axios and
+                        handle the responses in a React application.
                     </li>
                     <li>
-                        Identify the problem of infinite loops caused by state
-                        updates in React.
+                        Recognize and explain the issue of infinite loops caused
+                        by state updates within React components.
                     </li>
                 </ul>
             </div>
 
-            <hr class="section-divider" />
+            <div class="section" aria-labelledby="intro">
+                <h3 id="intro">Introduction to API Calls in React</h3>
+                <p>
+                    In this lesson, we're going to explore how to fetch data in
+                    React using axios. We'll cover handling responses of
+                    different data types and avoiding infinite loops.
+                </p>
+            </div>
 
-            <div class="section">
-                <h3>Using Axios for API Calls</h3>
+            <div class="section" aria-labelledby="axios">
+                <h3 id="axios">Using Axios for API Calls</h3>
                 <h4>Why Axios?</h4>
                 <p>
                     Axios is a popular HTTP client that simplifies making
                     requests to APIs. Compared to the built-in fetch method,
                     axios offers features like interceptors, automatic JSON
-                    transformation, and better error handling, making it a
-                    preferred choice for many developers.
+                    transformation, and better error handling.
                 </p>
 
                 <h4>Making a GET Request</h4>
-                <p>
-                    To fetch data from an API, you can use axios to make GET
-                    requests. For example, to get data from the Star Wars API
-                    (SWAPI), you can use:
-                </p>
-                <pre><code class="language-jsx">
-axios.get('https://swapi.dev/api/people/1')
+                <pre
+                    role="region"
+                    aria-label="Axios GET example"><code class="language-jsx">axios.get(&#39;https://swapi.dev/api/people/1&#39;)
   .then(response =&gt; console.log(response))
-  .catch(error =&gt; console.error(error));
-            </code></pre>
-                <p>
-                    This request retrieves information about a specific
-                    character from the Star Wars universe.
-                </p>
+  .catch(error =&gt; console.error(error));</code></pre>
 
                 <h4>Handling Complex Responses</h4>
-                <p>
-                    When dealing with more complex APIs, such as the League of
-                    Legends API, you may need to process nested data. Axios
-                    makes this straightforward:
-                </p>
-                <pre><code class="language-jsx">
-axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json')
+                <pre
+                    role="region"
+                    aria-label="Axios GET complex response"><code class="language-jsx">axios.get(&#39;https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json&#39;)
   .then(response =&gt; {
     const champs = Object.values(response.data.data);
     console.log(champs);
   })
-  .catch(error =&gt; console.error(error));
-            </code></pre>
-                <p>
-                    In this example, we extract and log an array of champions
-                    from the response.
-                </p>
+  .catch(error =&gt; console.error(error));</code></pre>
             </div>
 
-            <hr class="section-divider" />
-
-            <div class="section">
-                <h3>State Management and Infinite Loops</h3>
+            <div class="section" aria-labelledby="state">
+                <h3 id="state">State Management and Infinite Loops</h3>
                 <h4>Using State to Store API Data</h4>
-                <p>
-                    In React, we often use state to store the data fetched from
-                    APIs:
-                </p>
-                <pre><code class="language-jsx">
-const [leagueChamps, setLeagueChamps] = useState([]);
-            </code></pre>
-                <p>
-                    Updating this state with API responses allows us to render
-                    the data in our components.
-                </p>
+                <pre
+                    role="region"
+                    aria-label="useState for API data"><code class="language-jsx">const [leagueChamps, setLeagueChamps] = useState([]);</code></pre>
 
                 <h4>The Problem of Infinite Loops</h4>
                 <p>
-                    When you update the state directly inside your component
-                    body, it triggers a re-render, which can lead to an infinite
-                    loop:
+                    Placing an axios call directly in the component body and
+                    updating state will re-render the component, which runs the
+                    axios call again, causing an infinite loop.
                 </p>
-                <pre><code class="language-jsx">
-axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json')
+                <pre
+                    role="region"
+                    aria-label="Anti-pattern causing infinite loop"><code class="language-jsx">// Anti-pattern: triggers infinite re-renders
+axios.get(&#39;https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json&#39;)
   .then(response =&gt; {
     const champs = Object.values(response.data.data);
-    setLeagueChamps(champs);
+    setLeagueChamps(champs); // state update in render path
   })
-  .catch(error =&gt; console.error(error));
-            </code></pre>
-                <p>
-                    Each state update causes the component to re-render, which
-                    runs the axios request again, creating an infinite loop.
-                </p>
+  .catch(error =&gt; console.error(error));</code></pre>
             </div>
 
-            <hr class="section-divider" />
-
-            <div class="section">
-                <h3>Resources</h3>
-                <ul class="custom-list">
+            <div class="section" aria-labelledby="resources">
+                <h3 id="resources">Resources</h3>
+                <ul>
                     <li>
                         <a
                             href="https://swapi.dev/api/people/1"
                             target="_blank"
                             rel="noopener"
-                            >SWAPI</a
+                            >SWAPI (People/1)</a
                         >
                     </li>
                     <li>
@@ -153,11 +122,36 @@ axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.j
                             href="https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json"
                             target="_blank"
                             rel="noopener"
-                            >League of Legends API</a
+                            >League of Legends Champions JSON</a
                         >
                     </li>
                 </ul>
             </div>
-        </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section APIS_IN_REACT, Lesson 001) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-APIS_IN_REACT-001"
+            data-lesson-title="Making API Calls"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-APIS_IN_REACT-001"
+            data-lesson-title="Making API Calls"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
     </body>
 </html>

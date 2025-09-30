@@ -3,28 +3,37 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Level 3 - APIs in React - Fetching Data with useEffect</title>
-        <link rel="stylesheet" href="styles.css" />
+        <title>Rendering API Data</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
     </head>
     <body>
-        <div
-            class="slide-container"
-            role="region"
-            aria-labelledby="lesson-header">
+        <main class="slide-container" aria-labelledby="page-title">
             <header class="slide-header">
-                <h1 id="lesson-header">Fetching Data with useEffect</h1>
-                <h2>APIs in React</h2>
+                <h1 id="page-title">Rendering API Data</h1>
+                <h2>Lesson</h2>
             </header>
 
-            <div class="section">
-                <h3>Learning Objectives</h3>
-                <p>By the end of this lesson, students will be able to:</p>
-                <ol class="custom-list">
+            <div class="section" aria-labelledby="video">
+                <h3 id="video">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/DGbZjNzUkT8?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM"
+                    title="Rendering API Data"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+
+            <div class="section" aria-labelledby="objectives">
+                <h3 id="objectives">Learning Objectives</h3>
+                <ul>
                     <li>
                         Understand the purpose and importance of using
                         <code>useEffect</code> in React for fetching data.
@@ -47,21 +56,20 @@
                         component re-renders and infinite loops when fetching
                         data.
                     </li>
-                </ol>
+                </ul>
             </div>
 
-            <hr class="section-divider" />
+            <div class="section" aria-labelledby="steps">
+                <h3 id="steps">Steps and Explanations</h3>
 
-            <div class="section">
-                <h3>Steps and Explanations</h3>
                 <h4>1. Change the GET request URL</h4>
                 <p>
                     First, update the GET request URL to fetch the latest data
                     from the League of Legends API:
                 </p>
-                <pre><code class="language-jsx">
-axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json')
-            </code></pre>
+                <pre
+                    role="region"
+                    aria-label="Update GET URL"><code class="language-jsx">axios.get(&#39;https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json&#39;)</code></pre>
                 <p>
                     This ensures we are fetching the most up-to-date champion
                     data.
@@ -69,10 +77,10 @@ axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.j
 
                 <h4>2. Console log the response</h4>
                 <p>Next, log the data to understand its structure:</p>
-                <pre><code class="language-jsx">
-axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json')
-  .then(response => console.log(Object.values(response.data.data)))
-            </code></pre>
+                <pre
+                    role="region"
+                    aria-label="Console log response"><code class="language-jsx">axios.get(&#39;https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json&#39;)
+  .then(response =&gt; console.log(Object.values(response.data.data)))</code></pre>
                 <p>
                     This helps verify we are getting the expected data format.
                 </p>
@@ -89,23 +97,19 @@ axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.j
                     Replace the console log with a state update to store the
                     champion data:
                 </p>
-                <pre><code class="language-jsx">
-axios.get('https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json')
-  .then(response => setLeagueChamps(Object.values(response.data.data)))
-            </code></pre>
+                <pre
+                    role="region"
+                    aria-label="Set state with response"><code class="language-jsx">axios.get(&#39;https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json&#39;)
+  .then(response =&gt; setLeagueChamps(Object.values(response.data.data)))</code></pre>
                 <p>
                     This stores the fetched data in our state, preparing it for
                     rendering.
                 </p>
 
                 <h4>5. Log the state to the console</h4>
-                <p>
-                    Log the <code>leagueChamps</code> state to verify it
-                    contains the expected data:
-                </p>
-                <pre><code class="language-jsx">
-console.log(lagueChamps)
-            </code></pre>
+                <pre
+                    role="region"
+                    aria-label="Log state"><code class="language-jsx">console.log(lagueChamps)</code></pre>
                 <p>
                     This allows us to inspect the state and confirm it has been
                     correctly updated.
@@ -123,38 +127,55 @@ console.log(lagueChamps)
                 <p>
                     Create a variable to map over the
                     <code>leagueChamps</code> data and render each champion in a
-                    <code>div</code>:
+                    <code>&lt;div&gt;</code>:
                 </p>
-                <pre><code class="language-jsx">
-const champList = leagueChamps.map(champ => (
+                <pre
+                    role="region"
+                    aria-label="Map over data"><code class="language-jsx">const champList = leagueChamps.map(champ =&gt; (
   &lt;div key={champ.id}&gt;
     &lt;h2&gt;{champ.name}&lt;/h2&gt;
     &lt;p&gt;{champ.blurb}&lt;/p&gt;
   &lt;/div&gt;
-))
-            </code></pre>
-                <p>
-                    This variable holds the JSX elements for each champion,
-                    ready to be rendered.
-                </p>
+))</code></pre>
 
                 <h4>8. Render the champions in JSX</h4>
                 <p>
                     Finally, include the <code>champList</code> variable in your
                     JSX to display the champions on the page:
                 </p>
-                <pre><code class="language-jsx">
-return (
+                <pre
+                    role="region"
+                    aria-label="Render list"><code class="language-jsx">return (
   &lt;div&gt;
     {champList}
   &lt;/div&gt;
-)
-            </code></pre>
-                <p>
-                    This step brings everything together, rendering the fetched
-                    champion data dynamically on your webpage.
-                </p>
+)</code></pre>
             </div>
-        </div>
+
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section APIS_IN_REACT, Lesson 004) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-APIS_IN_REACT-004"
+            data-lesson-title="Rendering API Data"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-APIS_IN_REACT-004"
+            data-lesson-title="Rendering API Data"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
     </body>
 </html>

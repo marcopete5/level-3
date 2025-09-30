@@ -3,30 +3,37 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Level 3 - APIs in React - Understanding useEffect in React
-        </title>
-        <link rel="stylesheet" href="styles.css" />
+        <title>UseEffect</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
     </head>
     <body>
-        <div
-            class="slide-container"
-            role="region"
-            aria-labelledby="lesson-header">
+        <main class="slide-container" aria-labelledby="page-title">
             <header class="slide-header">
-                <h1 id="lesson-header">Understanding useEffect in React</h1>
-                <h2>APIs in React</h2>
+                <h1 id="page-title">UseEffect</h1>
+                <h2>Lesson</h2>
             </header>
 
-            <div class="section">
-                <h3>Learning Objectives</h3>
-                <p>A student will be able to:</p>
-                <ul class="custom-list">
+            <div class="section" aria-labelledby="video">
+                <h3 id="video">Lesson Video</h3>
+                <iframe
+                    class="video-embed"
+                    src="https://www.youtube.com/embed/x2HI3sveAv8?list=PL1whVIy6oz7OGMJGaSPep7izC7sS1PhtM"
+                    title="Understanding useEffect in React"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+
+            <div class="section" aria-labelledby="objectives">
+                <h3 id="objectives">Learning Objectives</h3>
+                <ul>
                     <li>
                         Understand and explain the purpose of the
                         <code>useEffect</code> hook in React for handling side
@@ -45,47 +52,42 @@
                 </ul>
             </div>
 
-            <hr class="section-divider" />
-
-            <div class="section">
-                <h3>Introduction</h3>
+            <div class="section" aria-labelledby="intro">
+                <h3 id="intro">
+                    Understanding <code>useEffect</code> in React
+                </h3>
                 <p>
                     In this lesson, we'll delve into the
                     <code>useEffect</code> hook in React, focusing on how it
                     functions when a component mounts and when it renders. We'll
-                    also cover the basic syntax of
-                    <code>useEffect</code> without going into detail on the
-                    dependency array.
+                    also cover the basic syntax of <code>useEffect</code> and
+                    how the dependency array affects when it runs.
                 </p>
             </div>
 
-            <hr class="section-divider" />
-
-            <div class="section">
-                <h3>What is <code>useEffect</code>?</h3>
+            <div class="section" aria-labelledby="what-is">
+                <h3 id="what-is">What is <code>useEffect</code>?</h3>
                 <p>
                     <code>useEffect</code> is a hook that allows you to perform
                     side effects in function components. Common use cases
-                    include data fetching, subscriptions, and manually changing
-                    the DOM. <code>useEffect</code> runs after the render phase,
-                    ensuring that the DOM has been updated before your effect
-                    executes.
+                    include data fetching, subscriptions, timers, and manually
+                    interacting with the DOM. <code>useEffect</code> runs after
+                    the render phase, ensuring the DOM has been updated before
+                    your effect executes.
                 </p>
             </div>
 
-            <hr class="section-divider" />
+            <div class="section" aria-labelledby="basic-syntax">
+                <h3 id="basic-syntax">Basic Syntax</h3>
+                <pre
+                    role="region"
+                    aria-label="Basic useEffect example"><code class="language-jsx">import React, { useEffect } from &#39;react&#39;;
 
-            <div class="section">
-                <h3>Basic Syntax</h3>
-                <p>Here's a basic example of <code>useEffect</code>:</p>
-                <pre><code class="language-jsx">
-import React, { useEffect } from 'react';
-
-const ExampleComponent = () => {
-  useEffect(() => {
-    // This code runs when the component mounts and on every render.
-    console.log('Component mounted or rendered')
-  }, []);
+const ExampleComponent = () =&gt; {
+  useEffect(() =&gt; {
+    // This code runs after render.
+    console.log(&#39;Component mounted&#39;);
+  }, []); // empty dependency array =&gt; run on mount (and cleanup on unmount)
 
   return (
     &lt;div&gt;
@@ -94,78 +96,85 @@ const ExampleComponent = () => {
   );
 };
 
-export default ExampleComponent;
-            </code></pre>
+export default ExampleComponent;</code></pre>
+
+                <h4>Without a Dependency Array (runs after every render)</h4>
+                <pre
+                    role="region"
+                    aria-label="useEffect without deps"><code class="language-jsx">useEffect(() =&gt; {
+  console.log(&#39;Runs after every render (mount + updates)&#39;);
+}); // no dependency array</code></pre>
             </div>
 
-            <hr class="section-divider" />
-
-            <div class="section">
-                <h3>Component Mounting vs. Component Rendering</h3>
-                <h4>Component Mounting</h4>
+            <div class="section" aria-labelledby="mount-vs-render">
+                <h3 id="mount-vs-render">
+                    Component Mounting vs. Component Rendering
+                </h3>
+                <h4>Mounting</h4>
                 <p>
-                    When a component mounts, <code>useEffect</code> runs after
-                    the initial render. This is useful for operations you only
-                    need to perform once, such as fetching data or setting up a
-                    subscription.
-                </p>
-                <pre><code class="language-jsx">
-useEffect(() => {
-  console.log('Component mounted');
-}, []);
-            </code></pre>
-                <p>
-                    In this example, the effect only runs once when the
-                    component mounts.
+                    When a component mounts, an effect with an empty dependency
+                    array (<code>[]</code>) runs exactly once after the initial
+                    render. This is great for one-time setup like fetching
+                    initial data or setting up subscriptions.
                 </p>
 
-                <h4>Component Rendering</h4>
+                <pre
+                    role="region"
+                    aria-label="Effect on mount only"><code class="language-jsx">useEffect(() =&gt; {
+  console.log(&#39;Component mounted&#39;);
+}, []);</code></pre>
+
+                <h4>Rendering (Updates)</h4>
                 <p>
-                    By default, <code>useEffect</code> runs after every render.
-                    However, since we're using an empty dependency array
-                    (<code>[]</code>), the effect in our example only runs on
-                    mount and unmount. If you omit the dependency array, the
-                    effect will run after every render.
+                    If you omit the dependency array, the effect runs after
+                    every render (on mount and on every update). This is useful
+                    for reacting to any change but can be inefficient if not
+                    intentional.
                 </p>
             </div>
 
-            <hr class="section-divider" />
-
-            <div class="section">
-                <h3>Recap</h3>
-                <ul class="custom-list">
+            <div class="section" aria-labelledby="recap">
+                <h3 id="recap">Recap</h3>
+                <ul>
                     <li>
-                        <code>useEffect</code> allows you to perform side
-                        effects in function components.
+                        <code>useEffect</code> lets you run side effects in
+                        function components after render.
                     </li>
                     <li>
-                        It runs after the component mounts and after every
-                        render unless you provide a dependency array.
+                        With an empty dependency array (<code>[]</code>), it
+                        runs on mount (and its cleanup on unmount).
                     </li>
                     <li>
-                        With an empty dependency array (<code>[]</code>),
-                        <code>useEffect</code> only runs on mount and unmount.
+                        With no dependency array, it runs after every render
+                        (mount + updates).
                     </li>
                 </ul>
-                <p>
-                    In the next lesson, we'll dive deeper into the dependency
-                    array and explore how to control when
-                    <code>useEffect</code> runs based on state or props changes.
-                </p>
             </div>
 
-            <hr class="section-divider" />
+            <footer class="slide-footer" aria-label="Footer"></footer>
+        </main>
 
-            <div class="section">
-                <h3>Conclusion</h3>
-                <p>
-                    Understanding when and how <code>useEffect</code> runs is
-                    crucial for managing side effects in your React components.
-                    Use the empty dependency array to run effects only on mount
-                    and unmount, and stay tuned for the next lesson where we'll
-                    explore the dependency array in more detail.
-                </p>
-            </div>
-        </div>
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section APIS_IN_REACT, Lesson 002) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-APIS_IN_REACT-002"
+            data-lesson-title="UseEffect"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-APIS_IN_REACT-002"
+            data-lesson-title="UseEffect"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
     </body>
 </html>

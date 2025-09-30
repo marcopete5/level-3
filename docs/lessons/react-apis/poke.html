@@ -3,35 +3,31 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Level 3 - APIs in React - Pokemon List with Random Background Color
-        </title>
-        <link rel="stylesheet" href="styles.css" />
+        <title>Pokémon List - Assignment</title>
+
+        <!-- Shared styles for the slide (global curriculum stylesheet) -->
+        <link rel="stylesheet" href="../styles.css" />
+
+        <!-- Prism syntax highlighting (CSS) -->
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
     </head>
     <body>
-        <div
-            class="slide-container"
-            role="region"
-            aria-labelledby="assignment-header">
+        <main class="slide-container" aria-labelledby="page-title">
             <header class="slide-header">
-                <h1 id="assignment-header">
-                    Pokemon List with Random Background Color
-                </h1>
+                <h1 id="page-title">Pokémon List - Assignment</h1>
                 <h2>Assignment</h2>
             </header>
 
-            <div class="section">
-                <h3>Project Overview</h3>
+            <div class="section" aria-labelledby="overview">
+                <h3 id="overview">Pokemon List with Random Background Color</h3>
+                <p><strong>Project Overview</strong></p>
                 <p>
                     You are tasked with creating a React application that
                     combines two functionalities:
                 </p>
-                <ol class="custom-list">
+                <ol>
                     <li>Fetching and displaying Pokémon data.</li>
                     <li>
                         Managing and updating the background color of the page.
@@ -39,12 +35,11 @@
                 </ol>
             </div>
 
-            <hr class="section-divider" />
+            <div class="section" aria-labelledby="requirements">
+                <h3 id="requirements">Requirements</h3>
 
-            <div class="section">
-                <h3>Requirements</h3>
-                <h4>1. Fetch and Display Pokémon Data</h4>
-                <ul class="custom-list">
+                <h4>1. Fetch and Display Pokémon Data:</h4>
+                <ul>
                     <li>
                         <strong>Endpoint:</strong> Use
                         <code>https://api.vschool.io/pokemon</code> to get a
@@ -61,8 +56,8 @@
                     </li>
                 </ul>
 
-                <h4>2. Manage Background Color</h4>
-                <ul class="custom-list">
+                <h4>2. Manage Background Color:</h4>
+                <ul>
                     <li>
                         <strong>Initial Color:</strong> Set the background color
                         of the page to a random color.
@@ -86,18 +81,18 @@
                     </li>
                 </ul>
 
-                <h4>3. React Hooks</h4>
-                <ul class="custom-list">
+                <h4>3. React Hooks:</h4>
+                <ul>
                     <li>
                         <strong>useEffect:</strong> Implement two
                         <code>useEffect</code> hooks:
-                        <ul class="custom-list">
+                        <ol>
                             <li>One for fetching and storing Pokémon data.</li>
                             <li>
                                 Another for fetching and updating the background
                                 color based on a state variable.
                             </li>
-                        </ul>
+                        </ol>
                     </li>
                     <li>
                         <strong>useState:</strong> Use state variables to manage
@@ -106,8 +101,8 @@
                     </li>
                 </ul>
 
-                <h4>4. Component Structure</h4>
-                <ul class="custom-list">
+                <h4>4. Component Structure:</h4>
+                <ul>
                     <li>
                         <strong>Display Pokémon:</strong> Render Pokémon names
                         in a list format.
@@ -119,13 +114,40 @@
                 </ul>
             </div>
 
-            <h3>
-                <a
-                    href="https://marcopete5.github.io/level-3/assignments/react-pokemon-color/"
-                    target="_blank"
-                    >DEMO OF ASSIGNMENT</a
-                >
-            </h3>
-        </div>
+            <footer class="slide-footer" aria-label="Footer">
+                <h3>
+                    <a
+                        href="https://marcopete5.github.io/level-3/assignments/react-pokemon-color/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >DEMO OF COMPLETED ASSIGNMENT</a
+                    >
+                    <p>May take a minute or two to do initial load</p>
+                </h3>
+            </footer>
+        </main>
+
+        <!-- Prism syntax highlighting (JS) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- Lesson entry script (Level 3, Section APIS_IN_REACT, Lesson 005) -->
+        <script
+            src="https://vschool-reports.netlify.app/ltp.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-APIS_IN_REACT-005"
+            data-lesson-title="Pokémon List - Assignment"
+            data-course-id="Web Development"></script>
+
+        <!-- Feedback script (no visible button included) -->
+        <script
+            src="https://vschool-reports.netlify.app/feedback.js"
+            data-api="https://vschool-reports.netlify.app"
+            data-lesson-id="L3-APIS_IN_REACT-005"
+            data-lesson-title="Pokémon List - Assignment"
+            data-course-id="Web Development"
+            data-button-selector="#myFeedbackBtn"></script>
     </body>
 </html>
